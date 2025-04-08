@@ -8,57 +8,100 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <main class="main flex flex-col  bg-black justify-between items-center w-full h-full">
-        <nav class="nav w-[90%] items-center  justify-between flex border-2 border-neutral-500  bg-neutral-700 sm:mt-5 mt-4 h-20">
-            <h1 class="sm:p-10 text-white sm:text-2xl p-4 text-2xl font-bold">DSA</h1>   
-            <ul class="list-none sm:flex text-white p-10 gap-4 text-xl font-semibold hidden">
-                <li> Link 1</li>
+
+   <div class="w-full h-screen flex justify-between items-center  ">
+      <!-- (Navbar for Desktop) -->
+    <div class="sm:flex sm:w-[15%] sm:h-[100%]  left-0 hidden ">
+
+        <nav class="nav w-[100%] items-end border-2   h-[100%]">
+           
+            
+           <h1 class="">DBMS chapter</h1>  
+
+            <div>
+                <h2 class="">Topics</h2>
+                <ul class="ul">
+                   <!-- list -->
+                </ul> 
+            </div>
+            <div class="profile flex items-center gap-4 bg-neutral-800 p-4 rounded-xl shadow-md">
+                <div class="h-12 w-12  border-2 border-neutral-300 rounded-full overflow-hidden bg-white">
+                  <img src="" alt="Profile" class="object-cover h-full w-full" />
+                </div>
+                <h3 class=""></h3>
+              </div>
+              
+            
+           
+           
+
+        </nav>
+</div>
+
+    
+    <div class="sm:w-[85%] h-full w-full  sm:overflow-auto flex-col justify-center items-center">
+         <!-- {Navbar for Mobile} -->
+        <nav class="nav w-[100%] items-center  justify-between flex border-2 border-neutral-500  bg-neutral-700  h-[10%] sm:hidden">
+            <h1 class="text-2xl p-4 text-white ">DBMS</h1>   
+            <ul class="hidden">
+                <li>Link 1</li>
                 <li>Link 2</li>
                 <li>Link 3</li>
                 <li>Link 4</li>
             </ul> 
-            <ul class="list-none gap-[8px] flex flex-col justify-center items-center p-4 gap-4 text-xl font-semibold sm:hidden">
-                <li class="w-10 h-1 bg-white"></li>
-                <li class="w-10 h-1 bg-white"></li>
-                <li class="w-10 h-1 bg-white"></li>
-                
-            
+            <ul class="flex flex-col items-center justify-center gap-2 p-4 ">
+                <li class="w-12 h-1 bg-white"></li>
+                <li class="w-12 h-1 bg-white"></li>
+                <li class="w-12 h-1 bg-white"></li>
             </ul> 
 
         </nav>
-        
+<!-- (Main COntent starts from here ) -->
+    <main class="main  flex flex-col   justify-between items-center w-full h-full">
+       
         <!-- (section 1) -->
-        <div class="w-full sm:h-[80vh] mt-10  h-[30vh] flex justify-center items-center">
+        <div class="main1 w-full sm:h-[80vh] mt-10   h-[30vh] flex justify-center items-center">
 
-            <div class="justify-center items-center sm:px-20 sm:py-10  sm:mt-10 px-6 gap-4  w-full  sm:h-[100vh]    sm:flex grid grid-cols-1  ">
+            <div class="justify-center items-center sm:px-20 sm:py-10  sm:mt-10 px-6 gap-4  w-full  sm:h-[100vh]  sm:flex grid grid-cols-1  ">
 
         <!-- {section 1/2} -->
-                <div class="sm:h-[90%] h-[30vh]  sm:w-[50%] w-[100%] bg-neutral-500 rounded-xl">
+                <div class="section1">
+
                 </div>
     
         <!-- {section1/2} -->
-            <div class="sm:h-[90%] sm:block hidden   h-[30vh] w-[100%] bg-neutral-500  p-6 rounded-xl">
-                <!-- half  -->
-                <div class="h-[100%]  gap-4   flex flex-col   border-neutral-300 p-6">
-                    <h1 // class="Introduction  text-3xl font-semibold ">Introduction</h1>
-                    <p // class="para border-2  border-neutral-300 rounded-md p-4">
+            <div class="section2 ">
+              
+                <div class="h-[100%]  gap-4   flex flex-col border-2  border-neutral-600 p-6">
+                    <h1 // class="Introduction ">Introduction</h1>
+                    <p  // class="para ">
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae, ducimus vitae laboriosam reprehenderit accusamus similique iure doloremque tempora necessitatibus veniam ab quod odio, quas mollitia, amet veritatis asperiores reiciendis fuga quo?
                     </p>
                 </div>
-                <!-- half  -->
+               
                 
             </div>
     
            </div>
         </div>
-        </div>
         
-        <div class="justify-between items-center  flex w-full h-[70vh]">
+        <!-- (section2 ) -->
+        <div class="main2 justify-center gap-4 items-center text-white sm:px-20 px-4 pt-16 pb-6  flex-col flex w-full ">
+            <h1 class="">Commands</h1>
+            <p class="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae laboriosam, dolor obcaecati aliquam nostrum blanditiis architecto nulla officiis hic beatae dolores in at perferendis nam illo delectus quo impedit! Blanditiis facilis distinctio nostrum debitis.</p>
+        </div> 
+ <!-- (section3 ) -->
+        <div class="main3 justify-between items-center  flex w-full h-[70vh]">
         <Cards class="Cards grid sm:grid-cols-2 h-full  grid-cols-1 sm:px-20  p-8 gap-4    flex justify-center items-center w-[100%]">
         </Cards>
     </div>
-    </div>
+    
+
+
     </main>
+
+</div>
+</div>
     <script src="index.js"></script>
 </body>
 </html>
