@@ -21,13 +21,17 @@ const colors = {
   pfimg: "https://i.pinimg.com/474x/dc/f2/4c/dcf24cd5a19f7184ff3fa6a34bc8e038.jpg",
   pfh3color: "emerald-300",
   pfh3: "Gaurav Kumar",
-  query_name: "DDL Command",
-  iframe: "https://www.youtube.com/embed/_yog7h4BokQ?si=YiCNBO71H4hDsgUE",
-  query_desc: "Used to define and modify the structure of database objects like tables, indexes, and schemas.",
-  query_introduction:
-    "DDL (Data Definition Language) commands in SQL are used to create, alter, drop, and manage schema objects like tables, views, and indexes. These commands define the database structure and its objects.",
-  cardcolor: "neutral-800"
+
+  // Replaced with DCL meta
+  query_name: "DCL Command",
+  query_desc: "Used to control access and permissions on database objects.",
+  query_introduction: "DCL (Data Control Language) commands manage access rights and permissions. They ensure that only authorized users can perform specific operations on the database. Common commands include GRANT and REVOKE.",
+
+  cardcolor: "neutral-800",
+  iframe: "https://www.youtube.com/embed/_yog7h4BokQ?si=YiCNBO71H4hDsgUE"
 };
+
+
 
 
      
@@ -109,25 +113,27 @@ body.style.backgroundColor=colors.body
 const home = document.querySelector(".Cards")
 
 
-const commands = [// DDL COMMANDS
+const commands = [
+  // ... existing DDL commands
 
+  // DCL COMMANDS
   {
-    name: "Create Table",
-    desc: "Creates a new table in the database.",
-    code: `CREATE TABLE users (\n  id INT PRIMARY KEY AUTO_INCREMENT,\n  name VARCHAR(100),\n  age INT\n);`,
-    output: `Query OK, table 'users' created`,
-    subhead: "Schema Definition",
-    main: "CREATE TABLE Command",
-    title: "Creating a Table Structure",
+    name: "Grant",
+    desc: "Provides privileges to users on database objects.",
+    code: `GRANT SELECT, INSERT ON users TO 'john';`,
+    output: `Query OK, 0 rows affected`,
+    subhead: "User Privileges",
+    main: "GRANT Command",
+    title: "Granting Permissions",
     list: [
-      "Defines table name and columns.",
-      "Includes data types and constraints.",
-      "Can define primary keys and defaults.",
-      "Foundational for any database."
+      "Assigns specific privileges to users.",
+      "Can be applied to tables, views, or procedures.",
+      "Supports multiple privileges at once.",
+      "Used to manage access control in multi-user environments."
     ],
-    mainColor: "green-400",
+    mainColor: "emerald-400",
     subColor: "gray-400",
-    titleColor: "green-300",
+    titleColor: "emerald-300",
     listColor: "gray-300",
     bgColor: "gray-900",
     meta: {
@@ -137,147 +143,22 @@ const commands = [// DDL COMMANDS
     }
   },
   {
-    name: "Drop Table",
-    desc: "Deletes a table and all its data from the database.",
-    code: `DROP TABLE users;`,
-    output: `Query OK, table 'users' dropped`,
-    subhead: "Deleting Structure",
-    main: "DROP TABLE Command",
-    title: "Dropping a Table",
+    name: "Revoke",
+    desc: "Removes previously granted privileges from users.",
+    code: `REVOKE SELECT, INSERT ON users FROM 'john';`,
+    output: `Query OK, 0 rows affected`,
+    subhead: "Remove Access",
+    main: "REVOKE Command",
+    title: "Revoking Permissions",
     list: [
-      "Removes table and all its data.",
-      "Cannot be undone.",
-      "Useful for cleanup or resets.",
-      "Use with caution in production."
+      "Takes away specific privileges from users.",
+      "Opposite of the GRANT command.",
+      "Can revoke multiple privileges at once.",
+      "Ensures tighter access control and security."
     ],
-    mainColor: "green-400",
+    mainColor: "emerald-400",
     subColor: "gray-400",
-    titleColor: "green-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
-    }
-  },
-  {
-    name: "Alter Table",
-    desc: "Modifies the structure of an existing table.",
-    code: `ALTER TABLE users ADD COLUMN email VARCHAR(100);`,
-    output: `Query OK, table 'users' altered`,
-    subhead: "Modifying Schema",
-    main: "ALTER TABLE Command",
-    title: "Adding a Column",
-    list: [
-      "Used to add, drop, or modify columns.",
-      "Can rename tables or change data types.",
-      "Allows adding constraints like UNIQUE or FOREIGN KEY.",
-      "Flexible tool for schema evolution."
-    ],
-    mainColor: "green-400",
-    subColor: "gray-400",
-    titleColor: "green-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
-    }
-  },
-  {
-    name: "Truncate Table",
-    desc: "Deletes all rows in a table but keeps the structure intact.",
-    code: `TRUNCATE TABLE users;`,
-    output: `Query OK, all rows removed from 'users'`,
-    subhead: "Resetting Data",
-    main: "TRUNCATE TABLE Command",
-    title: "Removing All Data Quickly",
-    list: [
-      "Removes all rows from a table instantly.",
-      "Faster than DELETE for large datasets.",
-      "Does not log individual row deletions.",
-      "Resets auto-increment values."
-    ],
-    mainColor: "green-400",
-    subColor: "gray-400",
-    titleColor: "green-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
-    }
-  },
-  {
-    name: "Rename Table",
-    desc: "Changes the name of an existing table.",
-    code: `RENAME TABLE users TO customers;`,
-    output: `Query OK, table renamed to 'customers'`,
-    subhead: "Renaming Schema Object",
-    main: "RENAME TABLE Command",
-    title: "Changing Table Name",
-    list: [
-      "Used to rename an existing table.",
-      "Does not affect data or structure.",
-      "Can rename multiple tables in one command.",
-      "Often used during refactoring or migration."
-    ],
-    mainColor: "green-400",
-    subColor: "gray-400",
-    titleColor: "green-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
-    }
-  },
-  {
-    name: "Create Index",
-    desc: "Creates an index to improve query performance.",
-    code: `CREATE INDEX idx_users_name ON users(name);`,
-    output: `Query OK, index 'idx_users_name' created`,
-    subhead: "Performance Optimization",
-    main: "CREATE INDEX Command",
-    title: "Indexing for Speed",
-    list: [
-      "Improves search performance on columns.",
-      "Can be single or multi-column.",
-      "Indexes are used automatically by the database engine.",
-      "Essential for large datasets."
-    ],
-    mainColor: "green-400",
-    subColor: "gray-400",
-    titleColor: "green-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
-    }
-  },
-  {
-    name: "Drop Index",
-    desc: "Removes an existing index from a table.",
-    code: `DROP INDEX idx_users_name ON users;`,
-    output: `Query OK, index 'idx_users_name' dropped`,
-    subhead: "Removing Optimization",
-    main: "DROP INDEX Command",
-    title: "Dropping an Index",
-    list: [
-      "Removes a previously created index.",
-      "Useful for schema cleanup.",
-      "May impact query performance if removed carelessly.",
-      "Does not affect table data."
-    ],
-    mainColor: "green-400",
-    subColor: "gray-400",
-    titleColor: "green-300",
+    titleColor: "emerald-300",
     listColor: "gray-300",
     bgColor: "gray-900",
     meta: {
@@ -286,7 +167,9 @@ const commands = [// DDL COMMANDS
       intro: colors.query_introduction
     }
   }
-  ];
+];
+
+
 
 
 
@@ -345,41 +228,60 @@ commands.forEach((value) => {
 const navlist = document.querySelector(".nav-list");
 
 const navelemts = [
-  
   {
     h1: "DDL Commands",
     links: [
-      {
-        name: "CREATE TABLE",
-        href: "#create-table-command-schema-definition"
-      },
-      {
-        name: "DROP TABLE",
-        href: "#drop-table-command-deleting-structure"
-      },
-      {
-        name: "ALTER TABLE",
-        href: "#alter-table-command-modifying-schema"
-      },
-      {
-        name: "TRUNCATE TABLE",
-        href: "#truncate-table-command-resetting-data"
-      },
-      {
-        name: "RENAME TABLE",
-        href: "#rename-table-command-renaming-schema-object"
-      },
-      {
-        name: "CREATE INDEX",
-        href: "#create-index-command-performance-optimization"
-      },
-      {
-        name: "DROP INDEX",
-        href: "#drop-index-command-removing-optimization"
-      }
+      { name: "CREATE TABLE", href: "#create-table-command-schema-definition" },
+      { name: "DROP TABLE", href: "#drop-table-command-deleting-structure" },
+      { name: "ALTER TABLE", href: "#alter-table-command-modifying-schema" },
+      { name: "TRUNCATE TABLE", href: "#truncate-table-command-resetting-data" },
+      { name: "RENAME TABLE", href: "#rename-table-command-renaming-schema-object" },
+      { name: "CREATE INDEX", href: "#create-index-command-performance-optimization" },
+      { name: "DROP INDEX", href: "#drop-index-command-removing-optimization" },
+      { name: "CREATE VIEW", href: "#create-view-command-virtual-tables" },
+      { name: "DROP VIEW", href: "#drop-view-command-remove-views" }
+    ]
+  },
+  {
+    h1: "DML Commands",
+    links: [
+      { name: "INSERT INTO", href: "#insert-into-command-adding-data" },
+      { name: "INSERT INTO SELECT", href: "#insert-into-select-command-copying-data" },
+      { name: "UPDATE", href: "#update-command-modifying-data" },
+      { name: "DELETE", href: "#delete-command-removing-data" },
+      { name: "MERGE", href: "#merge-command-upsert-data" }
+    ]
+  },
+  {
+    h1: "DCL Commands",
+    links: [
+      { name: "GRANT", href: "#grant-command-user-privileges" },
+      { name: "REVOKE", href: "#revoke-command-remove-privileges" }
+    ]
+  },
+  {
+    h1: "TCL Commands",
+    links: [
+      { name: "COMMIT", href: "#commit-command-save-transactions" },
+      { name: "ROLLBACK", href: "#rollback-command-undo-transactions" },
+      { name: "SAVEPOINT", href: "#savepoint-command-set-transaction-point" },
+      { name: "SET TRANSACTION", href: "#set-transaction-command-set-isolation-level" }
+    ]
+  },
+  {
+    h1: "DQL Commands",
+    links: [
+      { name: "SELECT", href: "#select-command-data-retrieval" },
+      { name: "SELECT DISTINCT", href: "#select-distinct-command-unique-records" },
+      { name: "SELECT WHERE", href: "#select-where-command-conditional-retrieval" },
+      { name: "SELECT ORDER BY", href: "#select-order-by-command-sorting-results" },
+      { name: "SELECT GROUP BY", href: "#select-group-by-command-grouping-results" },
+      { name: "SELECT HAVING", href: "#select-having-command-filtering-groups" },
+      { name: "SELECT JOIN", href: "#select-join-command-combining-tables" }
     ]
   }
 ];
+
 
 
 

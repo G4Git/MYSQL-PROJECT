@@ -21,13 +21,18 @@ const colors = {
   pfimg: "https://i.pinimg.com/474x/dc/f2/4c/dcf24cd5a19f7184ff3fa6a34bc8e038.jpg",
   pfh3color: "emerald-300",
   pfh3: "Gaurav Kumar",
-  query_name: "DDL Command",
-  iframe: "https://www.youtube.com/embed/_yog7h4BokQ?si=YiCNBO71H4hDsgUE",
-  query_desc: "Used to define and modify the structure of database objects like tables, indexes, and schemas.",
-  query_introduction:
-    "DDL (Data Definition Language) commands in SQL are used to create, alter, drop, and manage schema objects like tables, views, and indexes. These commands define the database structure and its objects.",
-  cardcolor: "neutral-800"
+
+  // Updated with TCL meta
+  query_name: "TCL Command",
+  query_desc: "Used to manage transactions in a database to ensure data consistency and integrity.",
+  query_introduction: "TCL (Transaction Control Language) commands are used to control transactions in SQL. They help manage changes made by DML statements and ensure data reliability using commands like COMMIT, ROLLBACK, and SAVEPOINT.",
+
+  cardcolor: "neutral-800",
+  iframe: "https://www.youtube.com/embed/_yog7h4BokQ?si=YiCNBO71H4hDsgUE"
 };
+
+
+
 
 
      
@@ -109,184 +114,89 @@ body.style.backgroundColor=colors.body
 const home = document.querySelector(".Cards")
 
 
-const commands = [// DDL COMMANDS
+// TCL COMMANDS
+const commands = [
+  // ... your previous commands
 
   {
-    name: "Create Table",
-    desc: "Creates a new table in the database.",
-    code: `CREATE TABLE users (\n  id INT PRIMARY KEY AUTO_INCREMENT,\n  name VARCHAR(100),\n  age INT\n);`,
-    output: `Query OK, table 'users' created`,
-    subhead: "Schema Definition",
-    main: "CREATE TABLE Command",
-    title: "Creating a Table Structure",
+    name: "COMMIT",
+    desc: "Permanently saves all the changes made by the current transaction.",
+    code: `COMMIT;`,
+    output: `Transaction committed successfully.`,
+    subhead: "Saving Changes",
+    main: "COMMIT Command",
+    title: "Committing a Transaction",
     list: [
-      "Defines table name and columns.",
-      "Includes data types and constraints.",
-      "Can define primary keys and defaults.",
-      "Foundational for any database."
+      "Makes all changes since the last COMMIT or ROLLBACK permanent.",
+      "Cannot be undone once committed.",
+      "Used to finalize transactions after data modification.",
+      "Improves data integrity in multi-step operations."
     ],
-    mainColor: "green-400",
+    mainColor: "emerald-400",
     subColor: "gray-400",
-    titleColor: "green-300",
+    titleColor: "emerald-300",
     listColor: "gray-300",
     bgColor: "gray-900",
     meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
+      type: "TCL Command",
+      description: "Used to manage and finalize transactions in the database.",
+      intro: "TCL commands like COMMIT are used to make permanent changes made by DML commands like INSERT, UPDATE, or DELETE."
     }
   },
   {
-    name: "Drop Table",
-    desc: "Deletes a table and all its data from the database.",
-    code: `DROP TABLE users;`,
-    output: `Query OK, table 'users' dropped`,
-    subhead: "Deleting Structure",
-    main: "DROP TABLE Command",
-    title: "Dropping a Table",
+    name: "ROLLBACK",
+    desc: "Undoes changes made in the current transaction before a COMMIT.",
+    code: `ROLLBACK;`,
+    output: `Transaction rolled back successfully.`,
+    subhead: "Reverting Changes",
+    main: "ROLLBACK Command",
+    title: "Rolling Back a Transaction",
     list: [
-      "Removes table and all its data.",
-      "Cannot be undone.",
-      "Useful for cleanup or resets.",
-      "Use with caution in production."
+      "Reverses all uncommitted changes.",
+      "Useful for undoing accidental or erroneous updates.",
+      "Helps maintain database consistency during failures.",
+      "Used in transactions to recover from issues before commit."
     ],
-    mainColor: "green-400",
+    mainColor: "emerald-400",
     subColor: "gray-400",
-    titleColor: "green-300",
+    titleColor: "emerald-300",
     listColor: "gray-300",
     bgColor: "gray-900",
     meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
+      type: "TCL Command",
+      description: "Used to undo changes before they're permanently committed.",
+      intro: "ROLLBACK helps cancel a transaction when something goes wrong, reverting data to the last stable state."
     }
   },
   {
-    name: "Alter Table",
-    desc: "Modifies the structure of an existing table.",
-    code: `ALTER TABLE users ADD COLUMN email VARCHAR(100);`,
-    output: `Query OK, table 'users' altered`,
-    subhead: "Modifying Schema",
-    main: "ALTER TABLE Command",
-    title: "Adding a Column",
+    name: "SAVEPOINT",
+    desc: "Creates a point within a transaction to which you can later roll back.",
+    code: `SAVEPOINT my_savepoint;`,
+    output: `Savepoint created.`,
+    subhead: "Creating Checkpoints",
+    main: "SAVEPOINT Command",
+    title: "Defining a Savepoint",
     list: [
-      "Used to add, drop, or modify columns.",
-      "Can rename tables or change data types.",
-      "Allows adding constraints like UNIQUE or FOREIGN KEY.",
-      "Flexible tool for schema evolution."
+      "Marks a position within a transaction.",
+      "Allows partial rollback to specific points.",
+      "Useful for complex transactions with multiple steps.",
+      "Does not commit or roll back automatically."
     ],
-    mainColor: "green-400",
+    mainColor: "emerald-400",
     subColor: "gray-400",
-    titleColor: "green-300",
+    titleColor: "emerald-300",
     listColor: "gray-300",
     bgColor: "gray-900",
     meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
-    }
-  },
-  {
-    name: "Truncate Table",
-    desc: "Deletes all rows in a table but keeps the structure intact.",
-    code: `TRUNCATE TABLE users;`,
-    output: `Query OK, all rows removed from 'users'`,
-    subhead: "Resetting Data",
-    main: "TRUNCATE TABLE Command",
-    title: "Removing All Data Quickly",
-    list: [
-      "Removes all rows from a table instantly.",
-      "Faster than DELETE for large datasets.",
-      "Does not log individual row deletions.",
-      "Resets auto-increment values."
-    ],
-    mainColor: "green-400",
-    subColor: "gray-400",
-    titleColor: "green-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
-    }
-  },
-  {
-    name: "Rename Table",
-    desc: "Changes the name of an existing table.",
-    code: `RENAME TABLE users TO customers;`,
-    output: `Query OK, table renamed to 'customers'`,
-    subhead: "Renaming Schema Object",
-    main: "RENAME TABLE Command",
-    title: "Changing Table Name",
-    list: [
-      "Used to rename an existing table.",
-      "Does not affect data or structure.",
-      "Can rename multiple tables in one command.",
-      "Often used during refactoring or migration."
-    ],
-    mainColor: "green-400",
-    subColor: "gray-400",
-    titleColor: "green-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
-    }
-  },
-  {
-    name: "Create Index",
-    desc: "Creates an index to improve query performance.",
-    code: `CREATE INDEX idx_users_name ON users(name);`,
-    output: `Query OK, index 'idx_users_name' created`,
-    subhead: "Performance Optimization",
-    main: "CREATE INDEX Command",
-    title: "Indexing for Speed",
-    list: [
-      "Improves search performance on columns.",
-      "Can be single or multi-column.",
-      "Indexes are used automatically by the database engine.",
-      "Essential for large datasets."
-    ],
-    mainColor: "green-400",
-    subColor: "gray-400",
-    titleColor: "green-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
-    }
-  },
-  {
-    name: "Drop Index",
-    desc: "Removes an existing index from a table.",
-    code: `DROP INDEX idx_users_name ON users;`,
-    output: `Query OK, index 'idx_users_name' dropped`,
-    subhead: "Removing Optimization",
-    main: "DROP INDEX Command",
-    title: "Dropping an Index",
-    list: [
-      "Removes a previously created index.",
-      "Useful for schema cleanup.",
-      "May impact query performance if removed carelessly.",
-      "Does not affect table data."
-    ],
-    mainColor: "green-400",
-    subColor: "gray-400",
-    titleColor: "green-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
+      type: "TCL Command",
+      description: "Used to set checkpoints within transactions.",
+      intro: "SAVEPOINT lets you define a place to which you can return using ROLLBACK without undoing the whole transaction."
     }
   }
-  ];
+];
+
+
+
 
 
 
@@ -345,41 +255,60 @@ commands.forEach((value) => {
 const navlist = document.querySelector(".nav-list");
 
 const navelemts = [
-  
   {
     h1: "DDL Commands",
     links: [
-      {
-        name: "CREATE TABLE",
-        href: "#create-table-command-schema-definition"
-      },
-      {
-        name: "DROP TABLE",
-        href: "#drop-table-command-deleting-structure"
-      },
-      {
-        name: "ALTER TABLE",
-        href: "#alter-table-command-modifying-schema"
-      },
-      {
-        name: "TRUNCATE TABLE",
-        href: "#truncate-table-command-resetting-data"
-      },
-      {
-        name: "RENAME TABLE",
-        href: "#rename-table-command-renaming-schema-object"
-      },
-      {
-        name: "CREATE INDEX",
-        href: "#create-index-command-performance-optimization"
-      },
-      {
-        name: "DROP INDEX",
-        href: "#drop-index-command-removing-optimization"
-      }
+      { name: "CREATE TABLE", href: "#create-table-command-schema-definition" },
+      { name: "DROP TABLE", href: "#drop-table-command-deleting-structure" },
+      { name: "ALTER TABLE", href: "#alter-table-command-modifying-schema" },
+      { name: "TRUNCATE TABLE", href: "#truncate-table-command-resetting-data" },
+      { name: "RENAME TABLE", href: "#rename-table-command-renaming-schema-object" },
+      { name: "CREATE INDEX", href: "#create-index-command-performance-optimization" },
+      { name: "DROP INDEX", href: "#drop-index-command-removing-optimization" },
+      { name: "CREATE VIEW", href: "#create-view-command-virtual-tables" },
+      { name: "DROP VIEW", href: "#drop-view-command-remove-views" }
+    ]
+  },
+  {
+    h1: "DML Commands",
+    links: [
+      { name: "INSERT INTO", href: "#insert-into-command-adding-data" },
+      { name: "INSERT INTO SELECT", href: "#insert-into-select-command-copying-data" },
+      { name: "UPDATE", href: "#update-command-modifying-data" },
+      { name: "DELETE", href: "#delete-command-removing-data" },
+      { name: "MERGE", href: "#merge-command-upsert-data" }
+    ]
+  },
+  {
+    h1: "DCL Commands",
+    links: [
+      { name: "GRANT", href: "#grant-command-user-privileges" },
+      { name: "REVOKE", href: "#revoke-command-remove-privileges" }
+    ]
+  },
+  {
+    h1: "TCL Commands",
+    links: [
+      { name: "COMMIT", href: "#commit-command-save-transactions" },
+      { name: "ROLLBACK", href: "#rollback-command-undo-transactions" },
+      { name: "SAVEPOINT", href: "#savepoint-command-set-transaction-point" },
+      { name: "SET TRANSACTION", href: "#set-transaction-command-set-isolation-level" }
+    ]
+  },
+  {
+    h1: "DQL Commands",
+    links: [
+      { name: "SELECT", href: "#select-command-data-retrieval" },
+      { name: "SELECT DISTINCT", href: "#select-distinct-command-unique-records" },
+      { name: "SELECT WHERE", href: "#select-where-command-conditional-retrieval" },
+      { name: "SELECT ORDER BY", href: "#select-order-by-command-sorting-results" },
+      { name: "SELECT GROUP BY", href: "#select-group-by-command-grouping-results" },
+      { name: "SELECT HAVING", href: "#select-having-command-filtering-groups" },
+      { name: "SELECT JOIN", href: "#select-join-command-combining-tables" }
     ]
   }
 ];
+
 
 
 

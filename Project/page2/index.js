@@ -21,13 +21,14 @@ const colors = {
   pfimg: "https://i.pinimg.com/474x/dc/f2/4c/dcf24cd5a19f7184ff3fa6a34bc8e038.jpg",
   pfh3color: "emerald-300",
   pfh3: "Gaurav Kumar",
-  query_name: "DDL Command",
+  query_name: "DML Command",
   iframe: "https://www.youtube.com/embed/_yog7h4BokQ?si=YiCNBO71H4hDsgUE",
-  query_desc: "Used to define and modify the structure of database objects like tables, indexes, and schemas.",
+  query_desc: "Used to manipulate data within existing database objects like inserting, updating, or deleting records.",
   query_introduction:
-    "DDL (Data Definition Language) commands in SQL are used to create, alter, drop, and manage schema objects like tables, views, and indexes. These commands define the database structure and its objects.",
+    "DML (Data Manipulation Language) commands in SQL are used to handle data stored in tables. These commands allow you to insert new records, update existing ones, and delete data from database tables without altering the structure.",
   cardcolor: "neutral-800"
 };
+
 
 
      
@@ -109,25 +110,27 @@ body.style.backgroundColor=colors.body
 const home = document.querySelector(".Cards")
 
 
-const commands = [// DDL COMMANDS
+const commands = [
+  // ... existing DDL commands
 
+  // DML COMMANDS
   {
-    name: "Create Table",
-    desc: "Creates a new table in the database.",
-    code: `CREATE TABLE users (\n  id INT PRIMARY KEY AUTO_INCREMENT,\n  name VARCHAR(100),\n  age INT\n);`,
-    output: `Query OK, table 'users' created`,
-    subhead: "Schema Definition",
-    main: "CREATE TABLE Command",
-    title: "Creating a Table Structure",
+    name: "Insert Into",
+    desc: "Adds new records into a table.",
+    code: `INSERT INTO users (name, age) VALUES ('Alice', 25);`,
+    output: `Query OK, 1 row affected`,
+    subhead: "Adding Data",
+    main: "INSERT INTO Command",
+    title: "Inserting Records",
     list: [
-      "Defines table name and columns.",
-      "Includes data types and constraints.",
-      "Can define primary keys and defaults.",
-      "Foundational for any database."
+      "Adds one or more new rows to a table.",
+      "Column order must match values.",
+      "Supports inserting multiple rows at once.",
+      "Common for new user or transaction entries."
     ],
-    mainColor: "green-400",
+    mainColor: "emerald-400",
     subColor: "gray-400",
-    titleColor: "green-300",
+    titleColor: "emerald-300",
     listColor: "gray-300",
     bgColor: "gray-900",
     meta: {
@@ -137,22 +140,22 @@ const commands = [// DDL COMMANDS
     }
   },
   {
-    name: "Drop Table",
-    desc: "Deletes a table and all its data from the database.",
-    code: `DROP TABLE users;`,
-    output: `Query OK, table 'users' dropped`,
-    subhead: "Deleting Structure",
-    main: "DROP TABLE Command",
-    title: "Dropping a Table",
+    name: "Update",
+    desc: "Modifies existing records in a table.",
+    code: `UPDATE users SET age = 26 WHERE name = 'Alice';`,
+    output: `Query OK, 1 row affected`,
+    subhead: "Modifying Data",
+    main: "UPDATE Command",
+    title: "Updating Records",
     list: [
-      "Removes table and all its data.",
-      "Cannot be undone.",
-      "Useful for cleanup or resets.",
-      "Use with caution in production."
+      "Changes data in one or more rows.",
+      "Requires WHERE clause to target rows.",
+      "Can update multiple columns at once.",
+      "Used to correct or change stored values."
     ],
-    mainColor: "green-400",
+    mainColor: "emerald-400",
     subColor: "gray-400",
-    titleColor: "green-300",
+    titleColor: "emerald-300",
     listColor: "gray-300",
     bgColor: "gray-900",
     meta: {
@@ -162,122 +165,22 @@ const commands = [// DDL COMMANDS
     }
   },
   {
-    name: "Alter Table",
-    desc: "Modifies the structure of an existing table.",
-    code: `ALTER TABLE users ADD COLUMN email VARCHAR(100);`,
-    output: `Query OK, table 'users' altered`,
-    subhead: "Modifying Schema",
-    main: "ALTER TABLE Command",
-    title: "Adding a Column",
+    name: "Delete",
+    desc: "Removes specific records from a table.",
+    code: `DELETE FROM users WHERE name = 'Alice';`,
+    output: `Query OK, 1 row affected`,
+    subhead: "Removing Data",
+    main: "DELETE Command",
+    title: "Deleting Records",
     list: [
-      "Used to add, drop, or modify columns.",
-      "Can rename tables or change data types.",
-      "Allows adding constraints like UNIQUE or FOREIGN KEY.",
-      "Flexible tool for schema evolution."
+      "Removes rows based on a condition.",
+      "Requires WHERE clause to prevent full deletion.",
+      "Does not delete table structure.",
+      "Often used for cleanup or correction."
     ],
-    mainColor: "green-400",
+    mainColor: "emerald-400",
     subColor: "gray-400",
-    titleColor: "green-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
-    }
-  },
-  {
-    name: "Truncate Table",
-    desc: "Deletes all rows in a table but keeps the structure intact.",
-    code: `TRUNCATE TABLE users;`,
-    output: `Query OK, all rows removed from 'users'`,
-    subhead: "Resetting Data",
-    main: "TRUNCATE TABLE Command",
-    title: "Removing All Data Quickly",
-    list: [
-      "Removes all rows from a table instantly.",
-      "Faster than DELETE for large datasets.",
-      "Does not log individual row deletions.",
-      "Resets auto-increment values."
-    ],
-    mainColor: "green-400",
-    subColor: "gray-400",
-    titleColor: "green-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
-    }
-  },
-  {
-    name: "Rename Table",
-    desc: "Changes the name of an existing table.",
-    code: `RENAME TABLE users TO customers;`,
-    output: `Query OK, table renamed to 'customers'`,
-    subhead: "Renaming Schema Object",
-    main: "RENAME TABLE Command",
-    title: "Changing Table Name",
-    list: [
-      "Used to rename an existing table.",
-      "Does not affect data or structure.",
-      "Can rename multiple tables in one command.",
-      "Often used during refactoring or migration."
-    ],
-    mainColor: "green-400",
-    subColor: "gray-400",
-    titleColor: "green-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
-    }
-  },
-  {
-    name: "Create Index",
-    desc: "Creates an index to improve query performance.",
-    code: `CREATE INDEX idx_users_name ON users(name);`,
-    output: `Query OK, index 'idx_users_name' created`,
-    subhead: "Performance Optimization",
-    main: "CREATE INDEX Command",
-    title: "Indexing for Speed",
-    list: [
-      "Improves search performance on columns.",
-      "Can be single or multi-column.",
-      "Indexes are used automatically by the database engine.",
-      "Essential for large datasets."
-    ],
-    mainColor: "green-400",
-    subColor: "gray-400",
-    titleColor: "green-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: colors.query_name,
-      description: colors.query_desc,
-      intro: colors.query_introduction
-    }
-  },
-  {
-    name: "Drop Index",
-    desc: "Removes an existing index from a table.",
-    code: `DROP INDEX idx_users_name ON users;`,
-    output: `Query OK, index 'idx_users_name' dropped`,
-    subhead: "Removing Optimization",
-    main: "DROP INDEX Command",
-    title: "Dropping an Index",
-    list: [
-      "Removes a previously created index.",
-      "Useful for schema cleanup.",
-      "May impact query performance if removed carelessly.",
-      "Does not affect table data."
-    ],
-    mainColor: "green-400",
-    subColor: "gray-400",
-    titleColor: "green-300",
+    titleColor: "emerald-300",
     listColor: "gray-300",
     bgColor: "gray-900",
     meta: {
@@ -286,7 +189,8 @@ const commands = [// DDL COMMANDS
       intro: colors.query_introduction
     }
   }
-  ];
+];
+
 
 
 
@@ -376,6 +280,24 @@ const navelemts = [
       {
         name: "DROP INDEX",
         href: "#drop-index-command-removing-optimization"
+      }
+    ]
+  }
+  ,
+  {
+    h1: "DML Commands",
+    links: [
+      {
+        name: "INSERT INTO",
+        href: "#insert-into-command-adding-data"
+      },
+      {
+        name: "UPDATE",
+        href: "#update-command-modifying-data"
+      },
+      {
+        name: "DELETE",
+        href: "#delete-command-removing-data"
       }
     ]
   }
