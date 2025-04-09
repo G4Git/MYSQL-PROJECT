@@ -16,13 +16,13 @@
 
 /* Track (background) */
 ::-webkit-scrollbar-track {
-  background: #f0f0f0;
+  background: #000000;
   border-radius: 10px;
 }
 
 /* Thumb (scrollable part) */
 ::-webkit-scrollbar-thumb {
-  background-color: #888;
+  background-color: #000000;
   border-radius: 10px;
   border: 2px solid #f0f0f0;
 }

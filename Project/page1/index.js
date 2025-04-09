@@ -2,28 +2,31 @@
 // changing color of the website components
 
 const colors = {
-    text: "green-300",
-    back: "neutral-800",
-    border: "neutral-600",
-    subtext: "neutral-200",
-    specialhead: "yellow-200",
-    specialtext: "yellow-100",
-    navhead: "white",
-    navlist: "neutral-400",
-    topicColor: "yellow-500",
-    body: "black",
-    windowhead: "",
-    windowbg: "neutral-600",
-    textareabg: "black",
-    textareatext: "white",
-    input: "yellow-400",
-    output: "green-400",
-    // profile image
-    pfimg: "https://i.pinimg.com/474x/fd/17/e6/fd17e6aa8f2d5853c9193a6f698b6099.jpg",
-    pfh3color: "neutral-400",
-    // prfile name 
-    pfh3:"Gaurav kumar"
-}
+    
+        text: "gray-100",               // Primary text - bright on dark
+        back: "black",                  // Deep dark background
+        border: "gray-700",            // Dark but visible border
+        subtext: "gray-500",           // Dimmer secondary text
+        specialhead: "violet-500",     // Deep, glowing purple for headers
+        specialtext: "violet-400",     // Slightly lighter special text
+        navhead: "gray-200",           // Slightly brighter nav titles
+        navlist: "gray-500",           // Dim nav list items
+        topicColor: "violet-600",      // Strong highlight color
+        body: "neutral-900",           // Dark body for contrast with cards
+        windowhead: "neutral-800",     // Card header
+        windowbg: "neutral-900",       // Card background
+        textareabg: "gray-900",        // Text area background
+        textareatext: "gray-100",      // Text in text area
+        input: "violet-600",           // Input border/focus
+        output: "violet-400",          // Output text color
+        pfimg: "https://i.pinimg.com/474x/fd/17/e6/fd17e6aa8f2d5853c9193a6f698b6099.jpg", // Profile image
+        pfh3color: "violet-400",       // Profile name color
+    pfh3: "Gaurav Kumar",
+    body:"#212121"
+    // Profile name
+      };
+      
+
 
 // { Setting Navbar in desktop }
 
@@ -32,9 +35,8 @@ const navh1 = document.querySelector(".nav h1")
 const navh2 = document.querySelector(".nav h2")
 const ul = document.querySelector(".ul")
 navh1.setAttribute("class", `sm:p-8 text-${colors.navhead} sm:text-2xl p-4 text-2xl font-bold`)  
-navh2.setAttribute("class",`sm:py-5 text-${colors.topicColor} sm:text-2xl px-10 text-lg font-sans`) 
-ul.setAttribute("class", ` text-${colors.navlist} list-none gap-2  flex-col px-12  gap-5 text-lg font-sans  sm:flex hidden py-4`)
-nav.setAttribute("class", `bg-${colors.back} justify-between flex-col flex `)
+
+nav.setAttribute("class",`bg-${colors.back} justify-between flex-col flex `)
 
 
 //  { setting profile  change the pfimg in the color object }
@@ -47,7 +49,6 @@ pfimg.setAttribute("src", `${colors.pfimg}`)
 const pfh3 = document.querySelector(".profile h3")
 pfh3.setAttribute("class", `text-${colors.pfh3color} text-lg font-light`)
 pfh3.textContent=colors.pfh3
-
 
 
 // { setting Section1 dont change this i you want to change the color }
@@ -91,64 +92,64 @@ body.style.backgroundColor=colors.body
 
 
 
-// Hack: Adding links in the List
-
-const links = [{
-    name: "Link23",
-    href:"https://www.youtube.com/watch?v=yHWPO9DDnsk&list=RDGMEMCMFH2exzjBeE_zAHHJOdxg&index=4"
-},
-
-]
-
-links.forEach((val) => {
-    const list = document.createElement("li")
-    const link = document.createElement("a")
-    
-    link.textContent = val.name
-    link.setAttribute("href", `${val.href} `)
-
-    list.appendChild(link)
-    
-    ul.appendChild(list)
-})
 
 
 // Hack: Adding Cards
 const home = document.querySelector(".Cards")
+
+
 const commands = [
     {
-        name: "Select",
-        desc: "Select is a Dql Cmd",
-        code: "SELECT * FROM users WHERE age > 18;",
-        output:`
-           id	name	age
-            1	John	25
-            2	Doe	    30
-            3	Max	    17
-        `
+      name: "Select",
+      desc: "The SELECT statement is used to fetch data from a database table.",
+      code: "SELECT * FROM users WHERE age > 18;",
+      output: `
+  id   name   age
+  1    John   25
+  2    Doe    30
+  `,
+      subhead: "Basic Data Query",
+      main: "SELECT Command",
+      title: "Querying with Conditions",
+      list: [
+        "Used to retrieve records from a table.",
+        "Supports filtering using WHERE clause.",
+        "Returns selected rows and columns.",
+        "Can be combined with ORDER BY and LIMIT."
+      ],
+      mainColor: "purple-400",
+      subColor: "gray-400",
+      titleColor: "purple-300",
+      listColor: "gray-300"
     },
     {
-        name: "Query",
-        desc:"Select is a Dql Cmd"
-    },
-    {
-        name: "Select",
-        desc:"Select is a Dql Cmd"
-        },
-        {
-            name: "Sel",
-            desc:"Select is a Dql Cmd"
-    },
-    {
-        name: "Select",
-        desc:"Select is a Dql Cmd"
-        },
-        {
-            name: "Sel",
-            desc:"Select is a Dql Cmd"
-        }
-]
-
+      name: "Insert",
+      desc: "The INSERT statement is used to add new rows to a table.",
+      code: `INSERT INTO users (name, age) VALUES ('Alice', 22);`,
+      output: `
+  Query OK, 1 row affected
+  
+  id   name   age
+  1    John   25
+  2    Doe    30
+  3    Alice  22
+  `,
+      subhead: "Adding Data",
+      main: "INSERT Command",
+      title: "Inserting a New Record",
+      list: [
+        "Adds new data to specified columns.",
+        "VALUES must match column types and order.",
+        "Can insert multiple rows with one command.",
+        "Used in data population and migration."
+      ],
+      mainColor: "purple-400",
+      subColor: "gray-400",
+      titleColor: "purple-300",
+      listColor: "gray-300"
+    }
+  ];
+  
 
 
 
@@ -157,22 +158,40 @@ commands.forEach((value) => {
     container.setAttribute("class", `container flex-col flex items-center rounded-md justify-center  bg-${colors.back} sm:w-[100%] p-3 text-${colors.text}  gap-8 w-[100%] h-[100%]`)
     home.appendChild(container)
     container.innerHTML = `
-    <div class="flex-col justify-center items-center flex gap-1 py-2">
-    <h1 class="text-2xl font-semibold  ">${value.name}</h1>
-    <p class="text-lg text-${colors.subtext} ">${value.desc}</p>
-    </div>
+    <div class="cont  p-6 rounded-2xl shadow-lg w-full mx-auto">
+    <!-- Heading -->
+    <h1 class="cont-head text-3xl font-bold text-${value.mainColor} mb-2">${value.main}</h1>
 
+    <!-- Subheading -->
+    <h2 class="cont-subhead text-xl text-${value.subColor} mb-1">${value.subhead}</h2>
+
+    <!-- Title -->
+    <h3 class="cont-title text-lg text-${value.titleColor} font-semibold mb-4">${value.title}</h3>
+
+    <!-- List -->
+    <ul class="cont-list list-disc list-inside space-y-1 text-${value.listColor}">
+      ${value.list.map((val) => {
+        return `
+          <li>${val}</li>
+        `
+      }).join("")}
+    </ul>
+  </div>    
+
+      
+  
+ <!-- Input Window -->
     <div class="w-full h-full rounded-md  flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg} ">
     <h1 class="px-3 p-1 text-${colors.input}">Input</h1>
-    <code class="bg-black  w-[100%] overflow-x-auto  p-4 text-${colors.textareatext}" >
+    <code class="bg-${colors.textareabg} w-[100%] overflow-x-auto  p-4 bg-${colors.textareabg}  text-${colors.textareatext}" >
     ${value.code}
     </code>
     </div>
-
-    <div class="w-full h-full rounded-md flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg}  object-cover  ">
+  <!-- Output Window -->
+    <div class="w-full h-full rounded-md flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg}  object-cover  ">   
     <h1 class="px-3 p-1 text-${colors.output}">Output</h1>
     <div class="h-32 w-full flex justify-center items-center  bg-black">
-    <textarea  class="bg-${colors.textareabg} text-${colors.textareatext}  w-full flex-col flex justify-center items-center   overflow-auto  h-full focus:outline-none" >
+    <textarea  class="bg-${colors.textareabg} text-${colors.textareatext}  w-full flex-col flex justify-center items-center   overflow-auto  h-full focus:outline-none px-4" >
     ${value.output}   
     </textarea>
   </div>
@@ -182,7 +201,120 @@ commands.forEach((value) => {
 
 
 
+// Hack: Adding links in the List
 
+const navlist = document.querySelector(".nav-list");
 
+const navelemts = [
+  {
+    h1: "Select",
+    links: [
+      {
+        name: "Basic SELECT",
+        href: "https://www.youtube.com/watch?v=1"
+      },
+      {
+        name: "SELECT with WHERE",
+        href: "https://www.youtube.com/watch?v=2"
+      }
+    ]
+  },
+  {
+    h1: "Insert",
+    links: [
+      {
+        name: "Basic INSERT",
+        href: "https://www.youtube.com/watch?v=3"
+      },
+      {
+        name: "INSERT Multiple Rows",
+        href: "https://www.youtube.com/watch?v=4"
+      }
+    ]
+    },
+    {
+        h1: "Select",
+        links: [
+          {
+            name: "Basic SELECT",
+            href: "https://www.youtube.com/watch?v=1"
+          },
+          {
+            name: "SELECT with WHERE",
+            href: "https://www.youtube.com/watch?v=2"
+          }
+        ]
+      },
+      {
+        h1: "Insert",
+        links: [
+          {
+            name: "Basic INSERT",
+            href: "https://www.youtube.com/watch?v=3"
+          },
+          {
+            name: "INSERT Multiple Rows",
+            href: "https://www.youtube.com/watch?v=4"
+          }
+        ]
+    },
+    {
+        h1: "Select",
+        links: [
+          {
+            name: "Basic SELECT",
+            href: "https://www.youtube.com/watch?v=1"
+          },
+          {
+            name: "SELECT with WHERE",
+            href: "https://www.youtube.com/watch?v=2"
+          }
+        ]
+      },
+      {
+        h1: "Insert",
+        links: [
+          {
+            name: "Basic INSERT",
+            href: "https://www.youtube.com/watch?v=3"
+          },
+          {
+            name: "INSERT Multiple Rows",
+            href: "https://www.youtube.com/watch?v=4"
+          }
+        ]
+      }
+];
 
+navelemts.forEach((val) => {
+  // Create heading
+  const heading = document.createElement("h2");
+  heading.textContent = val.h1;
+  heading.setAttribute(
+    "class",
+    `sm:py-2 text-${colors.specialhead} sm:text-2xl px-10 text-lg font-sans`
+  );
 
+  // Create list container
+  const ul = document.createElement("ul");
+  ul.setAttribute(
+    "class",
+    `list-inside list-disc text-${colors.navlist} gap-2 flex-col px-10 text-lg font-sans sm:flex hidden py-2  h-[90%]`
+  );
+
+  // Create and append list items
+  val.links.forEach((item) => {
+    const li = document.createElement("li");
+    const link = document.createElement("a");
+    link.textContent = item.name;
+    link.setAttribute("href", item.href);
+    link.setAttribute("target", "_blank");
+
+    li.appendChild(link);
+    ul.appendChild(li);
+  });
+
+  // Append to nav-list container
+  navlist.appendChild(heading);
+  navlist.appendChild(ul);
+});
