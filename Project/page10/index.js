@@ -10,7 +10,7 @@ const colors = {
   specialtext: "black",
   navhead: "black",
   navlist: "gray-700",
-  topicColor: "blue-600",
+  topicColor: "blue-500",
   body: "#1000", // keeping this main
   windowhead: "",
   windowbg: "blue-500",
@@ -22,18 +22,19 @@ const colors = {
   pfh3color: "gray-700",
   pfh3: "Gobind Singh",
 
-  // DQL Section
+  // Updated for DQL
+  
+
   cardcolor: "neutral-200",
   iframe: "https://www.youtube.com/embed/_yog7h4BokQ?si=YiCNBO71H4hDsgUE",
+  
+  
+query_name: "Aggregate Functions",
+query_desc: "Aggregate functions are used to perform calculations on a set of values and return a single result. They help summarize or aggregate data. Common aggregate functions include COUNT, SUM, AVG, MIN, and MAX.",
+query_introduction: "Aggregate functions are used to perform calculations on multiple rows of data and return a single value. They allow you to summarize data or calculate statistical values such as averages, totals, minimums, and maximums. Some of the most common aggregate functions are COUNT, SUM, AVG, MIN, and MAX."
 
-   // DCL Section (with query_ keys)
-  query_name: "DCL Command",
-  query_desc:
-    "Used to control access to data in a database. DCL is crucial for database security and access control.",
-  query_introduction:
-    "DCL (Data Control Language) consists of SQL commands such as GRANT and REVOKE that manage access permissions to database objects. These commands help enforce security by specifying who can access or manipulate specific parts of the database.",
-};
-
+  
+  };
 
 
 
@@ -122,56 +123,147 @@ const home = document.querySelector(".Cards")
 
 // DQL COMMANDS
 const commands = [
-  
-  
   {
-    name: "GRANT",
-    description: "The GRANT command is used to provide specific privileges to users in a database. These privileges may include permissions like SELECT, INSERT, UPDATE, DELETE, and more on database objects such as tables, views, or procedures.",
-    code: `GRANT SELECT, INSERT ON employees TO user1;`,
-    output: "-- This grants SELECT and INSERT privileges on the 'employees' table to 'user1'.",
-    subhead: "Privilege Assignment",
-    main: "DCL - GRANT",
-    title: "Provides privileges to users to access and modify database objects.",
+    name: "COUNT",
+    desc: "The COUNT function is used to count the number of rows that match a specified condition. It can count all rows or rows that meet a specific criterion.",
+    code: `
+SELECT COUNT(*) FROM employees;
+
+`,
+    output: `
++-------+
+| COUNT |
++-------+
+|   100 |
++-------+`,
+    subhead: "Counting Rows",
+    main: "COUNT",
+    title: "Counting the Number of Rows",
+    example: "COUNT(*), COUNT(department)",
     list: [
-      "Used to assign access rights to users.",
-      "Privileges can be granted on various database objects.",
-      "Can be limited to specific actions (e.g., SELECT only).",
-      "Helps control security and access at a granular level."
+      "Counts all rows in a table when no condition is specified.",
+      "Can be used with WHERE to count rows that meet a specific condition.",
+      "Useful for finding the total number of records in a table or meeting a condition."
     ],
-    mainColor:"blue-500",
+    mainColor: "blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
-    bgColor: "white",
-    input: "GRANT UPDATE ON orders TO manager;",
-    example: "Grant the UPDATE privilege on the 'orders' table to the user 'manager'."
+    bgColor: "white"
   },
   {
-    name: "REVOKE",
-    description: "The REVOKE command is used to take back previously granted privileges from users. This ensures controlled access to database objects and helps maintain security.",
-    code: `REVOKE SELECT, INSERT ON employees FROM user1;`,
-    output: "-- This removes SELECT and INSERT privileges on the 'employees' table from 'user1'.",
-    subhead: "Privilege Removal",
-    main: "DCL - REVOKE",
-    title: "Removes privileges from users to restrict access.",
+    name: "SUM",
+    desc: "The SUM function adds up the values in a column, typically used with numerical data. It is commonly used to calculate totals.",
+    code: `
+SELECT SUM(salary) FROM employees;
+
+`,
+    output: `
++------------+
+| SUM(salary)|
++------------+
+|      50000 |
++------------+`,
+    subhead: "Summing Numeric Values",
+    main: "SUM",
+    title: "Calculating Total Values",
+    example: "SUM(salary), SUM(price)",
     list: [
-      "Used to take back access rights from users.",
-      "Ensures restricted access to sensitive data.",
-      "Helps maintain data security and control.",
-      "Can be used alongside GRANT for role management."
+      "Adds up all the values in a specified column.",
+      "Can be used with WHERE to sum values based on a condition.",
+      "Helpful for calculating totals such as salaries, revenue, or costs."
     ],
-    mainColor:"blue-500",
+    mainColor: "blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
-    bgColor: "white",
-    input: "REVOKE DELETE ON orders FROM manager;",
-    example: "Revoke the DELETE privilege from the user 'manager' on the 'orders' table."
+    bgColor: "white"
+  },
+  {
+    name: "AVG",
+    desc: "The AVG function calculates the average (mean) value of a numeric column.",
+    code: `
+SELECT AVG(salary) FROM employees;
+
+`,
+    output: `
++-------------+
+| AVG(salary) |
++-------------+
+|      4500   |
++-------------+`,
+    subhead: "Calculating Averages",
+    main: "AVG",
+    title: "Finding the Average Value",
+    example: "AVG(salary), AVG(price)",
+    list: [
+      "Calculates the mean of values in a numeric column.",
+      "Can be used with WHERE to calculate averages based on a condition.",
+      "Useful for determining averages like salaries, prices, and quantities."
+    ],
+    mainColor: "blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "MIN",
+    desc: "The MIN function returns the smallest value in a specified column.",
+    code: `
+SELECT MIN(salary) FROM employees;
+
+`,
+    output: `
++-------------+
+| MIN(salary) |
++-------------+
+|      2500   |
++-------------+`,
+    subhead: "Finding the Minimum Value",
+    main: "MIN",
+    title: "Getting the Smallest Value",
+    example: "MIN(salary), MIN(price)",
+    list: [
+      "Finds the minimum (smallest) value in a numeric column.",
+      "Can be used with WHERE to find the smallest value based on a condition.",
+      "Useful for determining the least value, like the lowest salary or price."
+    ],
+    mainColor: "blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "MAX",
+    desc: "The MAX function returns the largest value in a specified column.",
+    code: `
+SELECT MAX(salary) FROM employees;
+
+`,
+    output: `
++-------------+
+| MAX(salary) |
++-------------+
+|     12000   |
++-------------+`,
+    subhead: "Finding the Maximum Value",
+    main: "MAX",
+    title: "Getting the Largest Value",
+    example: "MAX(salary), MAX(price)",
+    list: [
+      "Finds the maximum (largest) value in a numeric column.",
+      "Can be used with WHERE to find the largest value based on a condition.",
+      "Useful for determining the highest value, such as the top salary or maximum price."
+    ],
+    mainColor: "blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
   }
-,  
-   
-  ];
-  
+];
 
 
 
@@ -183,7 +275,11 @@ const commands = [
 
 
 
-  commands.forEach((value,index) => {
+
+
+
+
+commands.forEach((value,index) => {
     const container = document.createElement("div")
   container.setAttribute("class", `container flex-col bg-${colors.cardcolor} flex items-center rounded-md justify-center   sm:w-[100%] p-3 text-${colors.text}   gap-4 w-[100%] h-[100%]`)
   container.setAttribute("id",`container${index + 1}`)

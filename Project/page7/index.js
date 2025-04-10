@@ -10,7 +10,7 @@ const colors = {
   specialtext: "black",
   navhead: "black",
   navlist: "gray-700",
-  topicColor: "blue-600",
+  topicColor: "blue-500",
   body: "#1000", // keeping this main
   windowhead: "",
   windowbg: "blue-500",
@@ -22,18 +22,18 @@ const colors = {
   pfh3color: "gray-700",
   pfh3: "Gobind Singh",
 
-  // DQL Section
+  // Updated for DQL
+  
+
   cardcolor: "neutral-200",
   iframe: "https://www.youtube.com/embed/_yog7h4BokQ?si=YiCNBO71H4hDsgUE",
-
-   // DCL Section (with query_ keys)
-  query_name: "DCL Command",
-  query_desc:
-    "Used to control access to data in a database. DCL is crucial for database security and access control.",
-  query_introduction:
-    "DCL (Data Control Language) consists of SQL commands such as GRANT and REVOKE that manage access permissions to database objects. These commands help enforce security by specifying who can access or manipulate specific parts of the database.",
-};
-
+  
+  query_name: "CONSTRAINT TYPES",
+  query_desc: "SQL constraints are used to specify rules for data in a table. These rules ensure the accuracy and reliability of the data within the database. Common constraints include PRIMARY KEY, FOREIGN KEY, NOT NULL, UNIQUE, CHECK, and DEFAULT.",
+  query_introduction: "SQL constraints enhance data integrity by enforcing rules on table columns. They help ensure that the data stored in the database is valid and consistent, and are commonly used in schema definitions for robust database design."
+  
+  
+  };
 
 
 
@@ -121,57 +121,168 @@ const home = document.querySelector(".Cards")
 
 
 // DQL COMMANDS
-const commands = [
-  
-  
+const commands =  [
   {
-    name: "GRANT",
-    description: "The GRANT command is used to provide specific privileges to users in a database. These privileges may include permissions like SELECT, INSERT, UPDATE, DELETE, and more on database objects such as tables, views, or procedures.",
-    code: `GRANT SELECT, INSERT ON employees TO user1;`,
-    output: "-- This grants SELECT and INSERT privileges on the 'employees' table to 'user1'.",
-    subhead: "Privilege Assignment",
-    main: "DCL - GRANT",
-    title: "Provides privileges to users to access and modify database objects.",
+    name: "PRIMARY KEY Constraint",
+    desc: "The PRIMARY KEY uniquely identifies each row in a table. It ensures that the column(s) chosen have unique and non-null values.",
+    code: `
+-- Defining a PRIMARY KEY on a single column
+CREATE TABLE employees (
+  emp_id INT PRIMARY KEY,
+  name VARCHAR(100)
+);
+
+-- Defining a composite PRIMARY KEY (multiple columns)
+CREATE TABLE enrollments (
+  student_id INT,
+  course_id INT,
+  PRIMARY KEY (student_id, course_id)
+);`,
+    output: "Creates a unique identifier for each row using PRIMARY KEY.",
+    subhead: "Defining Unique Identity",
+    main: "PRIMARY KEY",
+    title: "Ensuring Unique Row Identification",
+    example: "PRIMARY KEY (student_id), PRIMARY KEY (id), PRIMARY KEY (col1, col2)",
     list: [
-      "Used to assign access rights to users.",
-      "Privileges can be granted on various database objects.",
-      "Can be limited to specific actions (e.g., SELECT only).",
-      "Helps control security and access at a granular level."
+      "A table can have only one PRIMARY KEY.",
+      "Each value in the PRIMARY KEY column(s) must be unique.",
+      "PRIMARY KEY columns cannot contain NULL values.",
+      "Composite PRIMARY KEYS use multiple columns together to enforce uniqueness."
     ],
     mainColor:"blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
-    bgColor: "white",
-    input: "GRANT UPDATE ON orders TO manager;",
-    example: "Grant the UPDATE privilege on the 'orders' table to the user 'manager'."
+    bgColor: "white"
   },
   {
-    name: "REVOKE",
-    description: "The REVOKE command is used to take back previously granted privileges from users. This ensures controlled access to database objects and helps maintain security.",
-    code: `REVOKE SELECT, INSERT ON employees FROM user1;`,
-    output: "-- This removes SELECT and INSERT privileges on the 'employees' table from 'user1'.",
-    subhead: "Privilege Removal",
-    main: "DCL - REVOKE",
-    title: "Removes privileges from users to restrict access.",
+    name: "NOT NULL Constraint",
+    desc: "The NOT NULL constraint ensures that a column cannot contain NULL values.",
+    code: `
+CREATE TABLE students (
+  name VARCHAR(50) NOT NULL,
+  age INT NOT NULL
+);`,
+    output: "Prevents insertion of NULL values in the specified column.",
+    subhead: "Mandatory Field Values",
+    main: "NOT NULL",
+    title: "Restricting NULL Values",
+    example: "name VARCHAR(50) NOT NULL",
     list: [
-      "Used to take back access rights from users.",
-      "Ensures restricted access to sensitive data.",
-      "Helps maintain data security and control.",
-      "Can be used alongside GRANT for role management."
+      "Ensures critical fields always have data.",
+      "Cannot be applied to entire table — only column level.",
+      "Commonly used on primary or essential columns."
     ],
     mainColor:"blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
-    bgColor: "white",
-    input: "REVOKE DELETE ON orders FROM manager;",
-    example: "Revoke the DELETE privilege from the user 'manager' on the 'orders' table."
+    bgColor: "white"
+  },
+  {
+    name: "UNIQUE Constraint",
+    desc: "The UNIQUE constraint ensures that all values in a column are different.",
+    code: `
+CREATE TABLE contacts (
+  email VARCHAR(100) UNIQUE
+);`,
+    output: "Prevents duplicate values in a column.",
+    subhead: "Enforcing Uniqueness",
+    main: "UNIQUE",
+    title: "Preventing Duplicate Data",
+    example: "email VARCHAR(100) UNIQUE",
+    list: [
+      "Allows only unique values in the column.",
+      "Can be applied to multiple columns.",
+      "Unlike PRIMARY KEY, it allows NULL values (only one if DB allows)."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "CHECK Constraint",
+    desc: "The CHECK constraint ensures that all values in a column meet a specific condition.",
+    code: `
+CREATE TABLE products (
+  price DECIMAL(10, 2) CHECK (price > 0),
+  quantity INT CHECK (quantity >= 0)
+);`,
+    output: "Validates data based on a condition before insertion.",
+    subhead: "Data Validation Rules",
+    main: "CHECK",
+    title: "Condition-Based Restrictions",
+    example: "CHECK (age >= 18), CHECK (salary > 0)",
+    list: [
+      "Prevents invalid data from being inserted.",
+      "Can reference one column only (in most RDBMS).",
+      "Useful for business rules like age limits, positive pricing, etc."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "DEFAULT Constraint",
+    desc: "The DEFAULT constraint provides a default value for a column when none is specified.",
+    code: `
+CREATE TABLE orders (
+  status VARCHAR(20) DEFAULT 'pending',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);`,
+    output: "Automatically fills a column with a default value if no input is given.",
+    subhead: "Automatic Default Values",
+    main: "DEFAULT",
+    title: "Assigning Defaults Automatically",
+    example: "status VARCHAR(20) DEFAULT 'active'",
+    list: [
+      "Reduces need for manual value insertion.",
+      "DEFAULT can be any constant or function (like CURRENT_TIMESTAMP).",
+      "Can be used with NOT NULL to prevent empty values."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "FOREIGN KEY Constraint",
+    desc: "The FOREIGN KEY constraint creates a link between two tables by referencing a column in another table.",
+    code: `
+-- Parent table
+CREATE TABLE users (
+  id INT PRIMARY KEY,
+  name VARCHAR(100)
+);
+
+-- Child table with FOREIGN KEY
+CREATE TABLE orders (
+  order_id INT PRIMARY KEY,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);`,
+    output: "Establishes referential integrity between tables.",
+    subhead: "Linking Related Tables",
+    main: "FOREIGN KEY",
+    title: "Maintaining Relationships Across Tables",
+    example: "FOREIGN KEY (user_id) REFERENCES users(id)",
+    list: [
+      "Creates a relationship between two tables.",
+      "Prevents actions that would destroy the link (like deleting a referenced row).",
+      "Enforces referential integrity across related data."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
   }
-,  
-   
-  ];
-  
+];
 
 
 
@@ -183,67 +294,70 @@ const commands = [
 
 
 
-  commands.forEach((value,index) => {
-    const container = document.createElement("div")
-  container.setAttribute("class", `container flex-col bg-${colors.cardcolor} flex items-center rounded-md justify-center   sm:w-[100%] p-3 text-${colors.text}   gap-4 w-[100%] h-[100%]`)
-  container.setAttribute("id",`container${index + 1}`)
-    home.appendChild(container)
-    container.innerHTML = `
-    <div class="cont  p-6  rounded-2xl  w-full mx-auto">
-    <!-- Heading -->
-    <h1 class="cont-head my-2 text-3xl font-bold text-${value.mainColor} mb-2">${value.main}</h1>
 
-    <!-- Subheading -->
-    <h2 class="cont-subhead text-xl font-light text-${value.subColor} mb-1">${value.subhead}</h2>
 
-    <!-- Title -->
-    <h3 class="cont-title text-lg text-${value.titleColor} fonr-sans mb-4">${value.title}</h3>
 
-    <!-- List -->
-    <ul class="cont-list list-disc text-lg list-inside space-y-1 text-${value.listColor}">
-      ${value.list.map((val) => {
-        return `
-          <li>${val}</li>
-        `
-      }).join("")}
-    </ul>
-  </div>    
+commands.forEach((value,index) => {
+  const container = document.createElement("div")
+container.setAttribute("class", `container flex-col bg-${colors.cardcolor} flex items-center rounded-md justify-center   sm:w-[100%] p-3 text-${colors.text}   gap-4 w-[100%] h-[100%]`)
+container.setAttribute("id",`container${index + 1}`)
+  home.appendChild(container)
+  container.innerHTML = `
+  <div class="cont  p-6  rounded-2xl  w-full mx-auto">
+  <!-- Heading -->
+  <h1 class="cont-head my-2 text-3xl font-bold text-${value.mainColor} mb-2">${value.main}</h1>
 
-  <!-- Example -->
-  <div class="cont-example p-2 rounded-2xl flex justify-start gap-4 items-center w-full  my-4">
-  <h1 class="text-2xl font-bold font-sans  text-${colors.specialhead}">Example - </h1>
-  <h1 class="text-${colors.subtext} text-xl  font-sans "> ${value.example}</h1>
+  <!-- Subheading -->
+  <h2 class="cont-subhead text-xl font-light text-${value.subColor} mb-1">${value.subhead}</h2>
+
+  <!-- Title -->
+  <h3 class="cont-title text-lg text-${value.titleColor} fonr-sans mb-4">${value.title}</h3>
+
+  <!-- List -->
+  <ul class="cont-list list-disc text-lg list-inside space-y-1 text-${value.listColor}">
+    ${value.list.map((val) => {
+      return `
+        <li>${val}</li>
+      `
+    }).join("")}
+  </ul>
+</div>    
+
+<!-- Example -->
+<div class="cont-example p-2 rounded-2xl flex justify-start gap-4 items-center w-full  my-4">
+<h1 class="text-2xl font-bold font-sans  text-${colors.specialhead}">Example - </h1>
+<h1 class="text-${colors.subtext} text-xl  font-sans "> ${value.example}</h1>
+</div>
+
+<!-- Input Window -->
+  <div class="w-full  h-full rounded-md  flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg} ">
+  <h1 class="px-3 p-1 text-${colors.input}">Input</h1>
+  <code class="bg-${colors.textareabg} whitespace-pre  w-[100%] overflow-x-auto  p-4 bg-${colors.textareabg}  text-${colors.textareatext}" >
+  ${value.code}
+  </code>
   </div>
-  
- <!-- Input Window -->
-    <div class="w-full h-full rounded-md  flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg} ">
-    <h1 class="px-3 p-1 text-${colors.input}">Input</h1>
-    <code class="bg-${colors.textareabg} whitespace-pre  w-[100%] overflow-x-auto  p-4 bg-${colors.textareabg}  text-${colors.textareatext}" >
-    ${value.code}
-    </code>
-    </div>
-  <!-- Output Window -->
-    <div class="w-full h-full  rounded-md flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg}  object-cover  ">   
-    <h1 class="px-3 p-1 text-${colors.output}">Output</h1>
-    <div class="h-48  w-full flex justify-center items-center  bg-black">
-    <textarea  
-  class="bg-${colors.textareabg} 
-         text-${colors.textareatext} 
-         w-full 
-         h-full 
-         max-h-full 
-         px-4 
-         py-4 
-         font-mono 
-         whitespace-pre 
-         resize-none 
-         overflow-auto 
-         focus:outline-none">
+<!-- Output Window -->
+  <div class="w-full  h-full  rounded-md flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg}  object-cover  ">   
+  <h1 class="px-3 p-1 text-${colors.output}">Output</h1>
+  <div class="h-48  w-full flex justify-center items-center  bg-black">
+  <textarea  
+class="bg-${colors.textareabg} 
+       text-${colors.textareatext} 
+       w-full 
+       h-full 
+       max-h-full 
+       px-4 
+       py-4 
+       font-mono 
+       whitespace-pre 
+       resize-none 
+       overflow-auto 
+       focus:outline-none">
 ${value.output}
 </textarea>
+</div>
   </div>
-    </div>
-    `
+  `
 })
 
 

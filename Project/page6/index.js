@@ -10,7 +10,7 @@ const colors = {
   specialtext: "black",
   navhead: "black",
   navlist: "gray-700",
-  topicColor: "blue-600",
+  topicColor: "blue-500",
   body: "#1000", // keeping this main
   windowhead: "",
   windowbg: "blue-500",
@@ -22,18 +22,17 @@ const colors = {
   pfh3color: "gray-700",
   pfh3: "Gobind Singh",
 
-  // DQL Section
+  // Updated for DQL
+  
+
   cardcolor: "neutral-200",
   iframe: "https://www.youtube.com/embed/_yog7h4BokQ?si=YiCNBO71H4hDsgUE",
-
-   // DCL Section (with query_ keys)
-  query_name: "DCL Command",
-  query_desc:
-    "Used to control access to data in a database. DCL is crucial for database security and access control.",
-  query_introduction:
-    "DCL (Data Control Language) consists of SQL commands such as GRANT and REVOKE that manage access permissions to database objects. These commands help enforce security by specifying who can access or manipulate specific parts of the database.",
-};
-
+  
+    query_name: "PL/SQL",
+    query_desc: "PL/SQL (Procedural Language/Structured Query Language) is Oracle's procedural extension to SQL. It allows the creation of sophisticated and reusable code blocks, handling complex business logic with control structures like IF, LOOP, and EXCEPTION handling.",
+    query_introduction: "PL/SQL enhances the power of SQL by adding procedural constructs such as loops, conditionals, and exception handling. It is widely used to write stored procedures, functions, triggers, and packages, enabling modular and efficient database programming."
+  
+  };
 
 
 
@@ -122,56 +121,283 @@ const home = document.querySelector(".Cards")
 
 // DQL COMMANDS
 const commands = [
-  
-  
   {
-    name: "GRANT",
-    description: "The GRANT command is used to provide specific privileges to users in a database. These privileges may include permissions like SELECT, INSERT, UPDATE, DELETE, and more on database objects such as tables, views, or procedures.",
-    code: `GRANT SELECT, INSERT ON employees TO user1;`,
-    output: "-- This grants SELECT and INSERT privileges on the 'employees' table to 'user1'.",
-    subhead: "Privilege Assignment",
-    main: "DCL - GRANT",
-    title: "Provides privileges to users to access and modify database objects.",
+    name: "DECLARE",
+    desc: "Declares variables, constants, and cursors in PL/SQL blocks.",
+    code: `
+DECLARE 
+  v_name VARCHAR2(50);
+BEGIN 
+  v_name := 'John';
+  DBMS_OUTPUT.PUT_LINE(v_name);
+END;`,
+    output: `
+John
+    `.trim(),
+    subhead: "Variable Declaration",
+    main: "DECLARE Section",
+    title: "Initializing Variables",
+    example: "DECLARE v_sal NUMBER;",
     list: [
-      "Used to assign access rights to users.",
-      "Privileges can be granted on various database objects.",
-      "Can be limited to specific actions (e.g., SELECT only).",
-      "Helps control security and access at a granular level."
+      "Used to define variables/constants before BEGIN.",
+      "Data types include NUMBER, VARCHAR2, DATE, etc.",
+      "Useful for temporary data manipulation.",
+      "Variables can be initialized later in the BEGIN block."
     ],
     mainColor:"blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
-    bgColor: "white",
-    input: "GRANT UPDATE ON orders TO manager;",
-    example: "Grant the UPDATE privilege on the 'orders' table to the user 'manager'."
+    bgColor: "white"
   },
   {
-    name: "REVOKE",
-    description: "The REVOKE command is used to take back previously granted privileges from users. This ensures controlled access to database objects and helps maintain security.",
-    code: `REVOKE SELECT, INSERT ON employees FROM user1;`,
-    output: "-- This removes SELECT and INSERT privileges on the 'employees' table from 'user1'.",
-    subhead: "Privilege Removal",
-    main: "DCL - REVOKE",
-    title: "Removes privileges from users to restrict access.",
+    name: "BEGIN END",
+    desc: "Marks the start and end of a PL/SQL block.",
+    code: `
+BEGIN 
+  DBMS_OUTPUT.PUT_LINE('Hello, PL/SQL!');
+END;`,
+    output: `
+Hello, PL/SQL!
+    `.trim(),
+    subhead: "Executable Section",
+    main: "BEGIN-END Block",
+    title: "Code Execution Block",
+    example: "BEGIN ... statements ... END;",
     list: [
-      "Used to take back access rights from users.",
-      "Ensures restricted access to sensitive data.",
-      "Helps maintain data security and control.",
-      "Can be used alongside GRANT for role management."
+      "Every PL/SQL block starts with BEGIN and ends with END.",
+      "Contains executable SQL and PL/SQL statements.",
+      "Can include nested blocks.",
+      "Used for logical flow control and procedure logic."
     ],
     mainColor:"blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
-    bgColor: "white",
-    input: "REVOKE DELETE ON orders FROM manager;",
-    example: "Revoke the DELETE privilege from the user 'manager' on the 'orders' table."
+    bgColor: "white"
+  },
+  {
+    name: "IF THEN ELSE",
+    desc: "Conditional control in PL/SQL.",
+    code: `
+DECLARE 
+  v_salary NUMBER := 3000;
+BEGIN 
+  IF v_salary > 2500 THEN
+    DBMS_OUTPUT.PUT_LINE('High Salary');
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('Low Salary');
+  END IF;
+END;`,
+    output: `
+High Salary
+    `.trim(),
+    subhead: "Conditional Logic",
+    main: "IF-THEN-ELSE",
+    title: "Making Decisions",
+    example: "IF condition THEN ... ELSE ... END IF;",
+    list: [
+      "Used to control flow based on conditions.",
+      "Supports ELSE and ELSIF clauses.",
+      "Condition must evaluate to TRUE or FALSE.",
+      "Often used inside loops and procedures."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "LOOP",
+    desc: "Executes a block of statements multiple times.",
+    code: `
+DECLARE 
+  i NUMBER := 1;
+BEGIN 
+  LOOP 
+    DBMS_OUTPUT.PUT_LINE(i);
+    i := i + 1;
+    EXIT WHEN i > 5;
+  END LOOP;
+END;`,
+    output: `
+1
+2
+3
+4
+5
+    `.trim(),
+    subhead: "Looping Through Code",
+    main: "Basic LOOP",
+    title: "Iterative Execution",
+    example: "LOOP ... EXIT WHEN ... END LOOP;",
+    list: [
+      "Used for repeating execution.",
+      "EXIT or EXIT WHEN is used to terminate.",
+      "Can be replaced with FOR or WHILE.",
+      "Useful for logic that requires repetition."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "EXCEPTION",
+    desc: "Handles runtime errors in PL/SQL.",
+    code: `
+BEGIN 
+  RAISE_APPLICATION_ERROR(-20001, 'Custom Error');
+EXCEPTION 
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE(SQLERRM);
+END;`,
+    output: `
+ORA-20001: Custom Error
+    `.trim(),
+    subhead: "Error Handling",
+    main: "EXCEPTION Block",
+    title: "Catching Errors",
+    example: "BEGIN ... EXCEPTION WHEN ... THEN ... END;",
+    list: [
+      "Used to catch and handle errors gracefully.",
+      "WHEN OTHERS handles all unhandled exceptions.",
+      "SQLERRM and SQLCODE provide error details.",
+      "Important for robust programs."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "PROCEDURE",
+    desc: "Defines a named PL/SQL block that performs an action.",
+    code: `
+CREATE OR REPLACE PROCEDURE greet_user IS
+BEGIN 
+  DBMS_OUTPUT.PUT_LINE('Welcome!');
+END;`,
+    output: `
+Procedure created.
+    `.trim(),
+    subhead: "Reusable Code Block",
+    main: "PROCEDURE Definition",
+    title: "Defining Procedures",
+    example: "CREATE OR REPLACE PROCEDURE name IS BEGIN ... END;",
+    list: [
+      "Procedures are stored in the database.",
+      "Allow modular programming in PL/SQL.",
+      "Can take IN, OUT, or IN OUT parameters.",
+      "Called using EXEC or from other PL/SQL blocks."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "FUNCTION",
+    desc: "Returns a value after execution.",
+    code: `
+CREATE OR REPLACE FUNCTION get_double (n NUMBER) RETURN NUMBER IS
+BEGIN 
+  RETURN n * 2;
+END;`,
+    output: `
+Function created.
+    `.trim(),
+    subhead: "Returning Values",
+    main: "FUNCTION Definition",
+    title: "Writing Functions",
+    example: "CREATE FUNCTION name RETURN datatype IS BEGIN ... END;",
+    list: [
+      "Functions return values and can be used in SQL.",
+      "Can be stored or anonymous blocks.",
+      "Used for calculations and data retrieval.",
+      "Must include RETURN clause with data type."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "TRIGGER",
+    desc: "Automatically executes in response to certain events on a table or view.",
+    code: `
+  CREATE OR REPLACE TRIGGER before_insert_emp
+  BEFORE INSERT ON employees
+  FOR EACH ROW
+  BEGIN
+    :NEW.created_at := SYSDATE;
+  END;`,
+    output: `
+  Trigger created.
+    `.trim(),
+    subhead: "Automated Execution",
+    main: "BEFORE/AFTER TRIGGER",
+    title: "Database Triggers",
+    example: "CREATE TRIGGER name BEFORE INSERT ON table FOR EACH ROW ...",
+    list: [
+      "Triggers are invoked automatically by DML events.",
+      "Types: BEFORE or AFTER INSERT/UPDATE/DELETE.",
+      "FOR EACH ROW makes it row-level.",
+      "Useful for auditing, validation, automation."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
   }
-,  
-   
-  ];
-  
+  ,
+  {
+    name: "CURSOR",
+    desc: "Used to fetch multiple rows from a SELECT query one at a time.",
+    code: `
+  DECLARE 
+    CURSOR emp_cur IS 
+      SELECT first_name FROM employees;
+    v_name employees.first_name%TYPE;
+  BEGIN 
+    OPEN emp_cur;
+    LOOP
+      FETCH emp_cur INTO v_name;
+      EXIT WHEN emp_cur%NOTFOUND;
+      DBMS_OUTPUT.PUT_LINE(v_name);
+    END LOOP;
+    CLOSE emp_cur;
+  END;`,
+    output: `
+  John
+  Emily
+  David
+  ... (more names)
+    `.trim(),
+    subhead: "Row-by-Row Processing",
+    main: "CURSOR Loop",
+    title: "Handling Multiple Rows",
+    example: "DECLARE CURSOR name IS SELECT ...;",
+    list: [
+      "Cursors allow row-by-row data processing.",
+      "Explicit cursors are defined by the programmer.",
+      "Must be opened, fetched, and closed manually.",
+      "Useful when complex row handling is needed."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  }
+    
+];
 
 
 
@@ -183,70 +409,74 @@ const commands = [
 
 
 
-  commands.forEach((value,index) => {
-    const container = document.createElement("div")
-  container.setAttribute("class", `container flex-col bg-${colors.cardcolor} flex items-center rounded-md justify-center   sm:w-[100%] p-3 text-${colors.text}   gap-4 w-[100%] h-[100%]`)
-  container.setAttribute("id",`container${index + 1}`)
-    home.appendChild(container)
-    container.innerHTML = `
-    <div class="cont  p-6  rounded-2xl  w-full mx-auto">
-    <!-- Heading -->
-    <h1 class="cont-head my-2 text-3xl font-bold text-${value.mainColor} mb-2">${value.main}</h1>
 
-    <!-- Subheading -->
-    <h2 class="cont-subhead text-xl font-light text-${value.subColor} mb-1">${value.subhead}</h2>
 
-    <!-- Title -->
-    <h3 class="cont-title text-lg text-${value.titleColor} fonr-sans mb-4">${value.title}</h3>
+commands.forEach((value,index) => {
+  const container = document.createElement("div")
+container.setAttribute("class", `container flex-col bg-${colors.cardcolor} flex items-center rounded-md justify-center   sm:w-[100%] p-3 text-${colors.text}   gap-4 w-[100%] h-[100%]`)
+container.setAttribute("id",`container${index + 1}`)
+  home.appendChild(container)
+  container.innerHTML = `
+  <div class="cont  p-6  rounded-2xl  w-full mx-auto">
+  <!-- Heading -->
+  <h1 class="cont-head my-2 text-3xl font-bold text-${value.mainColor} mb-2">${value.main}</h1>
 
-    <!-- List -->
-    <ul class="cont-list list-disc text-lg list-inside space-y-1 text-${value.listColor}">
-      ${value.list.map((val) => {
-        return `
-          <li>${val}</li>
-        `
-      }).join("")}
-    </ul>
-  </div>    
+  <!-- Subheading -->
+  <h2 class="cont-subhead text-xl font-light text-${value.subColor} mb-1">${value.subhead}</h2>
 
-  <!-- Example -->
-  <div class="cont-example p-2 rounded-2xl flex justify-start gap-4 items-center w-full  my-4">
-  <h1 class="text-2xl font-bold font-sans  text-${colors.specialhead}">Example - </h1>
-  <h1 class="text-${colors.subtext} text-xl  font-sans "> ${value.example}</h1>
+  <!-- Title -->
+  <h3 class="cont-title text-lg text-${value.titleColor} fonr-sans mb-4">${value.title}</h3>
+
+  <!-- List -->
+  <ul class="cont-list list-disc text-lg list-inside space-y-1 text-${value.listColor}">
+    ${value.list.map((val) => {
+      return `
+        <li>${val}</li>
+      `
+    }).join("")}
+  </ul>
+</div>    
+
+<!-- Example -->
+<div class="cont-example p-2 rounded-2xl flex justify-start gap-4 items-center w-full  my-4">
+<h1 class="text-2xl font-bold font-sans  text-${colors.specialhead}">Example - </h1>
+<h1 class="text-${colors.subtext} text-xl  font-sans "> ${value.example}</h1>
+</div>
+
+<!-- Input Window -->
+  <div class="w-full  h-full rounded-md  flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg} ">
+  <h1 class="px-3 p-1 text-${colors.input}">Input</h1>
+  <code class="bg-${colors.textareabg} whitespace-pre  w-[100%] overflow-x-auto  p-4 bg-${colors.textareabg}  text-${colors.textareatext}" >
+  ${value.code}
+  </code>
   </div>
-  
- <!-- Input Window -->
-    <div class="w-full h-full rounded-md  flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg} ">
-    <h1 class="px-3 p-1 text-${colors.input}">Input</h1>
-    <code class="bg-${colors.textareabg} whitespace-pre  w-[100%] overflow-x-auto  p-4 bg-${colors.textareabg}  text-${colors.textareatext}" >
-    ${value.code}
-    </code>
-    </div>
-  <!-- Output Window -->
-    <div class="w-full h-full  rounded-md flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg}  object-cover  ">   
-    <h1 class="px-3 p-1 text-${colors.output}">Output</h1>
-    <div class="h-48  w-full flex justify-center items-center  bg-black">
-    <textarea  
-  class="bg-${colors.textareabg} 
-         text-${colors.textareatext} 
-         w-full 
-         h-full 
-         max-h-full 
-         px-4 
-         py-4 
-         font-mono 
-         whitespace-pre 
-         resize-none 
-         overflow-auto 
-         focus:outline-none">
+<!-- Output Window -->
+  <div class="w-full  h-full  rounded-md flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg}  object-cover  ">   
+  <h1 class="px-3 p-1 text-${colors.output}">Output</h1>
+  <div class="h-48  w-full flex justify-center items-center  bg-black">
+  <textarea  
+class="bg-${colors.textareabg} 
+       text-${colors.textareatext} 
+       w-full 
+       h-full 
+       max-h-full 
+       px-4 
+       py-4 
+       font-mono 
+       whitespace-pre 
+       resize-none 
+       overflow-auto 
+       focus:outline-none">
 ${value.output}
 </textarea>
+</div>
   </div>
-    </div>
-    `
+  `
 })
 
 
+
+// Hack: Adding links in the List
 
 // Hack: Adding links in the List
 

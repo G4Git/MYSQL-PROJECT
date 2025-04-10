@@ -10,7 +10,7 @@ const colors = {
   specialtext: "black",
   navhead: "black",
   navlist: "gray-700",
-  topicColor: "blue-600",
+  topicColor: "blue-500",
   body: "#1000", // keeping this main
   windowhead: "",
   windowbg: "blue-500",
@@ -22,18 +22,19 @@ const colors = {
   pfh3color: "gray-700",
   pfh3: "Gobind Singh",
 
-  // DQL Section
+  // Updated for DQL
+  
+
   cardcolor: "neutral-200",
   iframe: "https://www.youtube.com/embed/_yog7h4BokQ?si=YiCNBO71H4hDsgUE",
-
-   // DCL Section (with query_ keys)
-  query_name: "DCL Command",
-  query_desc:
-    "Used to control access to data in a database. DCL is crucial for database security and access control.",
-  query_introduction:
-    "DCL (Data Control Language) consists of SQL commands such as GRANT and REVOKE that manage access permissions to database objects. These commands help enforce security by specifying who can access or manipulate specific parts of the database.",
-};
-
+  
+  
+  query_name: "SQL OPERATORS",
+  query_desc: "SQL operators are used to specify conditions or modify the behavior of SQL commands. They help filter, combine, and manipulate the result sets in SQL queries. Common operators include AND, OR, NOT, BETWEEN, IN, LIKE, and IS NULL.",
+  query_introduction: "SQL operators are used to refine the conditions of SQL queries. They allow you to combine multiple conditions, negate conditions, check for ranges, match patterns, and handle NULL values. Some of the most common operators are AND, OR, NOT, BETWEEN, IN, LIKE, and IS NULL."
+  
+  
+  };
 
 
 
@@ -122,56 +123,211 @@ const home = document.querySelector(".Cards")
 
 // DQL COMMANDS
 const commands = [
-  
-  
   {
-    name: "GRANT",
-    description: "The GRANT command is used to provide specific privileges to users in a database. These privileges may include permissions like SELECT, INSERT, UPDATE, DELETE, and more on database objects such as tables, views, or procedures.",
-    code: `GRANT SELECT, INSERT ON employees TO user1;`,
-    output: "-- This grants SELECT and INSERT privileges on the 'employees' table to 'user1'.",
-    subhead: "Privilege Assignment",
-    main: "DCL - GRANT",
-    title: "Provides privileges to users to access and modify database objects.",
+    name: "AND Operator",
+    desc: "The AND operator is used to combine multiple conditions in the WHERE clause. It returns true if all conditions are true.",
+    code: `
+SELECT * FROM employees
+WHERE age > 30 AND department = 'Sales';
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 1  | John| 35         | Sales   |
+| 2  | Jane| 40         | Sales   |
++----+-----+------------+---------+`,
+    subhead: "Combining Conditions",
+    main: "AND",
+    title: "Ensuring Multiple Conditions are True",
+    example: "WHERE age > 30 AND department = 'Sales'",
     list: [
-      "Used to assign access rights to users.",
-      "Privileges can be granted on various database objects.",
-      "Can be limited to specific actions (e.g., SELECT only).",
-      "Helps control security and access at a granular level."
+      "Combines multiple conditions in the WHERE clause.",
+      "Returns records only if all conditions are true.",
+      "Can be combined with other logical operators."
     ],
-    mainColor:"blue-500",
+    mainColor: "blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
-    bgColor: "white",
-    input: "GRANT UPDATE ON orders TO manager;",
-    example: "Grant the UPDATE privilege on the 'orders' table to the user 'manager'."
+    bgColor: "white"
   },
   {
-    name: "REVOKE",
-    description: "The REVOKE command is used to take back previously granted privileges from users. This ensures controlled access to database objects and helps maintain security.",
-    code: `REVOKE SELECT, INSERT ON employees FROM user1;`,
-    output: "-- This removes SELECT and INSERT privileges on the 'employees' table from 'user1'.",
-    subhead: "Privilege Removal",
-    main: "DCL - REVOKE",
-    title: "Removes privileges from users to restrict access.",
+    name: "OR Operator",
+    desc: "The OR operator is used to combine multiple conditions in the WHERE clause. It returns true if at least one of the conditions is true.",
+    code: `
+SELECT * FROM employees
+WHERE department = 'Sales' OR department = 'Marketing';
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 1  | John| 30         | Sales   |
+| 2  | Amy | 28         | Marketing|
+| 3  | Bob | 35         | Sales   |
++----+-----+------------+---------+`,
+    subhead: "Combining Conditions with OR",
+    main: "OR",
+    title: "True if Any Condition is Met",
+    example: "WHERE department = 'Sales' OR department = 'Marketing'",
     list: [
-      "Used to take back access rights from users.",
-      "Ensures restricted access to sensitive data.",
-      "Helps maintain data security and control.",
-      "Can be used alongside GRANT for role management."
+      "Combines multiple conditions in the WHERE clause.",
+      "Returns records if at least one condition is true.",
+      "Can be used with AND and NOT for more complex conditions."
     ],
-    mainColor:"blue-500",
+    mainColor: "blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
-    bgColor: "white",
-    input: "REVOKE DELETE ON orders FROM manager;",
-    example: "Revoke the DELETE privilege from the user 'manager' on the 'orders' table."
+    bgColor: "white"
+  },
+  {
+    name: "NOT Operator",
+    desc: "The NOT operator negates a condition. It is used to return records where the condition is not true.",
+    code: `
+SELECT * FROM employees
+WHERE NOT department = 'Sales';
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 2  | Jane| 40         | HR      |
+| 3  | Bob | 35         | Marketing|
++----+-----+------------+---------+`,
+    subhead: "Negating Conditions",
+    main: "NOT",
+    title: "Excluding Certain Conditions",
+    example: "WHERE NOT department = 'Sales'",
+    list: [
+      "Negates a condition in the WHERE clause.",
+      "Returns records where the condition is false.",
+      "Can be combined with AND or OR."
+    ],
+    mainColor: "blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "BETWEEN Operator",
+    desc: "The BETWEEN operator is used to filter records within a specified range. It can be used with numeric, date, and text values.",
+    code: `
+SELECT * FROM employees
+WHERE age BETWEEN 25 AND 40;
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 1  | John| 35         | Sales   |
+| 2  | Amy | 28         | Marketing|
++----+-----+------------+---------+`,
+    subhead: "Range Filtering",
+    main: "BETWEEN",
+    title: "Filtering Records Within a Range",
+    example: "WHERE age BETWEEN 25 AND 40",
+    list: [
+      "Filters records where values are within a specified range.",
+      "Can be used with numeric, date, or text columns.",
+      "Inclusive of both range values."
+    ],
+    mainColor: "blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "IN Operator",
+    desc: "The IN operator is used to filter records where the column's value is within a list of specified values.",
+    code: `
+SELECT * FROM employees
+WHERE department IN ('Sales', 'Marketing');
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 1  | John| 30         | Sales   |
+| 2  | Amy | 28         | Marketing|
++----+-----+------------+---------+`,
+    subhead: "Checking for Multiple Values",
+    main: "IN",
+    title: "Matching Records Against a List of Values",
+    example: "WHERE department IN ('Sales', 'Marketing')",
+    list: [
+      "Filters records where the value matches any value in the list.",
+      "Can be used with both numeric and text columns.",
+      "Often used with WHERE clause."
+    ],
+    mainColor: "blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "LIKE Operator",
+    desc: "The LIKE operator is used to filter records based on pattern matching. It is often used with wildcards like % and _.",
+    code: `
+SELECT * FROM employees
+WHERE name LIKE 'J%';
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 1  | John| 30         | Sales   |
+| 2  | Jane| 35         | Marketing|
++----+-----+------------+---------+`,
+    subhead: "Pattern Matching",
+    main: "LIKE",
+    title: "Matching Patterns in Text Data",
+    example: "WHERE name LIKE 'J%'",
+    list: [
+      "Filters records based on pattern matching.",
+      "The % wildcard matches any number of characters.",
+      "_ matches a single character.",
+      "Used for partial string matches."
+    ],
+    mainColor: "blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "IS NULL Operator",
+    desc: "The IS NULL operator is used to check if a column contains NULL values.",
+    code: `
+SELECT * FROM employees
+WHERE department IS NULL;
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 3  | Bob | 35         | NULL    |
++----+-----+------------+---------+`,
+    subhead: "Handling NULL Values",
+    main: "IS NULL",
+    title: "Checking for NULL Values in Columns",
+    example: "WHERE department IS NULL",
+    list: [
+      "Used to check for NULL values in a column.",
+      "NULL is a special marker indicating missing or undefined data.",
+      "Commonly used in WHERE clauses to filter out or find NULL values."
+    ],
+    mainColor: "blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
   }
-,  
-   
-  ];
-  
+];
 
 
 
@@ -183,67 +339,70 @@ const commands = [
 
 
 
-  commands.forEach((value,index) => {
-    const container = document.createElement("div")
-  container.setAttribute("class", `container flex-col bg-${colors.cardcolor} flex items-center rounded-md justify-center   sm:w-[100%] p-3 text-${colors.text}   gap-4 w-[100%] h-[100%]`)
-  container.setAttribute("id",`container${index + 1}`)
-    home.appendChild(container)
-    container.innerHTML = `
-    <div class="cont  p-6  rounded-2xl  w-full mx-auto">
-    <!-- Heading -->
-    <h1 class="cont-head my-2 text-3xl font-bold text-${value.mainColor} mb-2">${value.main}</h1>
 
-    <!-- Subheading -->
-    <h2 class="cont-subhead text-xl font-light text-${value.subColor} mb-1">${value.subhead}</h2>
 
-    <!-- Title -->
-    <h3 class="cont-title text-lg text-${value.titleColor} fonr-sans mb-4">${value.title}</h3>
 
-    <!-- List -->
-    <ul class="cont-list list-disc text-lg list-inside space-y-1 text-${value.listColor}">
-      ${value.list.map((val) => {
-        return `
-          <li>${val}</li>
-        `
-      }).join("")}
-    </ul>
-  </div>    
+commands.forEach((value,index) => {
+  const container = document.createElement("div")
+container.setAttribute("class", `container flex-col bg-${colors.cardcolor} flex items-center rounded-md justify-center   sm:w-[100%] p-3 text-${colors.text}   gap-4 w-[100%] h-[100%]`)
+container.setAttribute("id",`container${index + 1}`)
+  home.appendChild(container)
+  container.innerHTML = `
+  <div class="cont  p-6  rounded-2xl  w-full mx-auto">
+  <!-- Heading -->
+  <h1 class="cont-head my-2 text-3xl font-bold text-${value.mainColor} mb-2">${value.main}</h1>
 
-  <!-- Example -->
-  <div class="cont-example p-2 rounded-2xl flex justify-start gap-4 items-center w-full  my-4">
-  <h1 class="text-2xl font-bold font-sans  text-${colors.specialhead}">Example - </h1>
-  <h1 class="text-${colors.subtext} text-xl  font-sans "> ${value.example}</h1>
+  <!-- Subheading -->
+  <h2 class="cont-subhead text-xl font-light text-${value.subColor} mb-1">${value.subhead}</h2>
+
+  <!-- Title -->
+  <h3 class="cont-title text-lg text-${value.titleColor} fonr-sans mb-4">${value.title}</h3>
+
+  <!-- List -->
+  <ul class="cont-list list-disc text-lg list-inside space-y-1 text-${value.listColor}">
+    ${value.list.map((val) => {
+      return `
+        <li>${val}</li>
+      `
+    }).join("")}
+  </ul>
+</div>    
+
+<!-- Example -->
+<div class="cont-example p-2 rounded-2xl flex justify-start gap-4 items-center w-full  my-4">
+<h1 class="text-2xl font-bold font-sans  text-${colors.specialhead}">Example - </h1>
+<h1 class="text-${colors.subtext} text-xl  font-sans "> ${value.example}</h1>
+</div>
+
+<!-- Input Window -->
+  <div class="w-full  h-full rounded-md  flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg} ">
+  <h1 class="px-3 p-1 text-${colors.input}">Input</h1>
+  <code class="bg-${colors.textareabg} whitespace-pre  w-[100%] overflow-x-auto  p-4 bg-${colors.textareabg}  text-${colors.textareatext}" >
+  ${value.code}
+  </code>
   </div>
-  
- <!-- Input Window -->
-    <div class="w-full h-full rounded-md  flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg} ">
-    <h1 class="px-3 p-1 text-${colors.input}">Input</h1>
-    <code class="bg-${colors.textareabg} whitespace-pre  w-[100%] overflow-x-auto  p-4 bg-${colors.textareabg}  text-${colors.textareatext}" >
-    ${value.code}
-    </code>
-    </div>
-  <!-- Output Window -->
-    <div class="w-full h-full  rounded-md flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg}  object-cover  ">   
-    <h1 class="px-3 p-1 text-${colors.output}">Output</h1>
-    <div class="h-48  w-full flex justify-center items-center  bg-black">
-    <textarea  
-  class="bg-${colors.textareabg} 
-         text-${colors.textareatext} 
-         w-full 
-         h-full 
-         max-h-full 
-         px-4 
-         py-4 
-         font-mono 
-         whitespace-pre 
-         resize-none 
-         overflow-auto 
-         focus:outline-none">
+<!-- Output Window -->
+  <div class="w-full  h-full  rounded-md flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg}  object-cover  ">   
+  <h1 class="px-3 p-1 text-${colors.output}">Output</h1>
+  <div class="h-48  w-full flex justify-center items-center  bg-black">
+  <textarea  
+class="bg-${colors.textareabg} 
+       text-${colors.textareatext} 
+       w-full 
+       h-full 
+       max-h-full 
+       px-4 
+       py-4 
+       font-mono 
+       whitespace-pre 
+       resize-none 
+       overflow-auto 
+       focus:outline-none">
 ${value.output}
 </textarea>
+</div>
   </div>
-    </div>
-    `
+  `
 })
 
 

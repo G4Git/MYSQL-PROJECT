@@ -53,7 +53,7 @@ const commands = [
       "Can be combined with ORDER BY, GROUP BY, and JOINs.",
       "Most commonly used SQL command for data analysis."
     ],
-    mainColor: "emerald-400",
+    mainColor:"blue-500""blue-500", "emerald-400",
     subColor: "gray-400",
     titleColor: "emerald-300",
     listColor: "gray-300",
