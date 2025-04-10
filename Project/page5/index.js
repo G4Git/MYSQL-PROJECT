@@ -117,175 +117,127 @@ const home = document.querySelector(".Cards")
 
 // DQL COMMANDS
 const commands = [
+ 
   {
     name: "SELECT",
     desc: "Retrieves data from one or more tables.",
-    code: `SELECT name, age FROM users WHERE age > 18;`,
-    output: `+--------+-----+\n| name   | age |\n+--------+-----+\n| Alice  | 25  |\n+--------+-----+`,
-    subhead: "Fetching Data",
-    main: "SELECT Command",
-    title: "Querying Records",
+    code: `SELECT FirstName, LastName FROM Employees WHERE HireDate > '2023-01-01';`,
+    output: `Returns rows of FirstName and LastName for employees hired after January 1, 2023.`,
+    subhead: "Retrieving Data",
+    main: "SELECT Statement",
+    title: "Fetching Records",
+    example: "SELECT * FROM Employees;",
     list: [
-      "Used to fetch data from one or more tables.",
-      "Supports conditions using WHERE clause.",
-      "Can be combined with ORDER BY, GROUP BY, and JOINs.",
-      "Most commonly used SQL command for data analysis."
+      "Used to query data from a database.",
+      "Can retrieve specific columns or all (*) columns.",
+      "Supports conditions using WHERE, filtering, ordering, and grouping.",
+      "Fundamental for reading and analyzing data in SQL."
     ],
-    mainColor: "emerald-400",
+    mainColor: "green-400",
     subColor: "gray-400",
-    titleColor: "emerald-300",
+    titleColor: "green-300",
     listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: "DQL Command",
-      description: "Used to fetch/query data from the database.",
-      intro: "DQL (Data Query Language) includes commands like SELECT which allow users to retrieve data based on specific conditions."
-    }
+    bgColor: "gray-900"
   },
   {
     name: "SELECT DISTINCT",
-    desc: "Fetches only unique values from a column.",
-    code: `SELECT DISTINCT department FROM employees;`,
-    output: `+-------------+\n| department  |\n+-------------+\n| HR          |\n| Sales       |\n| Marketing   |\n+-------------+`,
-    subhead: "Avoiding Duplicates",
-    main: "SELECT DISTINCT Command",
-    title: "Querying Unique Records",
+    desc: "Retrieves unique values from a column.",
+    code: `SELECT DISTINCT Department FROM Employees;`,
+    output: `Returns a list of unique departments from the Employees table.`,
+    subhead: "Removing Duplicates",
+    main: "SELECT DISTINCT Statement",
+    title: "Unique Record Retrieval",
+    example: "SELECT DISTINCT column_name FROM table_name;",
     list: [
-      "Eliminates duplicate records from the result.",
-      "Used when only unique values are needed.",
-      "Improves data clarity and reduces noise."
+      "Returns only distinct (different) values from a column.",
+      "Helps avoid duplication in query results.",
+      "Useful in data analysis and filtering."
     ],
-    mainColor: "emerald-400",
+    mainColor: "green-400",
     subColor: "gray-400",
-    titleColor: "emerald-300",
+    titleColor: "green-300",
     listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: "DQL Command",
-      description: "Used to select unique values in a column.",
-      intro: "DISTINCT works with SELECT to return only different values, preventing repetition."
-    }
+    bgColor: "gray-900"
   },
   {
-    name: "WHERE",
-    desc: "Filters the result set based on a condition.",
-    code: `SELECT * FROM orders WHERE status = 'shipped';`,
-    output: `+------+---------+---------+\n| id   | product | status  |\n+------+---------+---------+\n| 2    | Pen     | shipped |\n+------+---------+---------+`,
-    subhead: "Applying Filters",
-    main: "WHERE Clause",
-    title: "Filtering Records",
+    name: "SELECT WHERE",
+    desc: "Filters records that fulfill a specified condition.",
+    code: `SELECT * FROM Employees WHERE Department = 'HR';`,
+    output: `Returns all records of employees working in the HR department.`,
+    subhead: "Conditional Filtering",
+    main: "WHERE Clause in SELECT",
+    title: "Filtered Results",
+    example: "SELECT * FROM Employees WHERE condition;",
     list: [
-      "Specifies a condition for data selection.",
-      "Only rows that satisfy the condition are returned.",
-      "Supports logical operators (AND, OR, NOT)."
+      "Filters records based on given criteria.",
+      "Used with comparison operators like =, <, >, LIKE, BETWEEN, etc.",
+      "Makes SELECT queries more precise."
     ],
-    mainColor: "emerald-400",
+    mainColor: "green-400",
     subColor: "gray-400",
-    titleColor: "emerald-300",
+    titleColor: "green-300",
     listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: "DQL Command",
-      description: "Used with SELECT to filter results.",
-      intro: "WHERE helps narrow down data by applying conditions like equality, ranges, and more."
-    }
+    bgColor: "gray-900"
   },
   {
-    name: "ORDER BY",
-    desc: "Sorts the result set by one or more columns.",
-    code: `SELECT name, salary FROM employees ORDER BY salary DESC;`,
-    output: `+--------+--------+\n| name   | salary |\n+--------+--------+\n| Riya   | 95000  |\n| Aman   | 80000  |\n+--------+--------+`,
+    name: "SELECT ORDER BY",
+    desc: "Sorts the result set in ascending or descending order.",
+    code: `SELECT * FROM Employees ORDER BY HireDate DESC;`,
+    output: `Returns all employees sorted by HireDate in descending order.`,
     subhead: "Sorting Results",
     main: "ORDER BY Clause",
-    title: "Ordering Output",
+    title: "Ordering Data",
+    example: "SELECT * FROM table_name ORDER BY column_name ASC|DESC;",
     list: [
-      "Sorts data in ascending (ASC) or descending (DESC) order.",
-      "Can sort by one or multiple columns.",
-      "Often used to present data in a structured way."
+      "Used to sort results by one or more columns.",
+      "Default sorting order is ascending (ASC).",
+      "DESC is used for descending order."
     ],
-    mainColor: "emerald-400",
+    mainColor: "green-400",
     subColor: "gray-400",
-    titleColor: "emerald-300",
+    titleColor: "green-300",
     listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: "DQL Command",
-      description: "Used to sort the result set based on column values.",
-      intro: "ORDER BY organizes your output neatly and meaningfully based on one or more criteria."
-    }
+    bgColor: "gray-900"
   },
   {
-    name: "GROUP BY",
+    name: "SELECT GROUP BY",
     desc: "Groups rows that have the same values into summary rows.",
-    code: `SELECT department, COUNT(*) FROM employees GROUP BY department;`,
-    output: `+-------------+----------+\n| department  | count(*) |\n+-------------+----------+\n| HR          | 3        |\n| IT          | 5        |\n+-------------+----------+`,
-    subhead: "Summarizing Data",
+    code: `SELECT Department, COUNT(*) FROM Employees GROUP BY Department;`,
+    output: `Displays the number of employees in each department.`,
+    subhead: "Aggregating Data",
     main: "GROUP BY Clause",
-    title: "Grouping Records",
+    title: "Grouped Results",
+    example: "SELECT column, COUNT(*) FROM table GROUP BY column;",
     list: [
-      "Groups data based on one or more columns.",
-      "Commonly used with aggregate functions like COUNT, SUM, AVG.",
-      "Returns one result per group."
+      "Used with aggregate functions like COUNT, AVG, MAX, etc.",
+      "Groups rows sharing the same value in a column.",
+      "Helpful in creating summaries and reports."
     ],
-    mainColor: "emerald-400",
+    mainColor: "green-400",
     subColor: "gray-400",
-    titleColor: "emerald-300",
+    titleColor: "green-300",
     listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: "DQL Command",
-      description: "Used to group records for summary calculations.",
-      intro: "GROUP BY allows data to be clustered and summarized, especially with aggregate functions."
-    }
+    bgColor: "gray-900"
   },
   {
-    name: "HAVING",
-    desc: "Filters grouped records based on aggregate function conditions.",
-    code: `SELECT department, COUNT(*) FROM employees GROUP BY department HAVING COUNT(*) > 3;`,
-    output: `+-------------+----------+\n| department  | count(*) |\n+-------------+----------+\n| IT          | 5        |\n+-------------+----------+`,
+    name: "SELECT HAVING",
+    desc: "Filters group results based on aggregate function conditions.",
+    code: `SELECT Department, COUNT(*) FROM Employees GROUP BY Department HAVING COUNT(*) > 5;`,
+    output: `Returns departments with more than 5 employees.`,
     subhead: "Filtering Grouped Data",
     main: "HAVING Clause",
-    title: "Conditional Group Filtering",
+    title: "Group-Level Filtering",
+    example: "SELECT column, COUNT(*) FROM table GROUP BY column HAVING COUNT(*) > number;",
     list: [
-      "Used to filter groups created by GROUP BY.",
-      "Often used with aggregate functions like COUNT or AVG.",
-      "Acts like WHERE, but for grouped data."
+      "Similar to WHERE but used with GROUP BY.",
+      "Applies conditions to aggregated results.",
+      "Essential for advanced data analysis in SQL."
     ],
-    mainColor: "emerald-400",
+    mainColor: "green-400",
     subColor: "gray-400",
-    titleColor: "emerald-300",
+    titleColor: "green-300",
     listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: "DQL Command",
-      description: "Used to filter grouped results.",
-      intro: "HAVING lets you refine grouped results by applying conditions to the group data."
-    }
-  },
-  {
-    name: "JOIN",
-    desc: "Combines rows from two or more tables based on a related column.",
-    code: `SELECT users.name, orders.amount FROM users JOIN orders ON users.id = orders.user_id;`,
-    output: `+--------+--------+\n| name   | amount |\n+--------+--------+\n| Riya   | 250    |\n+--------+--------+`,
-    subhead: "Combining Tables",
-    main: "JOIN Clause",
-    title: "Joining Tables",
-    list: [
-      "Combines data from multiple tables.",
-      "INNER JOIN returns matching rows only.",
-      "LEFT JOIN returns all from the left table, even if no match.",
-      "Great for relational database operations."
-    ],
-    mainColor: "emerald-400",
-    subColor: "gray-400",
-    titleColor: "emerald-300",
-    listColor: "gray-300",
-    bgColor: "gray-900",
-    meta: {
-      type: "DQL Command",
-      description: "Used to merge data from multiple tables using relationships.",
-      intro: "JOINs are powerful tools for combining data logically across related tables."
-    }
+    bgColor: "gray-900"
   }
 ];
 
@@ -293,17 +245,12 @@ const commands = [
 
 
 
-
-
-
-
-
 commands.forEach((value) => {
     const container = document.createElement("div")
-    container.setAttribute("class", `container flex-col flex items-center rounded-md justify-center   sm:w-[100%] p-3 text-${colors.text}   gap-4 w-[100%] h-[100%]`)
+    container.setAttribute("class", `container flex-col flex items-center rounded-md justify-center   sm:w-[100%] p-3 text-${colors.text} bg-${colors.cardcolor}   gap-4 w-[100%] h-[100%]`)
     home.appendChild(container)
     container.innerHTML = `
-    <div class="cont  p-6  rounded-2xl shadow-xl bg-${colors.back} w-full mx-auto">
+    <div class="cont  p-6  rounded-2xl  w-full mx-auto">
     <!-- Heading -->
     <h1 class="cont-head my-2 text-3xl font-bold text-${value.mainColor} mb-2">${value.main}</h1>
 
@@ -323,7 +270,11 @@ commands.forEach((value) => {
     </ul>
   </div>    
 
-      
+  <!-- Example -->
+  <div class="cont-example p-2 rounded-2xl flex justify-start gap-4 items-center w-full  my-4">
+  <h1 class="text-2xl font-bold font-sans  text-${colors.specialhead}">Example - </h1>
+  <h1 class="text-${colors.subtext} text-xl  font-sans "> ${value.example}</h1>
+  </div>
   
  <!-- Input Window -->
     <div class="w-full h-full rounded-md  flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg} ">

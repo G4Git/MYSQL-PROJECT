@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL CREATE TABLE Command</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f9;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        code {
+            font-family: Consolas, monospace;
+        }
+        pre {
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+        }
+        section {
+            margin-bottom: 30px;
+        }
+
+        /* Syntax Code Block Styling */
+        #syntax pre {
+            background-color: #e3f2fd; /* light blue */
+            color: #0d47a1;            /* dark blue text */
+            border-left: 5px solid #2196f3;
+        }
+
+        /* Example Code Block Styling */
+        #example pre {
+            background-color: #f1f8e9; /* light green */
+            color: #33691e;            /* dark green text */
+            border-left: 5px solid #8bc34a;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>SQL Tutorial: CREATE TABLE Command</h1>
+
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>The <code>CREATE TABLE</code> statement in SQL is used to create a new table in a database. It defines the table name, its columns, and the data types for each column.</p>
+    </section>
+
+    <section id="syntax">
+        <h2>Syntax</h2>
+        <pre><code>CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    column3 datatype,
+    ...
+);</code></pre>
+        <p>Each column must have a name and a data type. Common data types include <code>INT</code>, <code>VARCHAR(n)</code>, <code>DATE</code>, and more.</p>
+    </section>
+
+    <section id="example">
+        <h2>Example</h2>
+        <p>Here's an example of creating a table named <code>Employees</code>:</p>
+        <pre><code>CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    HireDate DATE
+);</code></pre>
+        <p>This table includes a primary key and several other fields typically found in an employee database.</p>
+    </section>
+
+</body>
+</html>
