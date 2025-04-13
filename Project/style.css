@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+.scroll{
+ /* Width and height of scrollbar */
+::-webkit-scrollbar {
+  width: 0px;
+  height:0px;
+}
+
+/* Track (background) */
+::-webkit-scrollbar-track {
+  background: #000000;
+  border-radius: 10px;
+}
+
+/* Thumb (scrollable part) */
+::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 10px;
+  border: 2px solid #f0f0f0;
+}
+
+/* Hover effect on thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+}
+
