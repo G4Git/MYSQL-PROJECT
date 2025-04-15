@@ -1,32 +1,34 @@
+// loader
 
-// changing color of the website components
+const loader = document.querySelector('.loader')
+const loaderfill=document.querySelector(".loader-fill")
+let  i=0
 
+
+gsap.to(loaderfill, {
+    width: "100%",
+    duration: 3, 
+    ease: "power4.out", 
+    onComplete: () => {
+      gsap.to(loader, {
+          opacity: 0,
+        overflow:"hidden",
+        duration: 0.5,
+        ease: "expo.inOut",
+        onComplete: () => {
+          loader.classList.add("hidden");
+        }
+      });
+    }
+  });
+
+
+
+// {changing color of the website components}
 const colors = {
-  text: "black",
-  back: "neutral-300",
-  border: "gray-700",
-  subtext: "gray-700",
-  specialhead: "blue-500",
-  specialtext: "black",
-  navhead: "black",
-  navlist: "gray-700",
-  topicColor: "blue-500",
-  body: "#1000", // keeping this main
-  windowhead: "",
-  windowbg: "blue-500",
+  
   textareabg: "white",
   textareatext: "black",
-  input: "gray-700",
-  output: "gray-700",
-  pfimg: "https://i.pinimg.com/474x/dc/f2/4c/dcf24cd5a19f7184ff3fa6a34bc8e038.jpg",
-  pfh3color: "gray-700",
-  pfh3: "Gobind Singh",
-
-  // Updated for DQL
-  
-
-  cardcolor: "neutral-200",
-  iframe: "https://www.youtube.com/embed/_yog7h4BokQ?si=YiCNBO71H4hDsgUE",
   
   query_name: "CONSTRAINT TYPES",
   query_desc: "SQL constraints are used to specify rules for data in a table. These rules ensure the accuracy and reliability of the data within the database. Common constraints include PRIMARY KEY, FOREIGN KEY, NOT NULL, UNIQUE, CHECK, and DEFAULT.",
@@ -37,13 +39,6 @@ const colors = {
 
 
 
-
-
-
-
-     
-
-
 // { Setting Navbar in desktop }
 
 const nav = document.querySelector(".nav")
@@ -52,64 +47,31 @@ const navh2 = document.querySelector(".nav h2")
 const ul = document.querySelector(".ul")
 navh1.setAttribute("class", `sm:p-8 text-${colors.navhead} sm:text-2xl p-4 text-2xl font-bold`)  
 
-nav.setAttribute("class",`bg-${colors.back} justify-between flex-col flex `)
+nav.setAttribute("class",` justify-between flex-col flex `)
 
 
-//  { setting profile  change the pfimg in the color object }
-
-const profile = document.querySelector(".profile")
-profile.setAttribute("class", `profile  flex gap-4 justify-center items-center h-[10%] w-full bottom-0 
-`)
-const pfimg = document.querySelector(".profile img")
-pfimg.setAttribute("src", `${colors.pfimg}`)
-const pfh3 = document.querySelector(".profile h3")
-pfh3.setAttribute("class", `text-${colors.pfh3color} text-lg font-light`)
-pfh3.textContent=colors.pfh3
-
-
-// { setting Section1 dont change this i you want to change the color }
-
-const section1 = document.querySelector(".section1")
-section1.setAttribute("class", `bg-${colors.back} sm:h-[90%] h-[30vh]  sm:w-[70%] w-[100%] rounded-xl flex flex-col justify-center items-center gap-3 `)
-
-// {section 1 } query
-
-const query = document.querySelector(".query")
-query.setAttribute("class",`w-[90%] sm:h-[25%] h-[0%] text-center flex items-center justify-center  hidden sm:flex text-${colors.pfh3color} rounded-xl text-6xl font-semibold`)
-query.textContent = colors.query_name
-const iframe=document.querySelector(".Iframe")
-iframe.setAttribute("src",`${colors.iframe}`)
-// {setting Section2 dont change this i you want to change the color }
-
-const section2 = document.querySelector(".section2")
-section2.setAttribute("class", `bg-${colors.back} text-${colors.text} sm:h-[90%] sm:block hidden   h-[30vh] w-[100%]   p-6 rounded-xl`)
-
-
-// {Indroduction of section 2 dont change }
-
-const Introduction = document.querySelector(".Introduction")
-Introduction.setAttribute("class",`Introduction  text-3xl font-semibold text-${colors.text}`)
-// {Paragragh of section 2 dont change }
-
-const para = document.querySelector(".para")
-para.setAttribute("class",`para border-2  border-${colors.border} text-${colors.subtext} rounded-md p-4`)
-para.textContent=colors.query_introduction
 
 
 // { Main 2 part  heading } 
 const main2=document.querySelector(".main2")
 const main2h = document.querySelector(".main2 h1")
-main2h.setAttribute("class", `text-${colors.specialhead} text-5xl font-bold`)
+main2h.setAttribute("class", `text-black font-mono  sm:text-6xl text-5xl font-bold`)
 main2h.textContent=colors.query_name
 
 // Note: Main 2 part  paragraph
 const main2p = document.querySelector(".main2 p")
-main2p.setAttribute("class", `text-xl sm:w-[90%] w-[90%] text-${colors.subtext}`)
-main2p.textContent=colors.query_desc
+main2p.setAttribute("class", `sm:text-xl text-lg py-2 sm:w-[90%] bg-[#ae] w-[100%] text-black flex item-center justify-between gap-4 font-light`)
+const content=main2p.textContent=colors.query_desc
+main2p.innerHTML=`<i style="
+                       
+                          text-shadow:
+                            
+                             1.5px 2.5px 2.5px  black,
+                            1.5px 2.5px 2.5px  black,
+                            1.5px 2.5px 2.5px  black,
+                             1.5px  2.5px 2.5px  black;
+                       " class="fa-solid fa-lightbulb text-yellow-300  text-4xl am:px-2 px-4"></i> ${content} `
 
-// IDea: Body Element is changing
-const body = document.querySelector("body")
-body.style.backgroundColor=colors.body
 
 
 
@@ -120,7 +82,6 @@ body.style.backgroundColor=colors.body
 const home = document.querySelector(".Cards")
 
 
-// DQL COMMANDS
 const commands =  [
   {
     name: "PRIMARY KEY Constraint",
@@ -291,30 +252,24 @@ CREATE TABLE orders (
 
 
 
-
-
-
-
-
-
 commands.forEach((value,index) => {
   const container = document.createElement("div")
-container.setAttribute("class", `container flex-col bg-${colors.cardcolor} flex items-center rounded-md justify-center   sm:w-[100%] p-3 text-${colors.text}   gap-4 w-[100%] h-[100%]`)
+  container.setAttribute("class", `container flex-col bg-white border-2 border-black flex items-center rounded-md justify-center my-3 pb-6  sm:w-[100%] sm:px-3 text-${colors.text}   gap-4 w-full h-auto`)
+  container.setAttribute("style", `box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);`)
 container.setAttribute("id",`container${index + 1}`)
   home.appendChild(container)
   container.innerHTML = `
   <div class="cont  p-6  rounded-2xl  w-full mx-auto">
   <!-- Heading -->
-  <h1 class="cont-head my-2 text-3xl font-bold text-${value.mainColor} mb-2">${value.main}</h1>
+  <h1 class="cont-head mt-2 border-b-2 border-black py-4 sm:text-3xl font-bold text-black font-mono py-1 px-4 text-2xl">${value.main}</h1>
 
-  <!-- Subheading -->
-  <h2 class="cont-subhead text-xl font-light text-${value.subColor} mb-1">${value.subhead}</h2>
+  
 
   <!-- Title -->
-  <h3 class="cont-title text-lg text-${value.titleColor} fonr-sans mb-4">${value.title}</h3>
+  <h3 class="cont-title sm:text-xl text-lg text-${value.titleColor}  mb-4 px-5 pt-4 ">${value.title}</h3>
 
   <!-- List -->
-  <ul class="cont-list list-disc text-lg list-inside space-y-1 text-${value.listColor}">
+  <ul class="cont-list list-disc text-lg list-inside space-y-1 px-4 text-${value.listColor}">
     ${value.list.map((val) => {
       return `
         <li>${val}</li>
@@ -324,29 +279,30 @@ container.setAttribute("id",`container${index + 1}`)
 </div>    
 
 <!-- Example -->
-<div class="cont-example p-2 rounded-2xl flex justify-start gap-4 items-center w-full  my-4">
-<h1 class="text-2xl font-bold font-sans  text-${colors.specialhead}">Example - </h1>
+<div class="cont-example rounded-2xl flex justify-start gap-4 items-center w-full  mb-2 px-8 py-4">
+<h1 class="text-2xl font-bold font-sans  ">Example - </h1>
 <h1 class="text-${colors.subtext} text-xl  font-sans "> ${value.example}</h1>
 </div>
 
 <!-- Input Window -->
-  <div class="w-full  h-full rounded-md  flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg} ">
-  <h1 class="px-3 p-1 text-${colors.input}">Input</h1>
-  <code class="bg-${colors.textareabg} whitespace-pre  w-[100%] overflow-x-auto  p-4 bg-${colors.textareabg}  text-${colors.textareatext}" >
+  <div style="box-shadow: 2px 1px 0 rgba(0, 0, 0, 0.808);" class="sm:w-[95%] w-full  h-full rounded-sm  flex flex-col  justify-center bg-[#60a2fa] border-2 border-black ">
+  <h1 class="px-5 py-1 text-xl font-bold font-mono text-black">Input</h1>
+  <code class="bg-${colors.textareabg} border-2 border-black  whitespace-pre sm:mx-2 sm:w-[99%] w-full my-2 overflow-x-auto  sm:p-4 bg-${colors.textareabg} text-lg  text-${colors.textareatext}" >
   ${value.code}
   </code>
   </div>
 <!-- Output Window -->
-  <div class="w-full  h-full  rounded-md flex flex-col  justify-center bg-${colors.windowbg} border-2 border-${colors.windowbg}  object-cover  ">   
-  <h1 class="px-3 p-1 text-${colors.output}">Output</h1>
-  <div class="h-48  w-full flex justify-center items-center  bg-black">
+  <div style="box-shadow: 2px 1px 0 rgba(0, 0, 0, 0.808);" class="sm:w-[95%] w-full  h-full  rounded-sm flex flex-col  justify-center bg-[#f1c137] border-2 border-black  object-cover  my-4">   
+  <h1 class="px-5 text-xl font-bold py-1 text-lg font-mono text-black">Output</h1>
+  <div class="h-48 my-2  whitespace-pre sm:mx-2 sm:w-[99%] my-2 border-2 border-black w-full flex justify-center items-center ">
   <textarea  
 class="bg-${colors.textareabg} 
        text-${colors.textareatext} 
        w-full 
        h-full 
+        text-lg
        max-h-full 
-       px-4 
+       sm:px-4 
        py-4 
        font-mono 
        whitespace-pre 
@@ -361,8 +317,7 @@ ${value.output}
 })
 
 
-
-// Hack: Adding links in the List
+/// Hack: Adding links in the List
 
 const navlist = document.querySelector(".nav-list");
 
@@ -489,7 +444,7 @@ navelemts.forEach((val,index) => {
   heading.textContent = val.h1;
   heading.setAttribute(
     "class",
-    `sm:py-2 text-${colors.specialhead} sm:text-2xl px-7 text-lg font-sans`
+    `sm:py-2 text-black sm:text-2xl px-4 text-lg font-sans`
   )
   const lo =`/Project/page${index + 1}/index.html`
     
@@ -500,8 +455,8 @@ navelemts.forEach((val,index) => {
   const ul = document.createElement("ul");
   ul.setAttribute(
     "class",
-    `list-outside px-9 text-left list-disc pr-4 text-${colors.navlist} gap-2 flex-col  text-sm font-light sm:flex hidden py-2  h-[90%] `
-  );
+    `list-outside px-9 text-left list-disc pr-4 text-black gap-2 flex-col  text-sm font-light sm:flex hidden py-2  h-[90%] `
+  );  
 
   // Create and append list items
   val.links.forEach((item,index) => {

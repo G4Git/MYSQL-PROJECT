@@ -1,32 +1,34 @@
+// loader
 
-// changing color of the website components
+const loader = document.querySelector('.loader')
+const loaderfill=document.querySelector(".loader-fill")
+let  i=0
+
+
+gsap.to(loaderfill, {
+    width: "100%",
+    duration: 3, 
+    ease: "power4.out", 
+    onComplete: () => {
+      gsap.to(loader, {
+          opacity: 0,
+        overflow:"hidden",
+        duration: 0.5,
+        ease: "expo.inOut",
+        onComplete: () => {
+          loader.classList.add("hidden");
+        }
+      });
+    }
+  });
+
+
+
+// {changing color of the website components}
 
 const colors = {
-  
-  text: "black",
-  back: "neutral-300",
-  border: "gray-700",
-  subtext: "gray-700",
-  specialhead: "blue-500",
-  specialtext: "black",
-  navhead: "black",
-  navlist: "gray-700",
-  topicColor: "blue-600",
-  body: "#1000", // keeping this main
-  windowhead: "",
- 
   textareabg: "white",
   textareatext: "black",
- 
- 
-  pfh3color: "gray-700",
- 
-
-  // DQL Section
-
-  iframe: "https://www.youtube.com/embed/_yog7h4BokQ?si=YiCNBO71H4hDsgUE",
-
-  // DML Section (with query_ keys)
   query_name: "DDL Command",
 query_desc:
   "Used to define and modify the structure of a database. These commands allow users to create, alter, and drop tables, as well as manage database objects.",
@@ -35,15 +37,6 @@ query_introduction:
 
 };
 
-
-
-
-
-
-
-
-
-     
 
 
 // { Setting Navbar in desktop }
@@ -56,19 +49,6 @@ navh1.setAttribute("class", `sm:p-8 text-${colors.navhead} sm:text-2xl p-4 text-
 
 nav.setAttribute("class",` justify-between flex-col flex `)
 
-
-//  { setting profile  change the pfimg in the color object }
-
-
-
-
-// { setting Section1 dont change this i you want to change the color }
-
-
-// {section 1 } query
-
-
-// {Paragragh of section 2 dont change }
 
 
 
@@ -91,9 +71,7 @@ main2p.innerHTML=`<i style="
                             1.5px 2.5px 2.5px  black,
                              1.5px  2.5px 2.5px  black;
                        " class="fa-solid fa-lightbulb text-yellow-300  text-4xl am:px-2 px-4"></i> ${content} `
-// IDea: Body Element is changing
-const body = document.querySelector("body")
-body.style.backgroundColor=colors.body
+
 
 
 
@@ -104,7 +82,7 @@ body.style.backgroundColor=colors.body
 const home = document.querySelector(".Cards")
 
 
-// DQL COMMANDS
+// DDL COMMANDS
 const commands = [
   {
     name: "Create Table",
@@ -295,17 +273,9 @@ const commands = [
 
 
 
-
-
-
-
-
-
-
-
 commands.forEach((value,index) => {
   const container = document.createElement("div")
-  container.setAttribute("class", `container flex-col bg-white border-2 border-black flex items-center rounded-md justify-center my-3 pb-6  sm:w-[100%] sm:px-3 text-${colors.text}   gap-4 w-full h-[100%]`)
+  container.setAttribute("class", `container flex-col bg-white border-2 border-black flex items-center rounded-md justify-center my-3 pb-6  sm:w-[100%] sm:px-3 text-${colors.text}   gap-4 w-full h-auto`)
   container.setAttribute("style", `box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);`)
 container.setAttribute("id",`container${index + 1}`)
   home.appendChild(container)

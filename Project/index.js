@@ -9,7 +9,6 @@ gsap.to(loaderfill, {
     ease: "power4.out", // smooth easing
     onComplete: () => {
       gsap.to(loader, {
-        
           opacity: 0,
         overflow:"hidden",
         duration: 0.5,
@@ -21,4 +20,3 @@ gsap.to(loaderfill, {
     }
   });
 
-int()

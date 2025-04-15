@@ -6,37 +6,121 @@
     <title>Project</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/cea3fafc7e.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
-<body>
+<body class="h-full m-0">
+<div>
 
-   <div class="w-full h-screen flex justify-between items-center  ">
-      <!-- (Navbar for Desktop) -->
-    <div class="sm:flex sm:w-[15%] sm:h-[100%]  left-0 hidden ">
 
-        <nav class="nav w-[100%] flex-col flex justify-between items-center border-2   max-h-[100%]">
-           
-            <!-- logo  -->
-           <h1 class="">DBMS chapter</h1>  
+   <div class="main relative  h-[100vh] m-0 p-0  flex justify-center gap-4  bg-[#a9d7b8] items-center px-2 font-mono ">
+     
+     <!-- (loader) -->
+     <div class="loader z-10 overflow-hidden  absolute w-full h-full bg-[#fff6e5] flex justify-start px-[10%] items-start py-[5%] ">
+        <!-- cmd -->
+       <div style="box-shadow: 3px 5px 2px 5px #000000 "  class="cmd1 z-10 w-[60%] h-[60%] rounded-3xl relative bg-[#b5e9a1] sm:block hidden">
+        <!-- tape -->
+        <div class="tape w-full  bg-[#cac4f2] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
+            <ul class="flex justify-center  items-center  gap-2">
+              <li class="h-5 w-5 bg-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black rounded-full p-2"></li>  
+            </ul>
+            <h1 class="font-mono text-xl text-black">Mysql Window</h1>
+            
+        </div>
+        <!-- cmd -->
+         
 
-            <div class="nav-list scroll flex flex-col gap-2 max-h-[70%] overflow-y-auto">
-                
-                <!--h2  -->
-                <!-- ul -->
+       </div>
 
-            </div>
-            <div class="profile   flex items-center gap-4 bg-neutral-800 p-4 rounded-xl shadow-md">
-                <div class="h-12 w-12  border-2 border-neutral-300 rounded-full overflow-hidden bg-white">
-                  <img src="" alt="Profile" class="object-cover h-full w-full" />
+       <!-- cmd -->
+       <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd2 z-10 w-[40%] h-[40%] bg-[#f1edea] rounded-3xl absolute left-96 top-72 sm:block hidden">
+        <!-- tape -->
+        <div class="tape w-full  bg-[#273fe9] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
+            <ul class="flex justify-center  items-center  gap-2">
+              <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>  
+            </ul>
+            <h1 class="font-mono text-xl text-white">Mysql Window</h1>
+            
+        </div>
+        
+         <h1 class="text-7xl font-mono font-bold text-center py-8">DBMS Project </h1>
+         <p class="text-center font-mono text-2xl">A project by <b class="text-[#273fe9]">Gobind Singh</b> , 4058/23</p>
+       </div>
+
+       <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd3 z-10 sm:w-[25%] sm:h-[30%] bg-[#2a41f2] rounded-3xl absolute sm:right-96 sm:bottom-20 w-[80%] h-[30%] bottom-72">
+        <!-- tape -->
+        <div class="tape w-full  bg-[#b5e9a1] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
+            <ul class="flex justify-center  items-center  gap-2">
+              <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>  
+            </ul>
+            <h1 class="font-mono text-xl text-white"></h1>
+            
+        </div>
+        <h1 class="text-[#c2c9f1] text-5xl py-6 font-mono text-center">LOADING..</h1>
+         <div class=" flex items-center justify-center h-[25%] w-full">
+            <div class=" w-[80%]   h-full border-2">
+                <div class="loader-fill bg-[#c2c9f1] h-full w-0">
+
                 </div>
-                <h3 class=""></h3>
-              </div>
-        </nav>
+            </div>
+         </div>
+       </div>
+
+     </div>
+    
+    <!-- (Navbar for Desktop) -->
+    <div class="sm:flex sm:w-[15%] sm:h-[100%] font-mono  left-0 hidden ">
+
+        <div class="nav w-full h-[10vh] font-mono flex-col flex justify-start items-start">
+  <!-- Logo -->
+  <div class="flex w-full items-center gap-4 justify-center py-10">
+    <i style="text-shadow: 0.6px 0.8px 0.6px #ffffff;" class="fa-brands fa-slack text-4xl"></i>
+    <p style="text-shadow: 2px 0.8px 2px #ffffff;" class="text-4xl font-bold">IndexIQ</p>
+  </div>
+
+  <!-- Navigation -->
+  <ul class="w-full h-[90vh]  font-bold text-xl px-2">
+    <li class="w-full my-4">
+      <a href="./index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white px-6 py-4 w-full">
+        <i class="fa-solid fa-house"></i> Home
+      </a>
+    </li>
+
+    <li class="w-full my-4">
+      <a href="./index.html" style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="flex items-center gap-2 rounded-sm bg-white text-black hover:bg-white border-2 border-black hover:text-black px-6 py-4 shadow-md w-full">
+        <i class="fa-solid fa-file-code"></i>  Commands
+      </a>
+      <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="nav-list flex flex-col gap-2 w-full max-h-[45vh] w-full overflow-y-auto border-2 border-black bg-[#fdc6ff] text-white">
+        <!-- dropdown items here -->
+      </div>
+    </li>
+
+    <li class="w-full mt-6 mb-2">
+      <a href="./index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white px-6 py-4 w-full">
+        <i class="fa-solid fa-database"></i> About
+      </a>
+    </li>
+
+    <li class="w-full">
+      <a href="./index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white px-6 py-4 w-full">
+        <i class="fa-solid fa-earth-americas"></i> Case Study
+      </a>
+    </li>
+  </ul>
 </div>
 
-    
-    <div class="sm:w-[85%] h-full w-full  sm:overflow-auto flex-col justify-center items-center">
-         <!-- {Navbar for Mobile} -->
-        <nav class="nav w-[100%] items-center  justify-between flex border-2 border-neutral-500  bg-neutral-700  h-[10%] sm:hidden">
+    </div>
+
+    <!-- (Frame ) -->
+    <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="sm:w-[85%] bg-[#fff6e5] h-[95%] overflow-auto w-full sm:mx-4  sm:overflow-auto flex-col justify-center items-center border-black sm:border-2" >
+                 <!-- {Navbar for Mobile} -->
+        <nav class="nav w-[100%] items-center  justify-between flex border-2 border-neutral-500  bg-neutral-700  sm:h-[0%] h-[10%] sm:hidden">
             <h1 class="text-2xl p-4 text-white ">DBMS</h1>   
             <ul class="hidden">
                
@@ -48,49 +132,34 @@
             </ul> 
 
         </nav>
+
 <!-- (Main Content starts from here ) -->
-    <main class="main  flex flex-col   justify-between items-center w-full h-full">
+    <main class="main  flex flex-col h-full  justify-between items-center w-full ">
        
-        <!-- (section 1) -->
-        <div class="main1 w-full sm:h-[80vh] mt-10   h-[30vh] flex justify-center items-center">
-
-            <div class="justify-center items-center sm:px-20 sm:py-10  sm:mt-10 px-6 gap-4  w-full  sm:h-[100vh]  sm:flex grid grid-cols-1  ">
-
-        <!-- {section 1/2} -->
-                <div class="section1 ">
-                    <div class="query ">
-                        <!-- query name -->
-                    </div>
-                    <div class="iframe  sm:mt-5 sm:w-[100%] sm:h-[55%]  h-[100%] w-[100%] flex items-center justify-center rounded-xl">
-                        <iframe class="Iframe rounded-xl sm:mt-10 sm:w-[95%]"  width="100%" height="100%"  src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                 
-                </div>
-    
-        <!-- {section1/2} -->
-            <div class="section2 ">
-              
-                <div class="h-[100%]  gap-4   flex flex-col border-2  border-neutral-600 p-6">
-                    <h1 // class="Introduction ">Introduction</h1>
-                    <p  // class="para ">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae, ducimus vitae laboriosam reprehenderit accusamus similique iure doloremque tempora necessitatibus veniam ab quod odio, quas mollitia, amet veritatis asperiores reiciendis fuga quo?
-                    </p>
-                </div>
-               
-                
+       
+        <nav class="hidden h-[0%] sm:flex py-12 px-4 items-center  justify-between w-full ">
+            <div class="">
+                <span style="box-shadow: 1.5px 1.5px 1px 1px #000000" class="p-2 px-4 font-bold text-xl border-2 border-black bg-black text-[#ffebc2]"><i class="fa-solid fa-folder-open"></i></span>
             </div>
-    
-           </div>
-        </div>
-        
+            <div class=" flex items-center justify-center gap-6">
+                <a href="./index.html"><div class="box border-4 px-4 py-3 border-black font-bold text-lg  hover:bg-[#000] rounded-sm hover:text-white">Navigate to Commands</div></a>
+                <div class="flex items-center justify-center gap-4">
+                    <span class="px-4 text-xl py-2 border-2 border-black bg-[#ffebc2]"><i class="fa-solid fa-bell"></i></span>
+                    <span class="text-xl border-2 border-black bg-black flex justify-center items-center  h-12 w-12">
+                        <i class="fa-brands fa-github text-white text-3xl "></i>
+                    </span>
+                </div>
+                </div>
+
+        </nav>
         <!-- (section2 ) -->
-        <div class="main2 justify-center gap-4 items-center text-white sm:px-20 px-4 pt-16 pb-6  flex-col flex w-full ">
+        <div class="main2 justify-center gap-4 items-center text-white sm:px-20 px-1 pt-8 pb-6  flex-col flex w-full ">
             <h1 class=""><!-- query name--></h1>
             <p class=""><!-- query desc--></p>
         </div> 
  <!-- (section3 ) -->
-        <div class="main3 justify-between items-center  flex w-full h-[70vh]">
-        <Cards class="Cards grid sm:grid-cols-1 h-full  grid-cols-1 sm:px-20  p-8 gap-8    flex justify-center items-center w-[100%]">
+        <div class="main3 justify-between items-center  flex w-full ">
+        <Cards class="Cards grid sm:grid-cols-1   grid-cols-1 sm:px-20  sm:p-6 gap-8    flex justify-center items-center w-[100%]">
            
         </Cards>
     </div>
@@ -98,6 +167,8 @@
 
 
     </main>
+
+    </div>
 
 </div>
 </div>
