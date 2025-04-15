@@ -6,14 +6,17 @@
     <title>Mysql Project</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/cea3fafc7e.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+
 </head>
 <body>
 
-    <div class="main bg-[#a9d7b8] w-full h-screen flex justify-center gap-6 items-center ">
+    <div class="main bg-[#a9d7b8] overflow-hidden w-full h-screen flex justify-center gap-6 items-center ">
         <!-- loader -->
-         <div class="loader z-10 absolute w-full h-full bg-[#f2efe6] flex justify-start px-[10%] items-start py-[5%]">
+         <div class="loader z-10 overflow-hidden  absolute w-full h-full bg-[#fff6e5] flex justify-start px-[10%] items-start py-[5%]">
             <!-- cmd -->
-           <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd1 w-[60%] h-[60%] bg-[#b5e99f] rounded-3xl relative">
+           <div style="box-shadow: 3px 5px 2px 5px #000000 "  class="cmd1 z-10 w-[60%] h-[60%] rounded-3xl relative bg-[#b5e9a1]">
             <!-- tape -->
             <div class="tape w-full  bg-[#cac4f2] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
                 <ul class="flex justify-center  items-center  gap-2">
@@ -30,7 +33,7 @@
            </div>
 
            <!-- cmd -->
-           <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd1 w-[40%] h-[40%] bg-[#f1edea] rounded-3xl absolute left-96 top-72">
+           <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd2 z-10 w-[40%] h-[40%] bg-[#f1edea] rounded-3xl absolute left-96 top-72">
             <!-- tape -->
             <div class="tape w-full  bg-[#273fe9] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
                 <ul class="flex justify-center  items-center  gap-2">
@@ -46,7 +49,7 @@
              <p class="text-center font-mono text-2xl">A project by <b class="text-[#273fe9]">Gobind Singh</b> , 4058/23</p>
            </div>
 
-           <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd1 w-[25%] h-[30%] bg-[#2a41f2] rounded-3xl absolute right-96 bottom-20">
+           <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd3 z-10 w-[25%] h-[30%] bg-[#2a41f2] rounded-3xl absolute right-96 bottom-20">
             <!-- tape -->
             <div class="tape w-full  bg-[#b5e9a1] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
                 <ul class="flex justify-center  items-center  gap-2">
@@ -60,7 +63,7 @@
             <h1 class="text-[#c2c9f1] text-5xl py-6 font-mono text-center">LOADING..</h1>
              <div class=" flex items-center justify-center h-[25%] w-full">
                 <div class=" w-[80%]   h-full border-2">
-                    <div class="loader-fill bg-[#c2c9f1] w-[70%] h-full">
+                    <div class="loader-fill bg-[#c2c9f1] h-full w-0">
 
                     </div>
                 </div>
@@ -68,6 +71,8 @@
            </div>
 
          </div>
+
+
         <!-- left  -->
         <div class="left sm:w-[15%] w-full h-full items-center sm:items-start  sm:justify-start flex-col flex ">
 
@@ -157,7 +162,7 @@
                         <i class="fa-solid fa-hexagon-nodes  px-4 py-3 border-2 border-black bg-[#fdc6ff]"></i> <h1 class="text-2xl font-bold">Network DBMS</h1> 
                     </span>
                     <span class="border-b-2 text-center px-6  h-24 w-full border-black py-4 flex items-center justify-start gap-8  text-xl font-mono  font-semibold">
-                        <i class="fa-solid fa-code-branch p-3 px-4 border-2 border-black bg-[#a9d7b8]"></i> <h1 class="text-2xl font-bold">Relational DBMS</h1> 
+                        <i class="fa-solid fa-code-branch p-3 px-4 border-2 border-black bg-[#b5e9a1]"></i> <h1 class="text-2xl font-bold">Relational DBMS</h1> 
                     </span>
                     
                   
@@ -277,5 +282,6 @@
              </div>
         </div>
     </div>
+    <script src="index.js"></script>
 </body>
 </html>
