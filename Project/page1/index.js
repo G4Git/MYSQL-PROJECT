@@ -14,17 +14,16 @@ const colors = {
   topicColor: "blue-600",
   body: "#1000", // keeping this main
   windowhead: "",
-  windowbg: "blue-500",
+ 
   textareabg: "white",
   textareatext: "black",
-  input: "gray-700",
-  output: "gray-700",
+ 
  
   pfh3color: "gray-700",
  
 
   // DQL Section
-  cardcolor: "neutral-200",
+
   iframe: "https://www.youtube.com/embed/_yog7h4BokQ?si=YiCNBO71H4hDsgUE",
 
   // DML Section (with query_ keys)
