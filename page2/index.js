@@ -26,16 +26,18 @@ gsap.to(loaderfill, {
 
 // {changing color of the website components}
 
+
 const colors = {
   
   textareabg: "white",
   textareatext: "black",
   
-  query_name: "DQL Command",
-  query_desc: "Used to fetch data from a database based on specific criteria. It mainly involves the SELECT statement and is essential for data analysis, reporting, and viewing records without modifying them. DQL helps extract meaningful insights from large datasets."
-,
+  // DML Section (with query_ keys)
+  query_name: "DML Command",
+  query_desc:
+    "Used to manipulate data stored in the database. These commands allow users to insert, update, delete, and retrieve data.",
   query_introduction:
-    "DQL (Data Query Language) focuses on querying the database. It is primarily used to retrieve data using the SELECT statement and helps in analyzing and viewing data stored in tables.",
+    "DML (Data Manipulation Language) includes SQL commands like INSERT, UPDATE, DELETE, and MERGE. These are used to modify data within tables and manage records effectively, without altering the structure of the database itself.",
 };
 
 
@@ -75,7 +77,7 @@ main2p.innerHTML=`<i style="
 
 
 
-
+                      
 
 
 
@@ -83,197 +85,118 @@ main2p.innerHTML=`<i style="
 const home = document.querySelector(".Cards")
 
 
-// DCL COMMANDS
-const commands = [
-  {
-    name: "SELECT",
-    desc: "Retrieves data from one or more tables.",
-    code: `SELECT FirstName, LastName FROM Employees WHERE HireDate > '2023-01-01';`,
-    output: `
-| FirstName | LastName |
-|-----------|----------|
-| Alice     | Johnson  |
-| Aaron     | Davis    |
-    `.trim(),
-    subhead: "Retrieving Data",
-    main: "SELECT Statement",
-    title: "Fetching Records",
-    example: "SELECT * FROM Employees;",
-    list: [
-      "Used to query data from a database. Example: SELECT Name FROM Students;",
-      "Can retrieve specific columns or all (*) columns. Example: SELECT * FROM Products;",
-      "Supports conditions using WHERE, filtering, ordering, and grouping. Example: SELECT Name FROM Users WHERE Age > 25;",
-      "Fundamental for reading and analyzing data in SQL. Example: SELECT COUNT(*) FROM Sales;"
-    ],
-    mainColor:"blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
-  },
-  {
-    name: "SELECT DISTINCT",
-    desc: "Retrieves unique values from a column.",
-    code: `SELECT DISTINCT Department FROM Employees;`,
-    output: `
-| Department |
-|------------|
-| HR         |
-| IT         |
-| Finance    |
-    `.trim(),
-    subhead: "Removing Duplicates",
-    main: "SELECT DISTINCT Statement",
-    title: "Unique Record Retrieval",
-    example: "SELECT DISTINCT column_name FROM table_name;",
-    list: [
-      "Returns only distinct (different) values. Example: SELECT DISTINCT Country FROM Customers;",
-      "Helps avoid duplication in query results. Example: SELECT DISTINCT ProductName FROM Orders;",
-      "Useful in data analysis and filtering. Example: SELECT DISTINCT Category FROM Products;"
-    ],
-    mainColor:"blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
-  },
-  {
-    name: "SELECT WHERE",
-    desc: "Filters records that fulfill a specified condition.",
-    code: `SELECT * FROM Employees WHERE Department = 'HR';`,
-    output: `
-| ID | FirstName | LastName | Department | HireDate   |
-|----|-----------|----------|------------|------------|
-| 2  | Jane      | Smith    | HR         | 2021-03-15 |
-| 5  | Aaron     | Davis    | HR         | 2023-01-10 |
-    `.trim(),
-    subhead: "Conditional Filtering",
-    main: "WHERE Clause in SELECT",
-    title: "Filtered Results",
-    example: "SELECT * FROM Employees WHERE condition;",
-    list: [
-      "Filters records based on criteria. Example: SELECT * FROM Customers WHERE Country = 'USA';",
-      "Used with =, <, >, LIKE, BETWEEN, etc. Example: SELECT * FROM Orders WHERE Price BETWEEN 10 AND 20;",
-      "Makes SELECT queries more precise. Example: SELECT * FROM Students WHERE Grade = 'A';"
-    ],
-    mainColor:"blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
-  },
-  {
-    name: "SELECT ORDER BY",
-    desc: "Sorts the result set in ascending or descending order.",
-    code: `SELECT * FROM Employees ORDER BY HireDate DESC;`,
-    output: `
-| ID | FirstName | LastName | Department | HireDate   |
-|----|-----------|----------|------------|------------|
-| 5  | Aaron     | Davis    | HR         | 2023-01-10 |
-| 3  | Alice     | Johnson  | IT         | 2022-11-05 |
-| 2  | Jane      | Smith    | HR         | 2021-03-15 |
-| 1  | John      | Doe      | IT         | 2019-06-01 |
-    `.trim(),
-    subhead: "Sorting Results",
-    main: "ORDER BY Clause",
-    title: "Ordering Data",
-    example: "SELECT * FROM table_name ORDER BY column_name ASC|DESC;",
-    list: [
-      "Used to sort results. Example: SELECT * FROM Products ORDER BY Price ASC;",
-      "Default sorting order is ascending. Example: SELECT Name FROM Students ORDER BY Name;",
-      "DESC is used for descending. Example: SELECT * FROM Sales ORDER BY Date DESC;"
-    ],
-    mainColor:"blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
-  },
-  {
-    name: "SELECT GROUP BY",
-    desc: "Groups rows that have the same values into summary rows.",
-    code: `SELECT Department, COUNT(*) FROM Employees GROUP BY Department;`,
-    output: `
-| Department | COUNT(*) |
-|------------|----------|
-| HR         | 2        |
-| IT         | 2        |
-| Finance    | 1        |
-    `.trim(),
-    subhead: "Aggregating Data",
-    main: "GROUP BY Clause",
-    title: "Grouped Results",
-    example: "SELECT column, COUNT(*) FROM table GROUP BY column;",
-    list: [
-      "Used with aggregate functions. Example: SELECT City, AVG(Salary) FROM Employees GROUP BY City;",
-      "Groups rows sharing same value. Example: SELECT Category, SUM(Sales) FROM Products GROUP BY Category;",
-      "Helpful in summaries and reports. Example: SELECT Department, COUNT(*) FROM Staff GROUP BY Department;"
-    ],
-    mainColor:"blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
-  },
-  {
-    name: "SELECT HAVING",
-    desc: "Filters group results based on aggregate function conditions.",
-    code: `SELECT Department, COUNT(*) FROM Employees GROUP BY Department HAVING COUNT(*) > 1;`,
-    output: `
-| Department | COUNT(*) |
-|------------|----------|
-| HR         | 2        |
-| IT         | 2        |
-    `.trim(),
-    subhead: "Filtering Grouped Data",
-    main: "HAVING Clause",
-    title: "Group-Level Filtering",
-    example: "SELECT column, COUNT(*) FROM table GROUP BY column HAVING COUNT(*) > number;",
-    list: [
-      "Like WHERE but for groups. Example: SELECT Dept, SUM(Salary) FROM Staff GROUP BY Dept HAVING SUM(Salary) > 50000;",
-      "Used after GROUP BY. Example: SELECT Role, COUNT(*) FROM Users GROUP BY Role HAVING COUNT(*) > 3;",
-      "Essential for analysis. Example: SELECT Product, AVG(Rating) FROM Reviews GROUP BY Product HAVING AVG(Rating) >= 4;"
-    ],
-    mainColor:"blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
-  },
-  {
-    name: "SELECT JOIN",
-    desc: "Combines rows from two or more tables based on a related column.",
-    code: `SELECT Employees.FirstName, Departments.DepartmentName 
-  FROM Employees 
-  JOIN Departments ON Employees.DepartmentID = Departments.ID;`,
-    output: `
-  +------------+------------------+
-  | FirstName  | DepartmentName   |
-  +------------+------------------+
-  | John       | HR               |
-  | Alice      | Finance          |
-  | Robert     | IT               |
-  +------------+------------------+
-  `,
-    subhead: "Combining Tables",
-    main: "JOIN Clause",
-    title: "Data from Multiple Tables",
-    example: `SELECT a.col1, b.col2 FROM tableA a JOIN tableB b ON a.id = b.a_id;`,
-    list: [
-      "JOIN is used to combine rows from two or more tables based on a related column.",
-      "Common JOIN types: INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN.",
-      "Helps retrieve meaningful information spread across tables.",
-      "Example (INNER JOIN): SELECT Orders.OrderID, Customers.Name FROM Orders JOIN Customers ON Orders.CustomerID = Customers.ID;"
-    ],
-    mainColor:"blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
-  }
-  
+// DML COMMANDS
+const commands = [  {
+  name: "INSERT INTO",
+  description: "The INSERT INTO command is used to add new rows of data into a table in the database.",
+  code: `INSERT INTO products (id, name) VALUES (101, 'Laptop');`,
+  output: "-- A new row with id 101 and name 'Laptop' is inserted into the products table.",
+  subhead: "Insert Single Record",
+  main: "DML - INSERT",
+  title: "Adds new rows to a database table.",
+  list: [
+    "Basic command for inserting data.",
+    "Requires specifying columns and values.",
+    "Can insert multiple rows with multiple VALUES sets.",
+    "Maintains data integrity via column constraints."
+  ],
+  mainColor:"blue-500",
+  subColor: "gray-700",
+  titleColor: "blue-400",
+  listColor: "gray-700",
+  bgColor: "white",
+  input: "INSERT INTO products (id, name) VALUES (101, 'Laptop');",
+  example: "Insert a new product with ID 101 and name 'Laptop' into 'products' table."
+},
+{
+  name: "INSERT INTO SELECT",
+  description: "This command is used to insert data into a table by selecting data from another table. It’s often used for copying data between tables.",
+  code: `INSERT INTO backup_customers SELECT * FROM customers WHERE country = 'India';`,
+  output: "-- Customers from India are copied into the backup_customers table.",
+  subhead: "Insert by Selection",
+  main: "DML - INSERT INTO SELECT",
+  title: "Inserts rows into a table using SELECT from another table.",
+  list: [
+    "Efficient for bulk data transfer.",
+    "Maintains relational data between tables.",
+    "Useful for backups and archive.",
+    "No need to specify VALUES manually."
+  ],
+  mainColor:"blue-500",
+  subColor: "gray-700",
+  titleColor: "blue-400",
+  listColor: "gray-700",
+  bgColor: "white",
+  input: "INSERT INTO backup_customers SELECT * FROM customers WHERE country = 'India';",
+  example: "Copy customers from India into the backup_customers table."
+},
+{
+  name: "UPDATE",
+  description: "The UPDATE command is used to modify existing records in a table.",
+  code: `UPDATE products SET price = price * 1.1 WHERE category = 'Tech';`,
+  output: "-- Prices of all Tech products are increased by 10%.",
+  subhead: "Modify Data",
+  main: "DML - UPDATE",
+  title: "Updates data in one or more rows of a table.",
+  list: [
+    "Targets specific rows using WHERE.",
+    "Can update multiple columns.",
+    "Changes data without deleting it.",
+    "Be cautious with conditions to avoid unwanted changes."
+  ],
+  mainColor:"blue-500",
+  subColor: "gray-700",
+  titleColor: "blue-400",
+  listColor: "gray-700",
+  bgColor: "white",
+  input: "UPDATE products SET price = price * 1.1 WHERE category = 'Tech';",
+  example: "Increase price by 10% for all Tech category products."
+},
+{
+  name: "DELETE",
+  description: "The DELETE command is used to remove existing records from a table based on a condition.",
+  code: `DELETE FROM customers WHERE last_purchase IS NULL;`,
+  output: "-- All customers with no purchase history are removed.",
+  subhead: "Remove Rows",
+  main: "DML - DELETE",
+  title: "Deletes rows from a table based on a condition.",
+  list: [
+    "Removes data but keeps table structure.",
+    "Can delete multiple rows at once.",
+    "Must use WHERE to avoid deleting all records.",
+    "Used for cleanup or correcting data."
+  ],
+  mainColor:"blue-500",
+  subColor: "gray-700",
+  titleColor: "blue-400",
+  listColor: "gray-700",
+  bgColor: "white",
+  input: "DELETE FROM customers WHERE last_purchase IS NULL;",
+  example: "Delete all customers who have never made a purchase."
+},
+{
+  name: "MERGE",
+  description: "The MERGE command is used to perform insert, update, or delete operations on a target table based on the results of a join with a source table.",
+  code: `MERGE INTO inventory t USING new_stock s ON (t.product_id = s.product_id) WHEN MATCHED THEN UPDATE SET t.qty = s.qty;`,
+  output: "-- Inventory quantities are updated from the new_stock table where product IDs match.",
+  subhead: "Upsert Operation",
+  main: "DML - MERGE",
+  title: "Performs INSERT, UPDATE, or DELETE in one command based on condition.",
+  list: [
+    "Efficient for syncing two tables.",
+    "Can conditionally insert, update, or delete.",
+    "Uses source and target tables.",
+    "Reduces multiple queries into one."
+  ],
+  mainColor:"blue-500",
+  subColor: "gray-700",
+  titleColor: "blue-400",
+  listColor: "gray-700",
+  bgColor: "white",
+  input: "MERGE INTO inventory t USING new_stock s ON (t.product_id = s.product_id) WHEN MATCHED THEN UPDATE SET t.qty = s.qty;",
+  example: "Update inventory quantities based on matching product IDs from new_stock."
+}
 ];
-
 
 
 
@@ -473,7 +396,7 @@ navelemts.forEach((val,index) => {
     "class",
     `sm:py-2 text-black sm:text-2xl px-4 text-lg font-sans`
   )
-  const lo =`/Project/page${index + 1}/index.html`
+  const lo =`/page${index + 1}/index.html`
     
     heading.setAttribute("href",`${lo}` )
     ;

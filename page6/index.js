@@ -560,7 +560,7 @@ navelemts.forEach((val,index) => {
     "class",
     `sm:py-2 text-black sm:text-2xl px-4 text-lg font-sans`
   )
-  const lo =`/Project/page${index + 1}/index.html`
+  const lo =`/page${index + 1}/index.html`
     
     heading.setAttribute("href",`${lo}` )
     ;

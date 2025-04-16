@@ -30,10 +30,10 @@ const colors = {
   textareabg: "white",
   textareatext: "black",
  
+    query_name: "SQL CLAUSES",
+    query_desc: "SQL clauses are used to specify conditions or modify the behavior of SQL commands. They help filter, group, order, and modify the result sets in SQL queries. Common clauses include WHERE, ORDER BY, GROUP BY, HAVING, JOIN, and LIMIT.",
+    query_introduction: "SQL clauses are used to refine the results returned by SQL queries. They allow you to filter records, sort data, group data based on conditions, and limit the results. Some of the most common clauses are WHERE, ORDER BY, GROUP BY, HAVING, JOIN, and LIMIT."
   
-  query_name: "SQL OPERATORS",
-  query_desc: "SQL operators are used to specify conditions or modify the behavior of SQL commands. They help filter, combine, and manipulate the result sets in SQL queries. Common operators include AND, OR, NOT, BETWEEN, IN, LIKE, and IS NULL.",
-  query_introduction: "SQL operators are used to refine the conditions of SQL queries. They allow you to combine multiple conditions, negate conditions, check for ranges, match patterns, and handle NULL values. Some of the most common operators are AND, OR, NOT, BETWEEN, IN, LIKE, and IS NULL."
   
   
   };
@@ -83,29 +83,139 @@ main2p.innerHTML=`<i style="
 const home = document.querySelector(".Cards")
 
 
-const commands = [
+const commands =  [{
+  name: "WHERE Clause",
+  desc: "The WHERE clause is used to filter records based on a specified condition.",
+  code: `
+SELECT name, age
+FROM students
+WHERE age >= 18;`,
+  output: "Filters rows based on the specified condition.",
+  subhead: "Filtering Data",
+  main: "WHERE",
+  title: "Specifying Conditions",
+  example: "WHERE age >= 18, WHERE status = 'active'",
+  list: [
+    "Applies conditions to filter rows.",
+    "Can include operators like =, >, <, IN, LIKE, etc.",
+    "Can be used with multiple conditions using AND, OR."
+  ],
+  mainColor: "blue-500",
+  subColor: "gray-700",
+  titleColor: "blue-400",
+  listColor: "gray-700",
+  bgColor: "white"
+},
+{
+  name: "GROUP BY Clause",
+  desc: "The GROUP BY clause groups rows that have the same values into summary rows, like finding the number of students in each department.",
+  code: `
+SELECT department, COUNT(*)
+FROM students
+GROUP BY department;`,
+  output: "Groups rows that have the same values into aggregated results.",
+  subhead: "Grouping Data",
+  main: "GROUP BY",
+  title: "Aggregating Data",
+  example: "GROUP BY department, GROUP BY city",
+  list: [
+    "Groups records based on column values.",
+    "Used with aggregate functions like COUNT(), SUM(), AVG(), etc.",
+    "Can be combined with HAVING for further filtering."
+  ],
+  mainColor: "blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+},
+{
+  name: "HAVING Clause",
+  desc: "The HAVING clause filters groups created by GROUP BY based on a condition. It is used with aggregate functions.",
+  code: `
+SELECT department, COUNT(*)
+FROM students
+GROUP BY department
+HAVING COUNT(*) > 10;`,
+  output: "Filters groups after applying GROUP BY.",
+  subhead: "Filtering Grouped Data",
+  main: "HAVING",
+  title: "Restricting Groups",
+  example: "HAVING COUNT(*) > 10, HAVING AVG(age) > 30",
+  list: [
+    "Filters records after applying GROUP BY.",
+    "Used with aggregate functions.",
+    "Can be combined with GROUP BY for detailed analysis."
+  ],
+  mainColor: "blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+},
+{
+  name: "ORDER BY Clause",
+  desc: "The ORDER BY clause is used to sort the result set in ascending or descending order.",
+  code: `
+SELECT name, age
+FROM students
+ORDER BY age DESC;`,
+  output: "Sorts the results based on the specified column(s).",
+  subhead: "Sorting Data",
+  main: "ORDER BY",
+  title: "Sorting Results",
+  example: "ORDER BY age DESC, ORDER BY name ASC",
+  list: [
+    "Sorts rows in ascending (ASC) or descending (DESC) order.",
+    "By default, it sorts in ascending order.",
+    "Can sort by multiple columns."
+  ],
+  mainColor: "blue-500",
+  subColor: "gray-700",
+  titleColor: "blue-400",
+  listColor: "gray-700",
+  bgColor: "white"
+},
+
+{
+  name: "JOIN Clause",
+  desc: "The JOIN clause is used to combine rows from two or more tables based on a related column.",
+  code: `
+SELECT students.name, orders.order_id
+FROM students
+JOIN orders ON students.id = orders.student_id;`,
+  output: "Combines rows from different tables based on a shared column.",
+  subhead: "Combining Data from Multiple Tables",
+  main: "JOIN",
+  title: "Combining Table Data",
+  example: "INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN",
+  list: [
+    "Combines rows from two or more tables.",
+    "Types include INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL OUTER JOIN.",
+    "Useful for relational data."
+  ],
+  mainColor: "blue-500",
+  subColor: "gray-700",
+  titleColor: "blue-400",
+  listColor: "gray-700",
+  bgColor: "white"
+  },
   {
-    name: "AND Operator",
-    desc: "The AND operator is used to combine multiple conditions in the WHERE clause. It returns true if all conditions are true.",
+    name: "INNER JOIN",
+    desc: "An INNER JOIN returns records that have matching values in both tables. If there is no match, the row is not included.",
     code: `
-SELECT * FROM employees
-WHERE age > 30 AND department = 'Sales';
-`,
-    output: `
-+----+-----+------------+---------+
-| ID | Name| Age        | Dept    |
-+----+-----+------------+---------+
-| 1  | John| 35         | Sales   |
-| 2  | Jane| 40         | Sales   |
-+----+-----+------------+---------+`,
-    subhead: "Combining Conditions",
-    main: "AND",
-    title: "Ensuring Multiple Conditions are True",
-    example: "WHERE age > 30 AND department = 'Sales'",
+SELECT students.name, courses.course_name
+FROM students
+INNER JOIN courses ON students.id = courses.student_id;`,
+    output: "Combines rows from two tables where there is a match on the specified column.",
+    subhead: "Combining Data from Two Tables",
+    main: "INNER JOIN",
+    title: "Join with Matching Records Only",
+    example: "INNER JOIN courses ON students.id = courses.student_id",
     list: [
-      "Combines multiple conditions in the WHERE clause.",
-      "Returns records only if all conditions are true.",
-      "Can be combined with other logical operators."
+      "Returns only rows with matching data in both tables.",
+      "If no match is found, the row is excluded.",
+      "Most commonly used JOIN type."
     ],
     mainColor: "blue-500",
     subColor: "gray-700",
@@ -114,28 +224,21 @@ WHERE age > 30 AND department = 'Sales';
     bgColor: "white"
   },
   {
-    name: "OR Operator",
-    desc: "The OR operator is used to combine multiple conditions in the WHERE clause. It returns true if at least one of the conditions is true.",
+    name: "LEFT JOIN",
+    desc: "A LEFT JOIN returns all records from the left table and the matching records from the right table. If there is no match, NULL values are returned for columns from the right table.",
     code: `
-SELECT * FROM employees
-WHERE department = 'Sales' OR department = 'Marketing';
-`,
-    output: `
-+----+-----+------------+---------+
-| ID | Name| Age        | Dept    |
-+----+-----+------------+---------+
-| 1  | John| 30         | Sales   |
-| 2  | Amy | 28         | Marketing|
-| 3  | Bob | 35         | Sales   |
-+----+-----+------------+---------+`,
-    subhead: "Combining Conditions with OR",
-    main: "OR",
-    title: "True if Any Condition is Met",
-    example: "WHERE department = 'Sales' OR department = 'Marketing'",
+SELECT students.name, courses.course_name
+FROM students
+LEFT JOIN courses ON students.id = courses.student_id;`,
+    output: "Includes all rows from the left table and matched rows from the right table. Non-matching rows from the right table will return NULL.",
+    subhead: "Including All Data from the Left Table",
+    main: "LEFT JOIN",
+    title: "Preserving Left Table Rows",
+    example: "LEFT JOIN courses ON students.id = courses.student_id",
     list: [
-      "Combines multiple conditions in the WHERE clause.",
-      "Returns records if at least one condition is true.",
-      "Can be used with AND and NOT for more complex conditions."
+      "Returns all rows from the left table.",
+      "Includes matching rows from the right table, or NULL if no match is found.",
+      "Useful when you need to retain all data from one table."
     ],
     mainColor: "blue-500",
     subColor: "gray-700",
@@ -144,27 +247,21 @@ WHERE department = 'Sales' OR department = 'Marketing';
     bgColor: "white"
   },
   {
-    name: "NOT Operator",
-    desc: "The NOT operator negates a condition. It is used to return records where the condition is not true.",
+    name: "RIGHT JOIN",
+    desc: "A RIGHT JOIN returns all records from the right table and the matching records from the left table. If there is no match, NULL values are returned for columns from the left table.",
     code: `
-SELECT * FROM employees
-WHERE NOT department = 'Sales';
-`,
-    output: `
-+----+-----+------------+---------+
-| ID | Name| Age        | Dept    |
-+----+-----+------------+---------+
-| 2  | Jane| 40         | HR      |
-| 3  | Bob | 35         | Marketing|
-+----+-----+------------+---------+`,
-    subhead: "Negating Conditions",
-    main: "NOT",
-    title: "Excluding Certain Conditions",
-    example: "WHERE NOT department = 'Sales'",
+SELECT students.name, courses.course_name
+FROM students
+RIGHT JOIN courses ON students.id = courses.student_id;`,
+    output: "Includes all rows from the right table and matched rows from the left table. Non-matching rows from the left table will return NULL.",
+    subhead: "Including All Data from the Right Table",
+    main: "RIGHT JOIN",
+    title: "Preserving Right Table Rows",
+    example: "RIGHT JOIN courses ON students.id = courses.student_id",
     list: [
-      "Negates a condition in the WHERE clause.",
-      "Returns records where the condition is false.",
-      "Can be combined with AND or OR."
+      "Returns all rows from the right table.",
+      "Includes matching rows from the left table, or NULL if no match is found.",
+      "Useful when you need to retain all data from the right table."
     ],
     mainColor: "blue-500",
     subColor: "gray-700",
@@ -173,114 +270,21 @@ WHERE NOT department = 'Sales';
     bgColor: "white"
   },
   {
-    name: "BETWEEN Operator",
-    desc: "The BETWEEN operator is used to filter records within a specified range. It can be used with numeric, date, and text values.",
+    name: "FULL OUTER JOIN",
+    desc: "A FULL OUTER JOIN returns all records when there is a match in either the left or right table. Non-matching rows will contain NULL values.",
     code: `
-SELECT * FROM employees
-WHERE age BETWEEN 25 AND 40;
-`,
-    output: `
-+----+-----+------------+---------+
-| ID | Name| Age        | Dept    |
-+----+-----+------------+---------+
-| 1  | John| 35         | Sales   |
-| 2  | Amy | 28         | Marketing|
-+----+-----+------------+---------+`,
-    subhead: "Range Filtering",
-    main: "BETWEEN",
-    title: "Filtering Records Within a Range",
-    example: "WHERE age BETWEEN 25 AND 40",
+SELECT students.name, courses.course_name
+FROM students
+FULL OUTER JOIN courses ON students.id = courses.student_id;`,
+    output: "Includes all rows from both tables, with matching rows from both sides where available. Non-matching rows will have NULL values for the missing side.",
+    subhead: "Including All Data from Both Tables",
+    main: "FULL OUTER JOIN",
+    title: "Combining Data from Both Tables",
+    example: "FULL OUTER JOIN courses ON students.id = courses.student_id",
     list: [
-      "Filters records where values are within a specified range.",
-      "Can be used with numeric, date, or text columns.",
-      "Inclusive of both range values."
-    ],
-    mainColor: "blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
-  },
-  {
-    name: "IN Operator",
-    desc: "The IN operator is used to filter records where the column's value is within a list of specified values.",
-    code: `
-SELECT * FROM employees
-WHERE department IN ('Sales', 'Marketing');
-`,
-    output: `
-+----+-----+------------+---------+
-| ID | Name| Age        | Dept    |
-+----+-----+------------+---------+
-| 1  | John| 30         | Sales   |
-| 2  | Amy | 28         | Marketing|
-+----+-----+------------+---------+`,
-    subhead: "Checking for Multiple Values",
-    main: "IN",
-    title: "Matching Records Against a List of Values",
-    example: "WHERE department IN ('Sales', 'Marketing')",
-    list: [
-      "Filters records where the value matches any value in the list.",
-      "Can be used with both numeric and text columns.",
-      "Often used with WHERE clause."
-    ],
-    mainColor: "blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
-  },
-  {
-    name: "LIKE Operator",
-    desc: "The LIKE operator is used to filter records based on pattern matching. It is often used with wildcards like % and _.",
-    code: `
-SELECT * FROM employees
-WHERE name LIKE 'J%';
-`,
-    output: `
-+----+-----+------------+---------+
-| ID | Name| Age        | Dept    |
-+----+-----+------------+---------+
-| 1  | John| 30         | Sales   |
-| 2  | Jane| 35         | Marketing|
-+----+-----+------------+---------+`,
-    subhead: "Pattern Matching",
-    main: "LIKE",
-    title: "Matching Patterns in Text Data",
-    example: "WHERE name LIKE 'J%'",
-    list: [
-      "Filters records based on pattern matching.",
-      "The % wildcard matches any number of characters.",
-      "_ matches a single character.",
-      "Used for partial string matches."
-    ],
-    mainColor: "blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
-  },
-  {
-    name: "IS NULL Operator",
-    desc: "The IS NULL operator is used to check if a column contains NULL values.",
-    code: `
-SELECT * FROM employees
-WHERE department IS NULL;
-`,
-    output: `
-+----+-----+------------+---------+
-| ID | Name| Age        | Dept    |
-+----+-----+------------+---------+
-| 3  | Bob | 35         | NULL    |
-+----+-----+------------+---------+`,
-    subhead: "Handling NULL Values",
-    main: "IS NULL",
-    title: "Checking for NULL Values in Columns",
-    example: "WHERE department IS NULL",
-    list: [
-      "Used to check for NULL values in a column.",
-      "NULL is a special marker indicating missing or undefined data.",
-      "Commonly used in WHERE clauses to filter out or find NULL values."
+      "Returns all rows from both tables.",
+      "If a row from one table doesn't match a row from the other, NULL is returned for the missing values.",
+      "Useful for combining data from two tables where all records are needed."
     ],
     mainColor: "blue-500",
     subColor: "gray-700",
@@ -289,8 +293,6 @@ WHERE department IS NULL;
     bgColor: "white"
   }
 ];
-
-
 
 
 
@@ -494,7 +496,7 @@ navelemts.forEach((val,index) => {
     "class",
     `sm:py-2 text-black sm:text-2xl px-4 text-lg font-sans`
   )
-  const lo =`/Project/page${index + 1}/index.html`
+  const lo =`/page${index + 1}/index.html`
     
     heading.setAttribute("href",`${lo}` )
     ;

@@ -28,13 +28,11 @@ gsap.to(loaderfill, {
 const colors = {
   
   textareabg: "white",
-  textareatext: "black",
- 
-    query_name: "SQL CLAUSES",
-    query_desc: "SQL clauses are used to specify conditions or modify the behavior of SQL commands. They help filter, group, order, and modify the result sets in SQL queries. Common clauses include WHERE, ORDER BY, GROUP BY, HAVING, JOIN, and LIMIT.",
-    query_introduction: "SQL clauses are used to refine the results returned by SQL queries. They allow you to filter records, sort data, group data based on conditions, and limit the results. Some of the most common clauses are WHERE, ORDER BY, GROUP BY, HAVING, JOIN, and LIMIT."
-  
-  
+  textareatext: "black",  
+query_name: "Aggregate Functions",
+query_desc: "Aggregate functions are used to perform calculations on a set of values and return a single result. They help summarize or aggregate data. Common aggregate functions include COUNT, SUM, AVG, MIN, and MAX.",
+query_introduction: "Aggregate functions are used to perform calculations on multiple rows of data and return a single value. They allow you to summarize data or calculate statistical values such as averages, totals, minimums, and maximums. Some of the most common aggregate functions are COUNT, SUM, AVG, MIN, and MAX."
+
   
   };
 
@@ -83,139 +81,28 @@ main2p.innerHTML=`<i style="
 const home = document.querySelector(".Cards")
 
 
-const commands =  [{
-  name: "WHERE Clause",
-  desc: "The WHERE clause is used to filter records based on a specified condition.",
-  code: `
-SELECT name, age
-FROM students
-WHERE age >= 18;`,
-  output: "Filters rows based on the specified condition.",
-  subhead: "Filtering Data",
-  main: "WHERE",
-  title: "Specifying Conditions",
-  example: "WHERE age >= 18, WHERE status = 'active'",
-  list: [
-    "Applies conditions to filter rows.",
-    "Can include operators like =, >, <, IN, LIKE, etc.",
-    "Can be used with multiple conditions using AND, OR."
-  ],
-  mainColor: "blue-500",
-  subColor: "gray-700",
-  titleColor: "blue-400",
-  listColor: "gray-700",
-  bgColor: "white"
-},
-{
-  name: "GROUP BY Clause",
-  desc: "The GROUP BY clause groups rows that have the same values into summary rows, like finding the number of students in each department.",
-  code: `
-SELECT department, COUNT(*)
-FROM students
-GROUP BY department;`,
-  output: "Groups rows that have the same values into aggregated results.",
-  subhead: "Grouping Data",
-  main: "GROUP BY",
-  title: "Aggregating Data",
-  example: "GROUP BY department, GROUP BY city",
-  list: [
-    "Groups records based on column values.",
-    "Used with aggregate functions like COUNT(), SUM(), AVG(), etc.",
-    "Can be combined with HAVING for further filtering."
-  ],
-  mainColor: "blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
-},
-{
-  name: "HAVING Clause",
-  desc: "The HAVING clause filters groups created by GROUP BY based on a condition. It is used with aggregate functions.",
-  code: `
-SELECT department, COUNT(*)
-FROM students
-GROUP BY department
-HAVING COUNT(*) > 10;`,
-  output: "Filters groups after applying GROUP BY.",
-  subhead: "Filtering Grouped Data",
-  main: "HAVING",
-  title: "Restricting Groups",
-  example: "HAVING COUNT(*) > 10, HAVING AVG(age) > 30",
-  list: [
-    "Filters records after applying GROUP BY.",
-    "Used with aggregate functions.",
-    "Can be combined with GROUP BY for detailed analysis."
-  ],
-  mainColor: "blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
-},
-{
-  name: "ORDER BY Clause",
-  desc: "The ORDER BY clause is used to sort the result set in ascending or descending order.",
-  code: `
-SELECT name, age
-FROM students
-ORDER BY age DESC;`,
-  output: "Sorts the results based on the specified column(s).",
-  subhead: "Sorting Data",
-  main: "ORDER BY",
-  title: "Sorting Results",
-  example: "ORDER BY age DESC, ORDER BY name ASC",
-  list: [
-    "Sorts rows in ascending (ASC) or descending (DESC) order.",
-    "By default, it sorts in ascending order.",
-    "Can sort by multiple columns."
-  ],
-  mainColor: "blue-500",
-  subColor: "gray-700",
-  titleColor: "blue-400",
-  listColor: "gray-700",
-  bgColor: "white"
-},
+const commands = [
+  {
+    name: "COUNT",
+    desc: "The COUNT function is used to count the number of rows that match a specified condition. It can count all rows or rows that meet a specific criterion.",
+    code: `
+SELECT COUNT(*) FROM employees;
 
-{
-  name: "JOIN Clause",
-  desc: "The JOIN clause is used to combine rows from two or more tables based on a related column.",
-  code: `
-SELECT students.name, orders.order_id
-FROM students
-JOIN orders ON students.id = orders.student_id;`,
-  output: "Combines rows from different tables based on a shared column.",
-  subhead: "Combining Data from Multiple Tables",
-  main: "JOIN",
-  title: "Combining Table Data",
-  example: "INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN",
-  list: [
-    "Combines rows from two or more tables.",
-    "Types include INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL OUTER JOIN.",
-    "Useful for relational data."
-  ],
-  mainColor: "blue-500",
-  subColor: "gray-700",
-  titleColor: "blue-400",
-  listColor: "gray-700",
-  bgColor: "white"
-  },
-  {
-    name: "INNER JOIN",
-    desc: "An INNER JOIN returns records that have matching values in both tables. If there is no match, the row is not included.",
-    code: `
-SELECT students.name, courses.course_name
-FROM students
-INNER JOIN courses ON students.id = courses.student_id;`,
-    output: "Combines rows from two tables where there is a match on the specified column.",
-    subhead: "Combining Data from Two Tables",
-    main: "INNER JOIN",
-    title: "Join with Matching Records Only",
-    example: "INNER JOIN courses ON students.id = courses.student_id",
+`,
+    output: `
++-------+
+| COUNT |
++-------+
+|   100 |
++-------+`,
+    subhead: "Counting Rows",
+    main: "COUNT",
+    title: "Counting the Number of Rows",
+    example: "COUNT(*), COUNT(department)",
     list: [
-      "Returns only rows with matching data in both tables.",
-      "If no match is found, the row is excluded.",
-      "Most commonly used JOIN type."
+      "Counts all rows in a table when no condition is specified.",
+      "Can be used with WHERE to count rows that meet a specific condition.",
+      "Useful for finding the total number of records in a table or meeting a condition."
     ],
     mainColor: "blue-500",
     subColor: "gray-700",
@@ -224,21 +111,26 @@ INNER JOIN courses ON students.id = courses.student_id;`,
     bgColor: "white"
   },
   {
-    name: "LEFT JOIN",
-    desc: "A LEFT JOIN returns all records from the left table and the matching records from the right table. If there is no match, NULL values are returned for columns from the right table.",
+    name: "SUM",
+    desc: "The SUM function adds up the values in a column, typically used with numerical data. It is commonly used to calculate totals.",
     code: `
-SELECT students.name, courses.course_name
-FROM students
-LEFT JOIN courses ON students.id = courses.student_id;`,
-    output: "Includes all rows from the left table and matched rows from the right table. Non-matching rows from the right table will return NULL.",
-    subhead: "Including All Data from the Left Table",
-    main: "LEFT JOIN",
-    title: "Preserving Left Table Rows",
-    example: "LEFT JOIN courses ON students.id = courses.student_id",
+SELECT SUM(salary) FROM employees;
+
+`,
+    output: `
++------------+
+| SUM(salary)|
++------------+
+|      50000 |
++------------+`,
+    subhead: "Summing Numeric Values",
+    main: "SUM",
+    title: "Calculating Total Values",
+    example: "SUM(salary), SUM(price)",
     list: [
-      "Returns all rows from the left table.",
-      "Includes matching rows from the right table, or NULL if no match is found.",
-      "Useful when you need to retain all data from one table."
+      "Adds up all the values in a specified column.",
+      "Can be used with WHERE to sum values based on a condition.",
+      "Helpful for calculating totals such as salaries, revenue, or costs."
     ],
     mainColor: "blue-500",
     subColor: "gray-700",
@@ -247,21 +139,26 @@ LEFT JOIN courses ON students.id = courses.student_id;`,
     bgColor: "white"
   },
   {
-    name: "RIGHT JOIN",
-    desc: "A RIGHT JOIN returns all records from the right table and the matching records from the left table. If there is no match, NULL values are returned for columns from the left table.",
+    name: "AVG",
+    desc: "The AVG function calculates the average (mean) value of a numeric column.",
     code: `
-SELECT students.name, courses.course_name
-FROM students
-RIGHT JOIN courses ON students.id = courses.student_id;`,
-    output: "Includes all rows from the right table and matched rows from the left table. Non-matching rows from the left table will return NULL.",
-    subhead: "Including All Data from the Right Table",
-    main: "RIGHT JOIN",
-    title: "Preserving Right Table Rows",
-    example: "RIGHT JOIN courses ON students.id = courses.student_id",
+SELECT AVG(salary) FROM employees;
+
+`,
+    output: `
++-------------+
+| AVG(salary) |
++-------------+
+|      4500   |
++-------------+`,
+    subhead: "Calculating Averages",
+    main: "AVG",
+    title: "Finding the Average Value",
+    example: "AVG(salary), AVG(price)",
     list: [
-      "Returns all rows from the right table.",
-      "Includes matching rows from the left table, or NULL if no match is found.",
-      "Useful when you need to retain all data from the right table."
+      "Calculates the mean of values in a numeric column.",
+      "Can be used with WHERE to calculate averages based on a condition.",
+      "Useful for determining averages like salaries, prices, and quantities."
     ],
     mainColor: "blue-500",
     subColor: "gray-700",
@@ -270,21 +167,54 @@ RIGHT JOIN courses ON students.id = courses.student_id;`,
     bgColor: "white"
   },
   {
-    name: "FULL OUTER JOIN",
-    desc: "A FULL OUTER JOIN returns all records when there is a match in either the left or right table. Non-matching rows will contain NULL values.",
+    name: "MIN",
+    desc: "The MIN function returns the smallest value in a specified column.",
     code: `
-SELECT students.name, courses.course_name
-FROM students
-FULL OUTER JOIN courses ON students.id = courses.student_id;`,
-    output: "Includes all rows from both tables, with matching rows from both sides where available. Non-matching rows will have NULL values for the missing side.",
-    subhead: "Including All Data from Both Tables",
-    main: "FULL OUTER JOIN",
-    title: "Combining Data from Both Tables",
-    example: "FULL OUTER JOIN courses ON students.id = courses.student_id",
+SELECT MIN(salary) FROM employees;
+
+`,
+    output: `
++-------------+
+| MIN(salary) |
++-------------+
+|      2500   |
++-------------+`,
+    subhead: "Finding the Minimum Value",
+    main: "MIN",
+    title: "Getting the Smallest Value",
+    example: "MIN(salary), MIN(price)",
     list: [
-      "Returns all rows from both tables.",
-      "If a row from one table doesn't match a row from the other, NULL is returned for the missing values.",
-      "Useful for combining data from two tables where all records are needed."
+      "Finds the minimum (smallest) value in a numeric column.",
+      "Can be used with WHERE to find the smallest value based on a condition.",
+      "Useful for determining the least value, like the lowest salary or price."
+    ],
+    mainColor: "blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "MAX",
+    desc: "The MAX function returns the largest value in a specified column.",
+    code: `
+SELECT MAX(salary) FROM employees;
+
+`,
+    output: `
++-------------+
+| MAX(salary) |
++-------------+
+|     12000   |
++-------------+`,
+    subhead: "Finding the Maximum Value",
+    main: "MAX",
+    title: "Getting the Largest Value",
+    example: "MAX(salary), MAX(price)",
+    list: [
+      "Finds the maximum (largest) value in a numeric column.",
+      "Can be used with WHERE to find the largest value based on a condition.",
+      "Useful for determining the highest value, such as the top salary or maximum price."
     ],
     mainColor: "blue-500",
     subColor: "gray-700",
@@ -293,6 +223,10 @@ FULL OUTER JOIN courses ON students.id = courses.student_id;`,
     bgColor: "white"
   }
 ];
+
+
+
+
 
 
 
@@ -496,7 +430,7 @@ navelemts.forEach((val,index) => {
     "class",
     `sm:py-2 text-black sm:text-2xl px-4 text-lg font-sans`
   )
-  const lo =`/Project/page${index + 1}/index.html`
+  const lo =`/page${index + 1}/index.html`
     
     heading.setAttribute("href",`${lo}` )
     ;

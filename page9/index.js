@@ -29,10 +29,11 @@ const colors = {
   
   textareabg: "white",
   textareatext: "black",
+ 
   
-  query_name: "CONSTRAINT TYPES",
-  query_desc: "SQL constraints are used to specify rules for data in a table. These rules ensure the accuracy and reliability of the data within the database. Common constraints include PRIMARY KEY, FOREIGN KEY, NOT NULL, UNIQUE, CHECK, and DEFAULT.",
-  query_introduction: "SQL constraints enhance data integrity by enforcing rules on table columns. They help ensure that the data stored in the database is valid and consistent, and are commonly used in schema definitions for robust database design."
+  query_name: "SQL OPERATORS",
+  query_desc: "SQL operators are used to specify conditions or modify the behavior of SQL commands. They help filter, combine, and manipulate the result sets in SQL queries. Common operators include AND, OR, NOT, BETWEEN, IN, LIKE, and IS NULL.",
+  query_introduction: "SQL operators are used to refine the conditions of SQL queries. They allow you to combine multiple conditions, negate conditions, check for ranges, match patterns, and handle NULL values. Some of the most common operators are AND, OR, NOT, BETWEEN, IN, LIKE, and IS NULL."
   
   
   };
@@ -82,168 +83,215 @@ main2p.innerHTML=`<i style="
 const home = document.querySelector(".Cards")
 
 
-const commands =  [
+const commands = [
   {
-    name: "PRIMARY KEY Constraint",
-    desc: "The PRIMARY KEY uniquely identifies each row in a table. It ensures that the column(s) chosen have unique and non-null values.",
+    name: "AND Operator",
+    desc: "The AND operator is used to combine multiple conditions in the WHERE clause. It returns true if all conditions are true.",
     code: `
--- Defining a PRIMARY KEY on a single column
-CREATE TABLE employees (
-  emp_id INT PRIMARY KEY,
-  name VARCHAR(100)
-);
-
--- Defining a composite PRIMARY KEY (multiple columns)
-CREATE TABLE enrollments (
-  student_id INT,
-  course_id INT,
-  PRIMARY KEY (student_id, course_id)
-);`,
-    output: "Creates a unique identifier for each row using PRIMARY KEY.",
-    subhead: "Defining Unique Identity",
-    main: "PRIMARY KEY",
-    title: "Ensuring Unique Row Identification",
-    example: "PRIMARY KEY (student_id), PRIMARY KEY (id), PRIMARY KEY (col1, col2)",
+SELECT * FROM employees
+WHERE age > 30 AND department = 'Sales';
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 1  | John| 35         | Sales   |
+| 2  | Jane| 40         | Sales   |
++----+-----+------------+---------+`,
+    subhead: "Combining Conditions",
+    main: "AND",
+    title: "Ensuring Multiple Conditions are True",
+    example: "WHERE age > 30 AND department = 'Sales'",
     list: [
-      "A table can have only one PRIMARY KEY.",
-      "Each value in the PRIMARY KEY column(s) must be unique.",
-      "PRIMARY KEY columns cannot contain NULL values.",
-      "Composite PRIMARY KEYS use multiple columns together to enforce uniqueness."
+      "Combines multiple conditions in the WHERE clause.",
+      "Returns records only if all conditions are true.",
+      "Can be combined with other logical operators."
     ],
-    mainColor:"blue-500",
+    mainColor: "blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
     bgColor: "white"
   },
   {
-    name: "NOT NULL Constraint",
-    desc: "The NOT NULL constraint ensures that a column cannot contain NULL values.",
+    name: "OR Operator",
+    desc: "The OR operator is used to combine multiple conditions in the WHERE clause. It returns true if at least one of the conditions is true.",
     code: `
-CREATE TABLE students (
-  name VARCHAR(50) NOT NULL,
-  age INT NOT NULL
-);`,
-    output: "Prevents insertion of NULL values in the specified column.",
-    subhead: "Mandatory Field Values",
-    main: "NOT NULL",
-    title: "Restricting NULL Values",
-    example: "name VARCHAR(50) NOT NULL",
+SELECT * FROM employees
+WHERE department = 'Sales' OR department = 'Marketing';
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 1  | John| 30         | Sales   |
+| 2  | Amy | 28         | Marketing|
+| 3  | Bob | 35         | Sales   |
++----+-----+------------+---------+`,
+    subhead: "Combining Conditions with OR",
+    main: "OR",
+    title: "True if Any Condition is Met",
+    example: "WHERE department = 'Sales' OR department = 'Marketing'",
     list: [
-      "Ensures critical fields always have data.",
-      "Cannot be applied to entire table — only column level.",
-      "Commonly used on primary or essential columns."
+      "Combines multiple conditions in the WHERE clause.",
+      "Returns records if at least one condition is true.",
+      "Can be used with AND and NOT for more complex conditions."
     ],
-    mainColor:"blue-500",
+    mainColor: "blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
     bgColor: "white"
   },
   {
-    name: "UNIQUE Constraint",
-    desc: "The UNIQUE constraint ensures that all values in a column are different.",
+    name: "NOT Operator",
+    desc: "The NOT operator negates a condition. It is used to return records where the condition is not true.",
     code: `
-CREATE TABLE contacts (
-  email VARCHAR(100) UNIQUE
-);`,
-    output: "Prevents duplicate values in a column.",
-    subhead: "Enforcing Uniqueness",
-    main: "UNIQUE",
-    title: "Preventing Duplicate Data",
-    example: "email VARCHAR(100) UNIQUE",
+SELECT * FROM employees
+WHERE NOT department = 'Sales';
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 2  | Jane| 40         | HR      |
+| 3  | Bob | 35         | Marketing|
++----+-----+------------+---------+`,
+    subhead: "Negating Conditions",
+    main: "NOT",
+    title: "Excluding Certain Conditions",
+    example: "WHERE NOT department = 'Sales'",
     list: [
-      "Allows only unique values in the column.",
-      "Can be applied to multiple columns.",
-      "Unlike PRIMARY KEY, it allows NULL values (only one if DB allows)."
+      "Negates a condition in the WHERE clause.",
+      "Returns records where the condition is false.",
+      "Can be combined with AND or OR."
     ],
-    mainColor:"blue-500",
+    mainColor: "blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
     bgColor: "white"
   },
   {
-    name: "CHECK Constraint",
-    desc: "The CHECK constraint ensures that all values in a column meet a specific condition.",
+    name: "BETWEEN Operator",
+    desc: "The BETWEEN operator is used to filter records within a specified range. It can be used with numeric, date, and text values.",
     code: `
-CREATE TABLE products (
-  price DECIMAL(10, 2) CHECK (price > 0),
-  quantity INT CHECK (quantity >= 0)
-);`,
-    output: "Validates data based on a condition before insertion.",
-    subhead: "Data Validation Rules",
-    main: "CHECK",
-    title: "Condition-Based Restrictions",
-    example: "CHECK (age >= 18), CHECK (salary > 0)",
+SELECT * FROM employees
+WHERE age BETWEEN 25 AND 40;
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 1  | John| 35         | Sales   |
+| 2  | Amy | 28         | Marketing|
++----+-----+------------+---------+`,
+    subhead: "Range Filtering",
+    main: "BETWEEN",
+    title: "Filtering Records Within a Range",
+    example: "WHERE age BETWEEN 25 AND 40",
     list: [
-      "Prevents invalid data from being inserted.",
-      "Can reference one column only (in most RDBMS).",
-      "Useful for business rules like age limits, positive pricing, etc."
+      "Filters records where values are within a specified range.",
+      "Can be used with numeric, date, or text columns.",
+      "Inclusive of both range values."
     ],
-    mainColor:"blue-500",
+    mainColor: "blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
     bgColor: "white"
   },
   {
-    name: "DEFAULT Constraint",
-    desc: "The DEFAULT constraint provides a default value for a column when none is specified.",
+    name: "IN Operator",
+    desc: "The IN operator is used to filter records where the column's value is within a list of specified values.",
     code: `
-CREATE TABLE orders (
-  status VARCHAR(20) DEFAULT 'pending',
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);`,
-    output: "Automatically fills a column with a default value if no input is given.",
-    subhead: "Automatic Default Values",
-    main: "DEFAULT",
-    title: "Assigning Defaults Automatically",
-    example: "status VARCHAR(20) DEFAULT 'active'",
+SELECT * FROM employees
+WHERE department IN ('Sales', 'Marketing');
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 1  | John| 30         | Sales   |
+| 2  | Amy | 28         | Marketing|
++----+-----+------------+---------+`,
+    subhead: "Checking for Multiple Values",
+    main: "IN",
+    title: "Matching Records Against a List of Values",
+    example: "WHERE department IN ('Sales', 'Marketing')",
     list: [
-      "Reduces need for manual value insertion.",
-      "DEFAULT can be any constant or function (like CURRENT_TIMESTAMP).",
-      "Can be used with NOT NULL to prevent empty values."
+      "Filters records where the value matches any value in the list.",
+      "Can be used with both numeric and text columns.",
+      "Often used with WHERE clause."
     ],
-    mainColor:"blue-500",
+    mainColor: "blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
     bgColor: "white"
   },
   {
-    name: "FOREIGN KEY Constraint",
-    desc: "The FOREIGN KEY constraint creates a link between two tables by referencing a column in another table.",
+    name: "LIKE Operator",
+    desc: "The LIKE operator is used to filter records based on pattern matching. It is often used with wildcards like % and _.",
     code: `
--- Parent table
-CREATE TABLE users (
-  id INT PRIMARY KEY,
-  name VARCHAR(100)
-);
-
--- Child table with FOREIGN KEY
-CREATE TABLE orders (
-  order_id INT PRIMARY KEY,
-  user_id INT,
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);`,
-    output: "Establishes referential integrity between tables.",
-    subhead: "Linking Related Tables",
-    main: "FOREIGN KEY",
-    title: "Maintaining Relationships Across Tables",
-    example: "FOREIGN KEY (user_id) REFERENCES users(id)",
+SELECT * FROM employees
+WHERE name LIKE 'J%';
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 1  | John| 30         | Sales   |
+| 2  | Jane| 35         | Marketing|
++----+-----+------------+---------+`,
+    subhead: "Pattern Matching",
+    main: "LIKE",
+    title: "Matching Patterns in Text Data",
+    example: "WHERE name LIKE 'J%'",
     list: [
-      "Creates a relationship between two tables.",
-      "Prevents actions that would destroy the link (like deleting a referenced row).",
-      "Enforces referential integrity across related data."
+      "Filters records based on pattern matching.",
+      "The % wildcard matches any number of characters.",
+      "_ matches a single character.",
+      "Used for partial string matches."
     ],
-    mainColor:"blue-500",
+    mainColor: "blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "IS NULL Operator",
+    desc: "The IS NULL operator is used to check if a column contains NULL values.",
+    code: `
+SELECT * FROM employees
+WHERE department IS NULL;
+`,
+    output: `
++----+-----+------------+---------+
+| ID | Name| Age        | Dept    |
++----+-----+------------+---------+
+| 3  | Bob | 35         | NULL    |
++----+-----+------------+---------+`,
+    subhead: "Handling NULL Values",
+    main: "IS NULL",
+    title: "Checking for NULL Values in Columns",
+    example: "WHERE department IS NULL",
+    list: [
+      "Used to check for NULL values in a column.",
+      "NULL is a special marker indicating missing or undefined data.",
+      "Commonly used in WHERE clauses to filter out or find NULL values."
+    ],
+    mainColor: "blue-500",
     subColor: "gray-700",
     titleColor: "blue-400",
     listColor: "gray-700",
     bgColor: "white"
   }
 ];
+
+
+
 
 
 
@@ -446,7 +494,7 @@ navelemts.forEach((val,index) => {
     "class",
     `sm:py-2 text-black sm:text-2xl px-4 text-lg font-sans`
   )
-  const lo =`/Project/page${index + 1}/index.html`
+  const lo =`/page${index + 1}/index.html`
     
     heading.setAttribute("href",`${lo}` )
     ;

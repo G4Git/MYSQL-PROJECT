@@ -25,17 +25,17 @@ gsap.to(loaderfill, {
 
 
 // {changing color of the website components}
-
 const colors = {
+  
   textareabg: "white",
   textareatext: "black",
-  query_name: "DDL Command",
-query_desc:
-  "Used to define and modify the structure of a database. These commands allow users to create, alter, and drop tables, as well as manage database objects.",
-query_introduction:
-  "DDL (Data Definition Language) includes SQL commands like CREATE, ALTER, DROP, and TRUNCATE. These are used to define, modify, or remove database structures, without affecting the data stored within the database."
-
-};
+  
+  query_name: "CONSTRAINT TYPES",
+  query_desc: "SQL constraints are used to specify rules for data in a table. These rules ensure the accuracy and reliability of the data within the database. Common constraints include PRIMARY KEY, FOREIGN KEY, NOT NULL, UNIQUE, CHECK, and DEFAULT.",
+  query_introduction: "SQL constraints enhance data integrity by enforcing rules on table columns. They help ensure that the data stored in the database is valid and consistent, and are commonly used in schema definitions for robust database design."
+  
+  
+  };
 
 
 
@@ -82,193 +82,172 @@ main2p.innerHTML=`<i style="
 const home = document.querySelector(".Cards")
 
 
-// DDL COMMANDS
-const commands = [
+const commands =  [
   {
-    name: "Create Table",
-    desc: "The CREATE TABLE statement is used to define a new table with columns and data types.",
-    code: `CREATE TABLE users (
-  id INT PRIMARY KEY,
-  name VARCHAR(50),
-  age INT
+    name: "PRIMARY KEY Constraint",
+    desc: "The PRIMARY KEY uniquely identifies each row in a table. It ensures that the column(s) chosen have unique and non-null values.",
+    code: `
+-- Defining a PRIMARY KEY on a single column
+CREATE TABLE employees (
+  emp_id INT PRIMARY KEY,
+  name VARCHAR(100)
+);
+
+-- Defining a composite PRIMARY KEY (multiple columns)
+CREATE TABLE enrollments (
+  student_id INT,
+  course_id INT,
+  PRIMARY KEY (student_id, course_id)
 );`,
-    output: "Query OK, table 'users' created.",
-    example: "Used when creating a new table to store user data during initial database setup.",
-    subhead: "Define a New Table",
-    main: "CREATE TABLE Command",
-    title: "Creating Table Structure",
+    output: "Creates a unique identifier for each row using PRIMARY KEY.",
+    subhead: "Defining Unique Identity",
+    main: "PRIMARY KEY",
+    title: "Ensuring Unique Row Identification",
+    example: "PRIMARY KEY (student_id), PRIMARY KEY (id), PRIMARY KEY (col1, col2)",
     list: [
-      "Specifies table name and column definitions.",
-      "Each column has a defined data type.",
-      "Constraints like PRIMARY KEY can be added.",
-      "Used at the beginning of database setup."
+      "A table can have only one PRIMARY KEY.",
+      "Each value in the PRIMARY KEY column(s) must be unique.",
+      "PRIMARY KEY columns cannot contain NULL values.",
+      "Composite PRIMARY KEYS use multiple columns together to enforce uniqueness."
     ],
     mainColor:"blue-500",
-    subColor: "neutral-400",
-    titleColor: "blue-500",
-    listColor: "neutral-700"
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
   },
   {
-    name: "Drop Table",
-    desc: "The DROP TABLE command deletes an entire table and its data permanently.",
-    code: `DROP TABLE users;`,
-    output: "Query OK, table 'users' dropped.",
-    example: "Used when removing outdated or temporary tables from the database.",
-    subhead: "Remove a Table",
-    main: "DROP TABLE Command",
-    title: "Deleting Tables",
+    name: "NOT NULL Constraint",
+    desc: "The NOT NULL constraint ensures that a column cannot contain NULL values.",
+    code: `
+CREATE TABLE students (
+  name VARCHAR(50) NOT NULL,
+  age INT NOT NULL
+);`,
+    output: "Prevents insertion of NULL values in the specified column.",
+    subhead: "Mandatory Field Values",
+    main: "NOT NULL",
+    title: "Restricting NULL Values",
+    example: "name VARCHAR(50) NOT NULL",
     list: [
-      "Deletes both table structure and data.",
-      "Cannot be undone without a backup.",
-      "Frees up database space.",
-      "Use with caution in production."
+      "Ensures critical fields always have data.",
+      "Cannot be applied to entire table — only column level.",
+      "Commonly used on primary or essential columns."
     ],
     mainColor:"blue-500",
-    subColor: "neutral-400",
-    titleColor: "blue-500",
-    listColor: "neutral-700"
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
   },
   {
-    name: "Alter Table",
-    desc: "ALTER TABLE modifies an existing table’s structure such as adding or deleting columns.",
-    code: `ALTER TABLE users ADD email VARCHAR(100);`,
-    output: "Query OK, table altered.",
-    example: "Used when you need to add a new column like 'email' to an existing users table.",
-    subhead: "Modify Table Structure",
-    main: "ALTER TABLE Command",
-    title: "Adding/Changing Columns",
+    name: "UNIQUE Constraint",
+    desc: "The UNIQUE constraint ensures that all values in a column are different.",
+    code: `
+CREATE TABLE contacts (
+  email VARCHAR(100) UNIQUE
+);`,
+    output: "Prevents duplicate values in a column.",
+    subhead: "Enforcing Uniqueness",
+    main: "UNIQUE",
+    title: "Preventing Duplicate Data",
+    example: "email VARCHAR(100) UNIQUE",
     list: [
-      "Add, modify or delete columns.",
-      "Used for evolving database design.",
-      "Supports constraints and data types.",
-      "Common in schema migrations."
+      "Allows only unique values in the column.",
+      "Can be applied to multiple columns.",
+      "Unlike PRIMARY KEY, it allows NULL values (only one if DB allows)."
     ],
     mainColor:"blue-500",
-    subColor: "neutral-400",
-    titleColor: "blue-500",
-    listColor: "neutral-700"
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
   },
   {
-    name: "Truncate Table",
-    desc: "TRUNCATE removes all rows from a table but keeps the structure intact.",
-    code: `TRUNCATE TABLE users;`,
-    output: "Query OK, 0 rows affected.",
-    example: "Used when you want to quickly delete all records but retain the table for future use.",
-    subhead: "Clear Table Data",
-    main: "TRUNCATE TABLE Command",
-    title: "Empty a Table Quickly",
+    name: "CHECK Constraint",
+    desc: "The CHECK constraint ensures that all values in a column meet a specific condition.",
+    code: `
+CREATE TABLE products (
+  price DECIMAL(10, 2) CHECK (price > 0),
+  quantity INT CHECK (quantity >= 0)
+);`,
+    output: "Validates data based on a condition before insertion.",
+    subhead: "Data Validation Rules",
+    main: "CHECK",
+    title: "Condition-Based Restrictions",
+    example: "CHECK (age >= 18), CHECK (salary > 0)",
     list: [
-      "Deletes all rows instantly.",
-      "Faster than DELETE without WHERE.",
-      "Cannot rollback in some databases.",
-      "Ideal for clearing test data."
+      "Prevents invalid data from being inserted.",
+      "Can reference one column only (in most RDBMS).",
+      "Useful for business rules like age limits, positive pricing, etc."
     ],
     mainColor:"blue-500",
-    subColor: "neutral-400",
-    titleColor: "blue-500",
-    listColor: "neutral-700"
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
   },
   {
-    name: "Rename Table",
-    desc: "RENAME TABLE changes the name of an existing table in the database.",
-    code: `RENAME TABLE users TO customers;`,
-    output: "Query OK, table renamed.",
-    example: "Used when updating the table name to match a change in business terminology.",
-    subhead: "Change Table Name",
-    main: "RENAME TABLE Command",
-    title: "Renaming a Table",
+    name: "DEFAULT Constraint",
+    desc: "The DEFAULT constraint provides a default value for a column when none is specified.",
+    code: `
+CREATE TABLE orders (
+  status VARCHAR(20) DEFAULT 'pending',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);`,
+    output: "Automatically fills a column with a default value if no input is given.",
+    subhead: "Automatic Default Values",
+    main: "DEFAULT",
+    title: "Assigning Defaults Automatically",
+    example: "status VARCHAR(20) DEFAULT 'active'",
     list: [
-      "Preserves data and structure.",
-      "Changes table identifier.",
-      "Useful during refactoring.",
-      "Syntax varies by database system."
+      "Reduces need for manual value insertion.",
+      "DEFAULT can be any constant or function (like CURRENT_TIMESTAMP).",
+      "Can be used with NOT NULL to prevent empty values."
     ],
     mainColor:"blue-500",
-    subColor: "neutral-400",
-    titleColor: "blue-500",
-    listColor: "neutral-700"
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
   },
   {
-    name: "Create Index",
-    desc: "CREATE INDEX is used to speed up query performance by indexing selected columns.",
-    code: `CREATE INDEX idx_age ON users (age);`,
-    output: "Query OK, index created.",
-    example: "Used to improve performance when filtering users by age frequently.",
-    subhead: "Improve Query Speed",
-    main: "CREATE INDEX Command",
-    title: "Indexing for Performance",
+    name: "FOREIGN KEY Constraint",
+    desc: "The FOREIGN KEY constraint creates a link between two tables by referencing a column in another table.",
+    code: `
+-- Parent table
+CREATE TABLE users (
+  id INT PRIMARY KEY,
+  name VARCHAR(100)
+);
+
+-- Child table with FOREIGN KEY
+CREATE TABLE orders (
+  order_id INT PRIMARY KEY,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);`,
+    output: "Establishes referential integrity between tables.",
+    subhead: "Linking Related Tables",
+    main: "FOREIGN KEY",
+    title: "Maintaining Relationships Across Tables",
+    example: "FOREIGN KEY (user_id) REFERENCES users(id)",
     list: [
-      "Improves SELECT query efficiency.",
-      "Can be single or multi-column.",
-      "Indexes add read speed but slow writes.",
-      "Must be managed for optimal DB health."
+      "Creates a relationship between two tables.",
+      "Prevents actions that would destroy the link (like deleting a referenced row).",
+      "Enforces referential integrity across related data."
     ],
     mainColor:"blue-500",
-    subColor: "neutral-400",
-    titleColor: "blue-500",
-    listColor: "neutral-700"
-  },
-  {
-    name: "Drop Index",
-    desc: "DROP INDEX deletes an index and its associated performance optimization.",
-    code: `DROP INDEX idx_age ON users;`,
-    output: "Query OK, index dropped.",
-    example: "Used when an index is no longer needed and is impacting insert performance.",
-    subhead: "Remove Index",
-    main: "DROP INDEX Command",
-    title: "Deleting an Index",
-    list: [
-      "Reverts indexed column to default behavior.",
-      "Useful for removing unused or heavy indexes.",
-      "Syntax varies by SQL dialect.",
-      "Should monitor performance impact."
-    ],
-    mainColor:"blue-500",
-    subColor: "neutral-400",
-    titleColor: "blue-500",
-    listColor: "neutral-700"
-  },
-  {
-    name: "Create View",
-    desc: "CREATE VIEW defines a virtual table based on a SELECT query.",
-    code: `CREATE VIEW active_users AS SELECT * FROM users WHERE active = 1;`,
-    output: "Query OK, view created.",
-    example: "Used when you want a simplified representation of only active users for reporting.",
-    subhead: "Define Virtual Table",
-    main: "CREATE VIEW Command",
-    title: "Virtualizing Queries",
-    list: [
-      "Simplifies complex queries.",
-      "Acts as a saved SELECT query.",
-      "Can be used like a normal table.",
-      "Doesn't store data physically."
-    ],
-    mainColor:"blue-500",
-    subColor: "neutral-400",
-    titleColor: "blue-500",
-    listColor: "neutral-700"
-  },
-  {
-    name: "Drop View",
-    desc: "DROP VIEW deletes a previously created SQL view.",
-    code: `DROP VIEW active_users;`,
-    output: "Query OK, view dropped.",
-    example: "Used when a view like `active_users` is outdated and no longer needed.",
-    subhead: "Delete a View",
-    main: "DROP VIEW Command",
-    title: "Removing Virtual Tables",
-    list: [
-      "Removes virtual table definitions.",
-      "Doesn’t affect underlying data.",
-      "Useful in schema cleanups.",
-      "Always confirm dependencies first."
-    ],
-    mainColor:"blue-500",
-    subColor: "neutral-400",
-    titleColor: "blue-500",
-    listColor: "neutral-700"
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
   }
 ];
+
+
+
+
 
 
 
@@ -467,7 +446,7 @@ navelemts.forEach((val,index) => {
     "class",
     `sm:py-2 text-black sm:text-2xl px-4 text-lg font-sans`
   )
-  const lo =`/Project/page${index + 1}/index.html`
+  const lo =`/page${index + 1}/index.html`
     
     heading.setAttribute("href",`${lo}` )
     ;

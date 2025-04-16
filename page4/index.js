@@ -26,18 +26,19 @@ gsap.to(loaderfill, {
 
 // {changing color of the website components}
 
-
 const colors = {
-  
+ 
   textareabg: "white",
   textareatext: "black",
   
-  // DML Section (with query_ keys)
-  query_name: "DML Command",
+
+  
+
+  query_name: "TCL Command",
   query_desc:
-    "Used to manipulate data stored in the database. These commands allow users to insert, update, delete, and retrieve data.",
+    "Used to manage transactions in a database by grouping a set of operations into a single logical unit of work. TCL ensures data consistency and integrity.",
   query_introduction:
-    "DML (Data Manipulation Language) includes SQL commands like INSERT, UPDATE, DELETE, and MERGE. These are used to modify data within tables and manage records effectively, without altering the structure of the database itself.",
+    "TCL (Transaction Control Language) handles the transactions in SQL. It allows controlling the execution of SQL statements using commands like COMMIT, ROLLBACK, and SAVEPOINT to maintain database consistency.",
 };
 
 
@@ -77,7 +78,7 @@ main2p.innerHTML=`<i style="
 
 
 
-                      
+
 
 
 
@@ -85,118 +86,125 @@ main2p.innerHTML=`<i style="
 const home = document.querySelector(".Cards")
 
 
-// DML COMMANDS
-const commands = [  {
-  name: "INSERT INTO",
-  description: "The INSERT INTO command is used to add new rows of data into a table in the database.",
-  code: `INSERT INTO products (id, name) VALUES (101, 'Laptop');`,
-  output: "-- A new row with id 101 and name 'Laptop' is inserted into the products table.",
-  subhead: "Insert Single Record",
-  main: "DML - INSERT",
-  title: "Adds new rows to a database table.",
-  list: [
-    "Basic command for inserting data.",
-    "Requires specifying columns and values.",
-    "Can insert multiple rows with multiple VALUES sets.",
-    "Maintains data integrity via column constraints."
-  ],
-  mainColor:"blue-500",
-  subColor: "gray-700",
-  titleColor: "blue-400",
-  listColor: "gray-700",
-  bgColor: "white",
-  input: "INSERT INTO products (id, name) VALUES (101, 'Laptop');",
-  example: "Insert a new product with ID 101 and name 'Laptop' into 'products' table."
-},
-{
-  name: "INSERT INTO SELECT",
-  description: "This command is used to insert data into a table by selecting data from another table. It’s often used for copying data between tables.",
-  code: `INSERT INTO backup_customers SELECT * FROM customers WHERE country = 'India';`,
-  output: "-- Customers from India are copied into the backup_customers table.",
-  subhead: "Insert by Selection",
-  main: "DML - INSERT INTO SELECT",
-  title: "Inserts rows into a table using SELECT from another table.",
-  list: [
-    "Efficient for bulk data transfer.",
-    "Maintains relational data between tables.",
-    "Useful for backups and archive.",
-    "No need to specify VALUES manually."
-  ],
-  mainColor:"blue-500",
-  subColor: "gray-700",
-  titleColor: "blue-400",
-  listColor: "gray-700",
-  bgColor: "white",
-  input: "INSERT INTO backup_customers SELECT * FROM customers WHERE country = 'India';",
-  example: "Copy customers from India into the backup_customers table."
-},
-{
-  name: "UPDATE",
-  description: "The UPDATE command is used to modify existing records in a table.",
-  code: `UPDATE products SET price = price * 1.1 WHERE category = 'Tech';`,
-  output: "-- Prices of all Tech products are increased by 10%.",
-  subhead: "Modify Data",
-  main: "DML - UPDATE",
-  title: "Updates data in one or more rows of a table.",
-  list: [
-    "Targets specific rows using WHERE.",
-    "Can update multiple columns.",
-    "Changes data without deleting it.",
-    "Be cautious with conditions to avoid unwanted changes."
-  ],
-  mainColor:"blue-500",
-  subColor: "gray-700",
-  titleColor: "blue-400",
-  listColor: "gray-700",
-  bgColor: "white",
-  input: "UPDATE products SET price = price * 1.1 WHERE category = 'Tech';",
-  example: "Increase price by 10% for all Tech category products."
-},
-{
-  name: "DELETE",
-  description: "The DELETE command is used to remove existing records from a table based on a condition.",
-  code: `DELETE FROM customers WHERE last_purchase IS NULL;`,
-  output: "-- All customers with no purchase history are removed.",
-  subhead: "Remove Rows",
-  main: "DML - DELETE",
-  title: "Deletes rows from a table based on a condition.",
-  list: [
-    "Removes data but keeps table structure.",
-    "Can delete multiple rows at once.",
-    "Must use WHERE to avoid deleting all records.",
-    "Used for cleanup or correcting data."
-  ],
-  mainColor:"blue-500",
-  subColor: "gray-700",
-  titleColor: "blue-400",
-  listColor: "gray-700",
-  bgColor: "white",
-  input: "DELETE FROM customers WHERE last_purchase IS NULL;",
-  example: "Delete all customers who have never made a purchase."
-},
-{
-  name: "MERGE",
-  description: "The MERGE command is used to perform insert, update, or delete operations on a target table based on the results of a join with a source table.",
-  code: `MERGE INTO inventory t USING new_stock s ON (t.product_id = s.product_id) WHEN MATCHED THEN UPDATE SET t.qty = s.qty;`,
-  output: "-- Inventory quantities are updated from the new_stock table where product IDs match.",
-  subhead: "Upsert Operation",
-  main: "DML - MERGE",
-  title: "Performs INSERT, UPDATE, or DELETE in one command based on condition.",
-  list: [
-    "Efficient for syncing two tables.",
-    "Can conditionally insert, update, or delete.",
-    "Uses source and target tables.",
-    "Reduces multiple queries into one."
-  ],
-  mainColor:"blue-500",
-  subColor: "gray-700",
-  titleColor: "blue-400",
-  listColor: "gray-700",
-  bgColor: "white",
-  input: "MERGE INTO inventory t USING new_stock s ON (t.product_id = s.product_id) WHEN MATCHED THEN UPDATE SET t.qty = s.qty;",
-  example: "Update inventory quantities based on matching product IDs from new_stock."
-}
+// DCL COMMANDS
+const commands = [
+  {
+    name: "COMMIT",
+    desc: "Saves all changes made during the current transaction.",
+    code: `
+BEGIN;
+UPDATE Accounts SET Balance = Balance - 100 WHERE ID = 1;
+UPDATE Accounts SET Balance = Balance + 100 WHERE ID = 2;
+COMMIT;
+    `.trim(),
+    output: `
+Transaction committed.
+Changes saved permanently.
+    `.trim(),
+    subhead: "Saving Transactions",
+    main: "COMMIT Statement",
+    title: "Persisting Changes",
+    example: "Type COMMIT to save all operations permanently.",
+    list: [
+      "Permanently saves all operations done in the current transaction.",
+      "Cannot undo after COMMIT.",
+      "Used to finalize operations after BEGIN or START TRANSACTION."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "ROLLBACK",
+    desc: "Undoes changes made in the current transaction before committing.",
+    code: `
+BEGIN;
+UPDATE Accounts SET Balance = Balance - 100 WHERE ID = 1;
+-- Oops! Something went wrong
+ROLLBACK;
+    `.trim(),
+    output: `
+Transaction rolled back.
+All changes undone.
+    `.trim(),
+    subhead: "Undoing Transactions",
+    main: "ROLLBACK Statement",
+    title: "Reverting Changes",
+    example: "Type ROLLBACK to undo uncommitted changes.",
+    list: [
+      "Cancels all changes in the current transaction.",
+      "Used to maintain data integrity when errors occur.",
+      "Example: ROLLBACK;"
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "SAVEPOINT",
+    desc: "Sets a point in a transaction to which you can roll back.",
+    code: `
+BEGIN;
+UPDATE Accounts SET Balance = Balance - 100 WHERE ID = 1;
+SAVEPOINT BeforeTransfer;
+UPDATE Accounts SET Balance = Balance + 100 WHERE ID = 2;
+-- Oops! Something went wrong
+ROLLBACK TO BeforeTransfer;
+COMMIT;
+    `.trim(),
+    output: `
+Rolled back to SAVEPOINT: BeforeTransfer
+Final changes committed.
+    `.trim(),
+    subhead: "Creating Checkpoints",
+    main: "SAVEPOINT Statement",
+    title: "Intermediate Rollback Points",
+    example: "Type SAVEPOINT followed by a name to mark a rollback point (e.g., SAVEPOINT sp1;).",
+    list: [
+      "Marks a specific point within a transaction.",
+      "Can roll back to a SAVEPOINT using: ROLLBACK TO savepoint_name;",
+      "Useful in complex transactions with multiple operations."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  },
+  {
+    name: "SET TRANSACTION",
+    desc: "Specifies characteristics for the current transaction.",
+    code: `
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+BEGIN;
+-- Transactional operations here
+COMMIT;
+    `.trim(),
+    output: `
+Transaction isolation level set to SERIALIZABLE.
+Transaction started.
+    `.trim(),
+    subhead: "Setting Properties",
+    main: "SET TRANSACTION Statement",
+    title: "Configuring Transactions",
+    example: "Type SET TRANSACTION followed by isolation level (e.g., SET TRANSACTION ISOLATION LEVEL READ COMMITTED;).",
+    list: [
+      "Used to define transaction behavior before it begins.",
+      "Common settings include ISOLATION LEVEL READ COMMITTED, SERIALIZABLE, etc.",
+      "Ensures data consistency and avoids concurrency issues."
+    ],
+    mainColor:"blue-500",
+    subColor: "gray-700",
+    titleColor: "blue-400",
+    listColor: "gray-700",
+    bgColor: "white"
+  }
 ];
+
 
 
 
@@ -396,7 +404,7 @@ navelemts.forEach((val,index) => {
     "class",
     `sm:py-2 text-black sm:text-2xl px-4 text-lg font-sans`
   )
-  const lo =`/Project/page${index + 1}/index.html`
+  const lo =`/page${index + 1}/index.html`
     
     heading.setAttribute("href",`${lo}` )
     ;

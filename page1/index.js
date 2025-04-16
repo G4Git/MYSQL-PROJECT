@@ -27,18 +27,14 @@ gsap.to(loaderfill, {
 // {changing color of the website components}
 
 const colors = {
- 
   textareabg: "white",
   textareatext: "black",
-  
+  query_name: "DDL Command",
+query_desc:
+  "Used to define and modify the structure of a database. These commands allow users to create, alter, and drop tables, as well as manage database objects.",
+query_introduction:
+  "DDL (Data Definition Language) includes SQL commands like CREATE, ALTER, DROP, and TRUNCATE. These are used to define, modify, or remove database structures, without affecting the data stored within the database."
 
-  
-
-  query_name: "TCL Command",
-  query_desc:
-    "Used to manage transactions in a database by grouping a set of operations into a single logical unit of work. TCL ensures data consistency and integrity.",
-  query_introduction:
-    "TCL (Transaction Control Language) handles the transactions in SQL. It allows controlling the execution of SQL statements using commands like COMMIT, ROLLBACK, and SAVEPOINT to maintain database consistency.",
 };
 
 
@@ -86,126 +82,193 @@ main2p.innerHTML=`<i style="
 const home = document.querySelector(".Cards")
 
 
-// DCL COMMANDS
+// DDL COMMANDS
 const commands = [
   {
-    name: "COMMIT",
-    desc: "Saves all changes made during the current transaction.",
-    code: `
-BEGIN;
-UPDATE Accounts SET Balance = Balance - 100 WHERE ID = 1;
-UPDATE Accounts SET Balance = Balance + 100 WHERE ID = 2;
-COMMIT;
-    `.trim(),
-    output: `
-Transaction committed.
-Changes saved permanently.
-    `.trim(),
-    subhead: "Saving Transactions",
-    main: "COMMIT Statement",
-    title: "Persisting Changes",
-    example: "Type COMMIT to save all operations permanently.",
+    name: "Create Table",
+    desc: "The CREATE TABLE statement is used to define a new table with columns and data types.",
+    code: `CREATE TABLE users (
+  id INT PRIMARY KEY,
+  name VARCHAR(50),
+  age INT
+);`,
+    output: "Query OK, table 'users' created.",
+    example: "Used when creating a new table to store user data during initial database setup.",
+    subhead: "Define a New Table",
+    main: "CREATE TABLE Command",
+    title: "Creating Table Structure",
     list: [
-      "Permanently saves all operations done in the current transaction.",
-      "Cannot undo after COMMIT.",
-      "Used to finalize operations after BEGIN or START TRANSACTION."
+      "Specifies table name and column definitions.",
+      "Each column has a defined data type.",
+      "Constraints like PRIMARY KEY can be added.",
+      "Used at the beginning of database setup."
     ],
     mainColor:"blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
+    subColor: "neutral-400",
+    titleColor: "blue-500",
+    listColor: "neutral-700"
   },
   {
-    name: "ROLLBACK",
-    desc: "Undoes changes made in the current transaction before committing.",
-    code: `
-BEGIN;
-UPDATE Accounts SET Balance = Balance - 100 WHERE ID = 1;
--- Oops! Something went wrong
-ROLLBACK;
-    `.trim(),
-    output: `
-Transaction rolled back.
-All changes undone.
-    `.trim(),
-    subhead: "Undoing Transactions",
-    main: "ROLLBACK Statement",
-    title: "Reverting Changes",
-    example: "Type ROLLBACK to undo uncommitted changes.",
+    name: "Drop Table",
+    desc: "The DROP TABLE command deletes an entire table and its data permanently.",
+    code: `DROP TABLE users;`,
+    output: "Query OK, table 'users' dropped.",
+    example: "Used when removing outdated or temporary tables from the database.",
+    subhead: "Remove a Table",
+    main: "DROP TABLE Command",
+    title: "Deleting Tables",
     list: [
-      "Cancels all changes in the current transaction.",
-      "Used to maintain data integrity when errors occur.",
-      "Example: ROLLBACK;"
+      "Deletes both table structure and data.",
+      "Cannot be undone without a backup.",
+      "Frees up database space.",
+      "Use with caution in production."
     ],
     mainColor:"blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
+    subColor: "neutral-400",
+    titleColor: "blue-500",
+    listColor: "neutral-700"
   },
   {
-    name: "SAVEPOINT",
-    desc: "Sets a point in a transaction to which you can roll back.",
-    code: `
-BEGIN;
-UPDATE Accounts SET Balance = Balance - 100 WHERE ID = 1;
-SAVEPOINT BeforeTransfer;
-UPDATE Accounts SET Balance = Balance + 100 WHERE ID = 2;
--- Oops! Something went wrong
-ROLLBACK TO BeforeTransfer;
-COMMIT;
-    `.trim(),
-    output: `
-Rolled back to SAVEPOINT: BeforeTransfer
-Final changes committed.
-    `.trim(),
-    subhead: "Creating Checkpoints",
-    main: "SAVEPOINT Statement",
-    title: "Intermediate Rollback Points",
-    example: "Type SAVEPOINT followed by a name to mark a rollback point (e.g., SAVEPOINT sp1;).",
+    name: "Alter Table",
+    desc: "ALTER TABLE modifies an existing table’s structure such as adding or deleting columns.",
+    code: `ALTER TABLE users ADD email VARCHAR(100);`,
+    output: "Query OK, table altered.",
+    example: "Used when you need to add a new column like 'email' to an existing users table.",
+    subhead: "Modify Table Structure",
+    main: "ALTER TABLE Command",
+    title: "Adding/Changing Columns",
     list: [
-      "Marks a specific point within a transaction.",
-      "Can roll back to a SAVEPOINT using: ROLLBACK TO savepoint_name;",
-      "Useful in complex transactions with multiple operations."
+      "Add, modify or delete columns.",
+      "Used for evolving database design.",
+      "Supports constraints and data types.",
+      "Common in schema migrations."
     ],
     mainColor:"blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
+    subColor: "neutral-400",
+    titleColor: "blue-500",
+    listColor: "neutral-700"
   },
   {
-    name: "SET TRANSACTION",
-    desc: "Specifies characteristics for the current transaction.",
-    code: `
-SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
-BEGIN;
--- Transactional operations here
-COMMIT;
-    `.trim(),
-    output: `
-Transaction isolation level set to SERIALIZABLE.
-Transaction started.
-    `.trim(),
-    subhead: "Setting Properties",
-    main: "SET TRANSACTION Statement",
-    title: "Configuring Transactions",
-    example: "Type SET TRANSACTION followed by isolation level (e.g., SET TRANSACTION ISOLATION LEVEL READ COMMITTED;).",
+    name: "Truncate Table",
+    desc: "TRUNCATE removes all rows from a table but keeps the structure intact.",
+    code: `TRUNCATE TABLE users;`,
+    output: "Query OK, 0 rows affected.",
+    example: "Used when you want to quickly delete all records but retain the table for future use.",
+    subhead: "Clear Table Data",
+    main: "TRUNCATE TABLE Command",
+    title: "Empty a Table Quickly",
     list: [
-      "Used to define transaction behavior before it begins.",
-      "Common settings include ISOLATION LEVEL READ COMMITTED, SERIALIZABLE, etc.",
-      "Ensures data consistency and avoids concurrency issues."
+      "Deletes all rows instantly.",
+      "Faster than DELETE without WHERE.",
+      "Cannot rollback in some databases.",
+      "Ideal for clearing test data."
     ],
     mainColor:"blue-500",
-    subColor: "gray-700",
-    titleColor: "blue-400",
-    listColor: "gray-700",
-    bgColor: "white"
+    subColor: "neutral-400",
+    titleColor: "blue-500",
+    listColor: "neutral-700"
+  },
+  {
+    name: "Rename Table",
+    desc: "RENAME TABLE changes the name of an existing table in the database.",
+    code: `RENAME TABLE users TO customers;`,
+    output: "Query OK, table renamed.",
+    example: "Used when updating the table name to match a change in business terminology.",
+    subhead: "Change Table Name",
+    main: "RENAME TABLE Command",
+    title: "Renaming a Table",
+    list: [
+      "Preserves data and structure.",
+      "Changes table identifier.",
+      "Useful during refactoring.",
+      "Syntax varies by database system."
+    ],
+    mainColor:"blue-500",
+    subColor: "neutral-400",
+    titleColor: "blue-500",
+    listColor: "neutral-700"
+  },
+  {
+    name: "Create Index",
+    desc: "CREATE INDEX is used to speed up query performance by indexing selected columns.",
+    code: `CREATE INDEX idx_age ON users (age);`,
+    output: "Query OK, index created.",
+    example: "Used to improve performance when filtering users by age frequently.",
+    subhead: "Improve Query Speed",
+    main: "CREATE INDEX Command",
+    title: "Indexing for Performance",
+    list: [
+      "Improves SELECT query efficiency.",
+      "Can be single or multi-column.",
+      "Indexes add read speed but slow writes.",
+      "Must be managed for optimal DB health."
+    ],
+    mainColor:"blue-500",
+    subColor: "neutral-400",
+    titleColor: "blue-500",
+    listColor: "neutral-700"
+  },
+  {
+    name: "Drop Index",
+    desc: "DROP INDEX deletes an index and its associated performance optimization.",
+    code: `DROP INDEX idx_age ON users;`,
+    output: "Query OK, index dropped.",
+    example: "Used when an index is no longer needed and is impacting insert performance.",
+    subhead: "Remove Index",
+    main: "DROP INDEX Command",
+    title: "Deleting an Index",
+    list: [
+      "Reverts indexed column to default behavior.",
+      "Useful for removing unused or heavy indexes.",
+      "Syntax varies by SQL dialect.",
+      "Should monitor performance impact."
+    ],
+    mainColor:"blue-500",
+    subColor: "neutral-400",
+    titleColor: "blue-500",
+    listColor: "neutral-700"
+  },
+  {
+    name: "Create View",
+    desc: "CREATE VIEW defines a virtual table based on a SELECT query.",
+    code: `CREATE VIEW active_users AS SELECT * FROM users WHERE active = 1;`,
+    output: "Query OK, view created.",
+    example: "Used when you want a simplified representation of only active users for reporting.",
+    subhead: "Define Virtual Table",
+    main: "CREATE VIEW Command",
+    title: "Virtualizing Queries",
+    list: [
+      "Simplifies complex queries.",
+      "Acts as a saved SELECT query.",
+      "Can be used like a normal table.",
+      "Doesn't store data physically."
+    ],
+    mainColor:"blue-500",
+    subColor: "neutral-400",
+    titleColor: "blue-500",
+    listColor: "neutral-700"
+  },
+  {
+    name: "Drop View",
+    desc: "DROP VIEW deletes a previously created SQL view.",
+    code: `DROP VIEW active_users;`,
+    output: "Query OK, view dropped.",
+    example: "Used when a view like `active_users` is outdated and no longer needed.",
+    subhead: "Delete a View",
+    main: "DROP VIEW Command",
+    title: "Removing Virtual Tables",
+    list: [
+      "Removes virtual table definitions.",
+      "Doesn’t affect underlying data.",
+      "Useful in schema cleanups.",
+      "Always confirm dependencies first."
+    ],
+    mainColor:"blue-500",
+    subColor: "neutral-400",
+    titleColor: "blue-500",
+    listColor: "neutral-700"
   }
 ];
-
-
 
 
 
@@ -404,7 +467,7 @@ navelemts.forEach((val,index) => {
     "class",
     `sm:py-2 text-black sm:text-2xl px-4 text-lg font-sans`
   )
-  const lo =`/Project/page${index + 1}/index.html`
+  const lo =`/page${index + 1}/index.html`
     
     heading.setAttribute("href",`${lo}` )
     ;
