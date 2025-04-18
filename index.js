@@ -1,8 +1,6 @@
 const loader = document.querySelector('.loader')
 const loaderfill=document.querySelector(".loader-fill")
 let  i=0
-
-
 gsap.to(loaderfill, {
     width: "100%",
     duration: 3, // duration in seconds
