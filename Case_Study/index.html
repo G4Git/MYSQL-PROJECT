@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Marks Analysis Report</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/cea3fafc7e.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="h-full m-0">
+  <div>
+    <div class="main relative h-[100vh] m-0 p-0 flex justify-center gap-2 bg-[#aac9e1] items-center gap-4 font-mono">
+      <!-- Loader -->
+      <div class="loader z-10 overflow-hidden hidden absolute w-full h-full bg-[#fffaaf] flex justify-start px-[10%] items-start py-[5%]">
+        <!-- Command Window 1 -->
+        <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd1 z-10 w-[60%] h-[55%] rounded-3xl relative bg-[#b5e9a1]">
+          <div class="tape w-full bg-[#cac4f2] h-[12%] border-4 border-black p-6 rounded-t-3xl flex items-center justify-between">
+            <ul class="flex justify-center items-center gap-2">
+              <li class="h-5 w-5 bg-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black rounded-full p-2"></li>
+            </ul>
+            <h1 class="font-mono text-xl text-black">Mysql Window</h1>
+          </div>
+        </div>
+
+        <!-- Command Window 2 -->
+        <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd2 z-10 w-[40%] h-[38%] bg-[#f1edea] rounded-3xl absolute left-96 top-72">
+          <div class="tape w-full bg-[#273fe9] h-[12%] border-4 border-black p-6 rounded-t-3xl flex items-center justify-between">
+            <ul class="flex justify-center items-center gap-2">
+              <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
+            </ul>
+            <h1 class="font-mono text-xl text-white">Mysql Window</h1>
+          </div>
+          <h1 class="text-7xl font-mono font-bold text-center py-8">DBMS Project</h1>
+          <p class="text-center font-mono text-2xl">A project by <b class="text-[#273fe9]">Gobind Singh</b>, 4058/23</p>
+        </div>
+
+        <!-- Loading Box -->
+        <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd3 z-10 w-[25%] h-[35%] sm:h-[25%] bg-[#2a41f2] rounded-3xl absolute right-96 top-[60%]">
+          <div class="tape w-full bg-[#b5e9a1] h-[12%] border-4 border-black p-6 rounded-t-3xl flex items-center justify-between">
+            <ul class="flex justify-center items-center gap-2">
+              <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
+            </ul>
+            <h1 class="font-mono text-xl text-white"></h1>
+          </div>
+          <h1 class="text-[#c2c9f1] text-5xl py-2 font-mono text-center">LOADING..</h1>
+          <div class="flex items-center justify-center h-[25%] w-full">
+            <div class="w-[80%] h-[40%] border-2">
+              <div class="loader-fill bg-[#c2c9f1] h-full w-0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Navigation (Desktop) -->
+      <div class="sm:flex sm:w-[15%] h-[100%] font-mono left-0 hidden">
+        <div class="nav w-full max-h-[10vh] h-[5vh] font-mono flex-col flex justify-start items-start">
+          <div class="flex w-full items-center gap-5 justify-center py-[3vh]">
+            <i style="box-shadow: 4px 4px 0.6px #000000;" class="fa-solid fa-terminal text-black text-2xl bg-neutral-100 px-3 py-1 border-2 border-black"></i>
+            <p style="text-shadow: 2px 0.8px 2px #ffffff;" class="text-3xl font-bold">IndexIQ</p>
+          </div>
+
+          <ul class="w-full h-[90vh] font-bold text-xl px-4">
+            <li class="w-full my-4">
+              <a href="../index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white px-6 py-3 w-full">
+                <i class="fa-solid fa-house"></i> Home
+              </a>
+            </li>
+            <li class="w-full my-2">
+              <a href="../index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white px-6 py-4 w-full">
+                <i class="fa-solid fa-file-code"></i> Commands
+              </a>
+            </li>
+            <li class="w-full my-2">
+              <a href="../index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white px-6 py-4 w-full">
+                <i class="fa-solid fa-database"></i> About
+              </a>
+            </li>
+            <li style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="w-full my-4">
+              <a href="../index.html" class="flex items-center gap-2 rounded-sm bg-[#ffebc2] text-black hover:bg-white border-2 border-black hover:text-black px-6 py-4 shadow-md w-full">
+                <i class="fa-solid fa-earth-americas"></i> Case Study
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main Frame -->
+      <div class="sm:w-[85%] bg-neutral-100 h-[100%] overflow-auto w-full sm:overflow-auto flex-col justify-center items-center border-black sm:border-2">
+        <!-- Navbar for Mobile -->
+        <nav class="nav w-[100%] items-center justify-between flex border-2 border-neutral-500 bg-neutral-700 sm:h-[0%] h-[10%] sm:hidden">
+          <h1 class="text-2xl p-4 text-white">DBMS</h1>
+          <ul class="flex flex-col items-center justify-center gap-2 p-4">
+            <li class="w-12 h-1 bg-white"></li>
+            <li class="w-12 h-1 bg-white"></li>
+            <li class="w-12 h-1 bg-white"></li>
+          </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main flex flex-col h-full justify-between items-center w-full">
+          <nav class="hidden h-[0%] sm:flex py-12 px-4 items-center justify-between w-full">
+            <div>
+              <span style="box-shadow: 1.5px 1.5px 1px 1px #000000" class="p-2 px-4 font-bold text-xl border-2 border-black bg-black text-[#ffebc2]">
+                <i class="fa-solid fa-folder-open"></i>
+              </span>
+            </div>
+            <div class="flex items-center justify-center gap-6">
+              <a href="../index.html">
+                <div class="box border-4 px-4 py-3 border-black font-bold text-lg hover:bg-[#000] rounded-sm hover:text-white">Navigate to Commands</div>
+              </a>
+              <div class="flex items-center justify-center gap-4">
+                <span class="px-4 text-xl py-2 border-2 border-black bg-[#ffebc2]">
+                  <i class="fa-solid fa-bell"></i>
+                </span>
+                <span class="text-xl border-2 border-black bg-black flex justify-center items-center h-12 w-12">
+                  <i class="fa-brands fa-github text-white text-3xl"></i>
+                </span>
+              </div>
+            </div>
+          </nav>
+          <!-- table -->
+          <h1 class="text-6xl mt-10 font-bold font-mono border-b-4 my-4 py-4 px-10 border-black">Student Analysis Report</h1>
+<section class="px-6 sm:px-20 py-10 w-full">
+  
+  <!-- table -->
+    <div  class="overflow-auto rounded-sm shadow border-2 border-black">
+      <table class="min-w-full text-sm text-left text-black bg-neutral-100 border-black">
+        <thead style="background-image: linear-gradient(10deg, #aac9e1, white, #aac9e1); box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);" class="text-xs uppercase bg-[#aac9e1] text-black border-2 border-black">
+          <tr style="background-image: linear-gradient(10deg, #aac9e1, white, #aac9e1); box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);"  class="bg-white hover:bg-gray-100 border-2 border-black">
+            <th class="px-4 py-3 border border-black text-lg">Student ID</th>
+            <th class="px-4 py-3 border border-black text-lg">Student Name</th>
+            <th class="px-4 py-3 border border-black text-lg">Science Marks</th>
+            <th class="px-4 py-3 border border-black text-lg">Maths Marks</th>
+            <th class="px-4 py-3 border border-black text-lg">English Marks</th>
+            <th class="px-4 py-3 border border-black text-lg">Total Marks</th>
+            <th class="px-4 py-3 border border-black text-lg">Average Marks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table Rows -->
+          <tr class="bg-white hover:bg-gray-100 border-2 border-black" style="box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);"><td class="px-6 py-4 border border-black text-xl font-mono">1</td><td class="px-6 py-4 border border-black text-xl font-mono">Aarav</td><td class="px-6 py-4 border border-black text-xl font-mono">78</td><td class="px-6 py-4 border border-black text-xl font-mono">85</td><td class="px-6 py-4 border border-black text-xl font-mono">92</td><td class="px-6 py-4 border border-black text-xl font-mono">255</td><td class="px-6 py-4 border border-black text-xl font-mono">85.00</td></tr>
+          <tr class="bg-white hover:bg-gray-100 border-2 border-black" style="box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);"><td class="px-6 py-4 border border-black text-xl font-mono">2</td><td class="px-6 py-4 border border-black text-xl font-mono">Aisha</td><td class="px-6 py-4 border border-black text-xl font-mono">65</td><td class="px-6 py-4 border border-black text-xl font-mono">72</td><td class="px-6 py-4 border border-black text-xl font-mono">88</td><td class="px-6 py-4 border border-black text-xl font-mono">225</td><td class="px-6 py-4 border border-black text-xl font-mono">75.00</td></tr>
+          <tr class="bg-white hover:bg-gray-100 border-2 border-black" style="box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);"><td class="px-6 py-4 border border-black text-xl font-mono">3</td><td class="px-6 py-4 border border-black text-xl font-mono">Arjun</td><td class="px-6 py-4 border border-black text-xl font-mono">A</td><td class="px-6 py-4 border border-black text-xl font-mono">95</td><td class="px-6 py-4 border border-black text-xl font-mono">87</td><td class="px-6 py-4 border border-black text-xl font-mono">182</td><td class="px-6 py-4 border border-black text-xl font-mono">60.67</td></tr>
+          <tr class="bg-white hover:bg-gray-100 border-2 border-black" style="box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);"><td class="px-6 py-4 border border-black text-xl font-mono">4</td><td class="px-6 py-4 border border-black text-xl font-mono">Priya</td><td class="px-6 py-4 border border-black text-xl font-mono">45</td><td class="px-6 py-4 border border-black text-xl font-mono">68</td><td class="px-6 py-4 border border-black text-xl font-mono">76</td><td class="px-6 py-4 border border-black text-xl font-mono">189</td><td class="px-6 py-4 border border-black text-xl font-mono">63.00</td></tr>
+          <tr class="bg-white hover:bg-gray-100 border-2 border-black" style="box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);"><td class="px-6 py-4 border border-black text-xl font-mono">5</td><td class="px-6 py-4 border border-black text-xl font-mono">Rohan</td><td class="px-6 py-4 border border-black text-xl font-mono">88</td><td class="px-6 py-4 border border-black text-xl font-mono">79</td><td class="px-6 py-4 border border-black text-xl font-mono">91</td><td class="px-6 py-4 border border-black text-xl font-mono">258</td><td class="px-6 py-4 border border-black text-xl font-mono">86.00</td></tr>
+          <!-- continue like this... -->
+<!-- Already had rows 1-5 above -->
+<tr class="bg-white hover:bg-gray-100 border-2 border-black" style="box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);"><td class="px-6 py-4 border border-black text-xl font-mono">6</td><td class="px-6 py-4 border border-black text-xl font-mono">Meera</td><td class="px-6 py-4 border border-black text-xl font-mono">72</td><td class="px-6 py-4 border border-black text-xl font-mono">82</td><td class="px-6 py-4 border border-black text-xl font-mono">65</td><td class="px-6 py-4 border border-black text-xl font-mono">219</td><td class="px-6 py-4 border border-black text-xl font-mono">73.00</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black" style="box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);"><td class="px-6 py-4 border border-black text-xl font-mono">7</td><td class="px-6 py-4 border border-black text-xl font-mono">kunal</td><td class="px-6 py-4 border border-black text-xl font-mono">95</td><td class="px-6 py-4 border border-black text-xl font-mono">A</td><td class="px-6 py-4 border border-black text-xl font-mono">94</td><td class="px-6 py-4 border border-black text-xl font-mono">189</td><td class="px-6 py-4 border border-black text-xl font-mono">63.00</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black" style="box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);"><td class="px-6 py-4 border border-black text-xl font-mono">8</td><td class="px-6 py-4 border border-black text-xl font-mono">Ananya</td><td class="px-6 py-4 border border-black text-xl font-mono">51</td><td class="px-6 py-4 border border-black text-xl font-mono">63</td><td class="px-6 py-4 border border-black text-xl font-mono">57</td><td class="px-6 py-4 border border-black text-xl font-mono">171</td><td class="px-6 py-4 border border-black text-xl font-mono">57.00</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black" style="box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);"><td class="px-6 py-4 border border-black text-xl font-mono">9</td><td class="px-6 py-4 border border-black text-xl font-mono">Siddharth</td><td class="px-6 py-4 border border-black text-xl font-mono">84</td><td class="px-6 py-4 border border-black text-xl font-mono">77</td><td class="px-6 py-4 border border-black text-xl font-mono">82</td><td class="px-6 py-4 border border-black text-xl font-mono">243</td><td class="px-6 py-4 border border-black text-xl font-mono">81.00</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black" style="box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);"><td class="px-6 py-4 border border-black text-xl font-mono">10</td><td class="px-6 py-4 border border-black text-xl font-mono">Kavya</td><td class="px-6 py-4 border border-black text-xl font-mono">67</td><td class="px-6 py-4 border border-black text-xl font-mono">71</td><td class="px-6 py-4 border border-black text-xl font-mono">A</td><td class="px-6 py-4 border border-black text-xl font-mono">138</td><td class="px-6 py-4 border border-black text-xl font-mono">46.00</td></tr>
+
+<!-- 11 - 30 -->
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">11</td><td class="px-6 py-4 border border-black text-xl font-mono">Rajesh</td><td class="px-6 py-4 border border-black text-xl font-mono">73</td><td class="px-6 py-4 border border-black text-xl font-mono">85</td><td class="px-6 py-4 border border-black text-xl font-mono">78</td><td class="px-6 py-4 border border-black text-xl font-mono">236</td><td class="px-6 py-4 border border-black text-xl font-mono">78.67</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">12</td><td class="px-6 py-4 border border-black text-xl font-mono">Riya</td><td class="px-6 py-4 border border-black text-xl font-mono">59</td><td class="px-6 py-4 border border-black text-xl font-mono">62</td><td class="px-6 py-4 border border-black text-xl font-mono">81</td><td class="px-6 py-4 border border-black text-xl font-mono">202</td><td class="px-6 py-4 border border-black text-xl font-mono">67.33</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">13</td><td class="px-6 py-4 border border-black text-xl font-mono">Aditya</td><td class="px-6 py-4 border border-black text-xl font-mono">91</td><td class="px-6 py-4 border border-black text-xl font-mono">94</td><td class="px-6 py-4 border border-black text-xl font-mono">89</td><td class="px-6 py-4 border border-black text-xl font-mono">274</td><td class="px-6 py-4 border border-black text-xl font-mono">91.33</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">14</td><td class="px-6 py-4 border border-black text-xl font-mono">Sanya</td><td class="px-6 py-4 border border-black text-xl font-mono">82</td><td class="px-6 py-4 border border-black text-xl font-mono">76</td><td class="px-6 py-4 border border-black text-xl font-mono">84</td><td class="px-6 py-4 border border-black text-xl font-mono">242</td><td class="px-6 py-4 border border-black text-xl font-mono">80.67</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">15</td><td class="px-6 py-4 border border-black text-xl font-mono">Vikram</td><td class="px-6 py-4 border border-black text-xl font-mono">A</td><td class="px-6 py-4 border border-black text-xl font-mono">73</td><td class="px-6 py-4 border border-black text-xl font-mono">65</td><td class="px-6 py-4 border border-black text-xl font-mono">138</td><td class="px-6 py-4 border border-black text-xl font-mono">46.00</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">16</td><td class="px-6 py-4 border border-black text-xl font-mono">Nisha</td><td class="px-6 py-4 border border-black text-xl font-mono">77</td><td class="px-6 py-4 border border-black text-xl font-mono">88</td><td class="px-6 py-4 border border-black text-xl font-mono">92</td><td class="px-6 py-4 border border-black text-xl font-mono">257</td><td class="px-6 py-4 border border-black text-xl font-mono">85.67</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">17</td><td class="px-6 py-4 border border-black text-xl font-mono">Harsh</td><td class="px-6 py-4 border border-black text-xl font-mono">56</td><td class="px-6 py-4 border border-black text-xl font-mono">64</td><td class="px-6 py-4 border border-black text-xl font-mono">71</td><td class="px-6 py-4 border border-black text-xl font-mono">191</td><td class="px-6 py-4 border border-black text-xl font-mono">63.67</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">18</td><td class="px-6 py-4 border border-black text-xl font-mono">Sneha</td><td class="px-6 py-4 border border-black text-xl font-mono">89</td><td class="px-6 py-4 border border-black text-xl font-mono">91</td><td class="px-6 py-4 border border-black text-xl font-mono">95</td><td class="px-6 py-4 border border-black text-xl font-mono">275</td><td class="px-6 py-4 border border-black text-xl font-mono">91.67</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">19</td><td class="px-6 py-4 border border-black text-xl font-mono">Anirush</td><td class="px-6 py-4 border border-black text-xl font-mono">63</td><td class="px-6 py-4 border border-black text-xl font-mono">57</td><td class="px-6 py-4 border border-black text-xl font-mono">62</td><td class="px-6 py-4 border border-black text-xl font-mono">182</td><td class="px-6 py-4 border border-black text-xl font-mono">60.67</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">20</td><td class="px-6 py-4 border border-black text-xl font-mono">Pooja</td><td class="px-6 py-4 border border-black text-xl font-mono">74</td><td class="px-6 py-4 border border-black text-xl font-mono">82</td><td class="px-6 py-4 border border-black text-xl font-mono">79</td><td class="px-6 py-4 border border-black text-xl font-mono">235</td><td class="px-6 py-4 border border-black text-xl font-mono">78.33</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">21</td><td class="px-6 py-4 border border-black text-xl font-mono">Dev</td><td class="px-6 py-4 border border-black text-xl font-mono">85</td><td class="px-6 py-4 border border-black text-xl font-mono">78</td><td class="px-6 py-4 border border-black text-xl font-mono">87</td><td class="px-6 py-4 border border-black text-xl font-mono">250</td><td class="px-6 py-4 border border-black text-xl font-mono">83.33</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">22</td><td class="px-6 py-4 border border-black text-xl font-mono">Ishita</td><td class="px-6 py-4 border border-black text-xl font-mono">92</td><td class="px-6 py-4 border border-black text-xl font-mono">A</td><td class="px-6 py-4 border border-black text-xl font-mono">90</td><td class="px-6 py-4 border border-black text-xl font-mono">182</td><td class="px-6 py-4 border border-black text-xl font-mono">60.67</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">23</td><td class="px-6 py-4 border border-black text-xl font-mono">Pranav</td><td class="px-6 py-4 border border-black text-xl font-mono">71</td><td class="px-6 py-4 border border-black text-xl font-mono">65</td><td class="px-6 py-4 border border-black text-xl font-mono">73</td><td class="px-6 py-4 border border-black text-xl font-mono">209</td><td class="px-6 py-4 border border-black text-xl font-mono">69.67</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">24</td><td class="px-6 py-4 border border-black text-xl font-mono">Neha</td><td class="px-6 py-4 border border-black text-xl font-mono">83</td><td class="px-6 py-4 border border-black text-xl font-mono">79</td><td class="px-6 py-4 border border-black text-xl font-mono">84</td><td class="px-6 py-4 border border-black text-xl font-mono">246</td><td class="px-6 py-4 border border-black text-xl font-mono">82.00</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">25</td><td class="px-6 py-4 border border-black text-xl font-mono">Manish</td><td class="px-6 py-4 border border-black text-xl font-mono">58</td><td class="px-6 py-4 border border-black text-xl font-mono">62</td><td class="px-6 py-4 border border-black text-xl font-mono">59</td><td class="px-6 py-4 border border-black text-xl font-mono">179</td><td class="px-6 py-4 border border-black text-xl font-mono">59.67</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">26</td><td class="px-6 py-4 border border-black text-xl font-mono">Divya</td><td class="px-6 py-4 border border-black text-xl font-mono">96</td><td class="px-6 py-4 border border-black text-xl font-mono">89</td><td class="px-6 py-4 border border-black text-xl font-mono">93</td><td class="px-6 py-4 border border-black text-xl font-mono">278</td><td class="px-6 py-4 border border-black text-xl font-mono">92.67</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">27</td><td class="px-6 py-4 border border-black text-xl font-mono">Saurav</td><td class="px-6 py-4 border border-black text-xl font-mono">64</td><td class="px-6 py-4 border border-black text-xl font-mono">71</td><td class="px-6 py-4 border border-black text-xl font-mono">68</td><td class="px-6 py-4 border border-black text-xl font-mono">203</td><td class="px-6 py-4 border border-black text-xl font-mono">67.67</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">28</td><td class="px-6 py-4 border border-black text-xl font-mono">Swara</td><td class="px-6 py-4 border border-black text-xl font-mono">79</td><td class="px-6 py-4 border border-black text-xl font-mono">84</td><td class="px-6 py-4 border border-black text-xl font-mono">77</td><td class="px-6 py-4 border border-black text-xl font-mono">240</td><td class="px-6 py-4 border border-black text-xl font-mono">80.00</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">29</td><td class="px-6 py-4 border border-black text-xl font-mono">Ishaan</td><td class="px-6 py-4 border border-black text-xl font-mono">87</td><td class="px-6 py-4 border border-black text-xl font-mono">92</td><td class="px-6 py-4 border border-black text-xl font-mono">88</td><td class="px-6 py-4 border border-black text-xl font-mono">267</td><td class="px-6 py-4 border border-black text-xl font-mono">89.00</td></tr>
+<tr class="bg-white hover:bg-gray-100 border-2 border-black"><td class="px-6 py-4 border border-black text-xl font-mono">30</td><td class="px-6 py-4 border border-black text-xl font-mono">Tanvi</td><td class="px-6 py-4 border border-black text-xl font-mono">72</td><td class="px-6 py-4 border border-black text-xl font-mono">68</td><td class="px-6 py-4 border border-black text-xl font-mono">75</td><td class="px-6 py-4 border border-black text-xl font-mono">215</td><td class="px-6 py-4 border border-black text-xl font-mono">71.67</td></tr>
+
+</tbody>
+</table>
+      
+      
+    </div>
+  </section>
+          <!-- Section 2 -->
+          <div class="main2 justify-center gap-4 items-center text-white sm:px-20 px-1 pt-8 pb-6 flex-col flex w-full">
+            <div class="px-4 w-[100%] text-black flex-col gap-5 flex">
+                <h1 class="text-6xl mt-10 font-bold font-mono">DBMS-Docs</h1>
+               <!-- box -->
+                <div  style="background-image: linear-gradient(10deg, #aac9e1,white,#aac9e1); box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);" class="border-2 h-full w-full bg-[#ced129]  border-black px-6 py-6 flex justify-between items-center">
+                   
+                    <div class="w-[100%] relative h-[100%]">
+                        <h1 class="text-2xl font-semibold ">To display the 1st, 2nd, and 3rd position holders (based on Total marks) from the student Table based on following conditions:</h1>
+                        <p class=" ">
+                            <ul class="text-lg flex-col flex  gap-2 mt-4 font-mono px-2 list-disc list-inside ">
+                                <li>The student must have scored more than 60% marks in each subject.</li>
+                                <li>The student must not have failed in any subject.</li>
+                                <li>The student must not be absent for any subject's exam.</li>
+                            </ul>
+                        </p>
+                        <div class="flex h-5  flex justify-end  gap-2  bottom-0">
+                            <span class=" w-5 text-left rounded-full border-4 border-black"></span>
+                            <span class=" w-5 text-left rounded-full bg-black"></span>
+                           </div>
+                        <div>
+                           
+                        </div>
+                       
+                    </div>
+                    
+                    
+                </div>
+             </div>
+           
+          </div>
+
+          <!-- Section 3 -->
+          <div class="main3 justify-between items-center flex w-full">
+            <Cards class="Cards grid sm:grid-cols-1 grid-cols-1 sm:px-20 sm:p-6 gap-8 flex justify-center items-center w-[100%]">
+              <!-- Cards will go here -->
+            </Cards>
+          </div>
+          
+
+          <div  class="w-[90%] mx-auto p-6  space-y-10">
+
+            <!-- Section 1: Top 3 Overall Students -->
+            <section style="box-shadow: -3.5px 3.5px 1px 1px #000000 ;background-image: linear-gradient(200deg, #aac9e1,white,#aac9e1); " class="bg-[#a9d7b8] shadow-md border-2 border-black  p-6 space-y-4">
+            
+        
+             
+                <h3 class="font-semibold text-xl py-2  font-mono px-4 bg-black text-white w-[7%]">Input</h3>
+                <pre  class="bg-gray-100   overflow-x-auto text-sm text-gray-700 border-4 border-black">
+       <code class="text-lg ">
+        SELECT student_id, student_name,science_marks, maths_marks, english_marks,(science_marks + maths_marks + english_marks) 
+        AS total_marks,ROUND((science_marks + maths_marks + english_marks)/3, 2) AS average_marksFROM students 
+        WHERE science_marks > 60 AND science_marks != 'A' AND maths_marks > 60 AND maths_marks != 'A' 
+        AND english_marks > 60 AND english_marks != 'A' ORDER BY total_marks DESC
+        LIMIT 3;</code>
+                </pre>
+              
+                <h3 class="font-semibold text-xl py-2  font-mono px-4 bg-black text-white w-[8%]">Output</h3>
+             
+               
+                <table class="w-full  border border-black text-sm">
+                  <thead style="background-image: linear-gradient(10deg, #ffebc2, white, #ffebc2); " >
+                    <tr>
+                      <th class="border border-black px-2 py-4 text-lg">student_id</th>
+                      <th class="border border-black px-2 py-4 text-lg">student_name</th>
+                      <th class="border border-black px-2 py-4 text-lg">science_marks</th>
+                      <th class="border border-black px-2 py-4 text-lg">maths_marks</th>
+                      <th class="border border-black px-2 py-4 text-lg">english_marks</th>
+                      <th class="border border-black px-2 py-4 text-lg">total_marks</th>
+                      <th class="border border-black px-2 py-4 text-lg">average_marks</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-center">
+                    <tr class="bg-white">
+                      <td class="border border-black px-2 py-4 text-lg">26</td>
+                      <td class="border border-black px-2 py-4 text-lg">Divya</td>
+                      <td class="border border-black px-2 py-4 text-lg">96</td>
+                      <td class="border border-black px-2 py-4 text-lg">89</td>
+                      <td class="border border-black px-2 py-4 text-lg">93</td>
+                      <td class="border border-black px-2 py-4 text-lg">278</td>
+                      <td class="border border-black px-2 py-4 text-lg">92.67</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                      <td class="border border-black px-2 py-4 text-lg">18</td>
+                      <td class="border border-black px-2 py-4 text-lg">Sneha</td>
+                      <td class="border border-black px-2 py-4 text-lg">89</td>
+                      <td class="border border-black px-2 py-4 text-lg">91</td>
+                      <td class="border border-black px-2 py-4 text-lg">95</td>
+                      <td class="border border-black px-2 py-4 text-lg">275</td>
+                      <td class="border border-black px-2 py-4 text-lg">91.67</td>
+                    </tr>
+                    <tr class="bg-white">
+                      <td class="border border-black px-2 py-4 text-lg">13</td>
+                      <td class="border border-black px-2 py-4 text-lg">Aditya</td>
+                      <td class="border border-black px-2 py-4 text-lg">91</td>
+                      <td class="border border-black px-2 py-4 text-lg">94</td>
+                      <td class="border border-black px-2 py-4 text-lg">89</td>
+                      <td class="border border-black px-2 py-4 text-lg">274</td>
+                      <td class="border border-black px-2 py-4 text-lg">91.33</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="text-sm mt-2 text-black italic">Note: These students have the highest total marks with no subject below 60.</p>
+              
+            </section>
+        
+            <!-- Additional sections (Top 3 in Each Subject & Students with Absent Marks) can follow the same pattern -->
+        
+          </div>
+
+  
+        </main>
+      </div>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
