@@ -51,11 +51,6 @@ nav.setAttribute("class",` justify-between flex-col flex `)
 
 
 
-// { Main 2 part  heading } 
-const main2=document.querySelector(".main2")
-const main2h = document.querySelector(".main2 h1")
-main2h.setAttribute("class", `text-black font-mono  sm:text-5xl border-black py-2 text-5xl font-bold`)
-main2h.textContent=colors.query_name
 
 // Note: Main 2 part  paragraph
 
