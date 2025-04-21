@@ -7,111 +7,148 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/cea3fafc7e.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-
-        html, body {
-            font-family: 'Space Mono', monospace;
-            background-color: #fff6e5;
-            overflow: hidden; /* Disable scrolling by default */
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        .brutal-shadow {
-            box-shadow: 4px 4px 0 rgba(0, 0, 0, 1);
-        }
-
-        .brutal-border {
-            border: 3px solid #000;
-        }
-
-        a.hover-lift:hover {
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+      a.hover-lift:hover {
             transform: translate(-2px, -2px);
 
             box-shadow: 6px 6px 0 rgba(0, 0, 0, 1);
             border: 1px solid white;
             transition: all 0.2s ease;
         }
-    </style>
+  </style>
 </head>
-<body>
-    <div class="min-h-screen font-mono bg-[#fff6e5] flex flex-col">
-        <!-- loader -->
-        <div class="loader z-50 fixed top-0 left-0 overflow-hidden hidden w-full h-full bg-[#fff6e5] flex justify-start px-[10%] items-start py-[5%]">
-            <!-- cmd -->
-            <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd1 z-10 w-[60%] h-[55%] rounded-3xl relative bg-[#b5e9a1]">
-                <!-- tape -->
-                <div class="tape w-full bg-[#cac4f2] h-[12%] border-4 border-black p-6 rounded-t-3xl flex items-center justify-between">
-                    <ul class="flex justify-center items-center gap-2">
-                        <li class="h-5 w-5 bg-black rounded-full p-2"></li>
-                        <li class="h-5 w-5 bg-black rounded-full p-2"></li>
-                        <li class="h-5 w-5 bg-black rounded-full p-2"></li>
-                    </ul>
-                    <h1 class="font-mono text-xl text-black">DBMS Tutorial</h1>
-                </div>
-                <!-- cmd -->
-            </div>
+<body >
+   
 
-            <!-- cmd -->
-            <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd2 z-10 w-[40%] h-[38%] bg-[#f1edea] rounded-3xl absolute left-96 top-72">
-                <!-- tape -->
-                <div class="tape w-full bg-[#273fe9] h-[12%] border-4 border-black p-6 rounded-t-3xl flex items-center justify-between">
-                    <ul class="flex justify-center items-center gap-2">
-                        <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
-                        <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
-                        <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
-                    </ul>
-                    <h1 class="font-mono text-xl text-white">DBMS Tutorial</h1>
-                </div>
-
-                <h1 class="text-7xl font-mono font-bold text-center py-8">DBMS Tutorial</h1>
-                <p class="text-center font-mono text-2xl">Learn <b class="text-[#273fe9]">Database Management</b> Systems</p>
-            </div>
-
-            <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd3 z-10 w-[25%] h-[35%] sm:h-[25%] bg-[#2a41f2] rounded-3xl absolute right-96 top-[60%]">
-                <!-- tape -->
-                <div class="tape w-full bg-[#b5e9a1] h-[12%] border-4 border-black p-6 rounded-t-3xl flex items-center justify-between">
-                    <ul class="flex justify-center items-center gap-2">
-                        <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
-                        <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
-                        <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
-                    </ul>
-                    <h1 class="font-mono text-xl text-white"></h1>
-                </div>
-                <h1 class="text-[#c2c9f1] text-5xl py-2 font-mono text-center">LOADING..</h1>
-                <div class="flex items-center justify-center h-[25%] w-full">
-                    <div class="w-[80%] h-[40%] border-2">
-                        <div class="loader-fill bg-[#c2c9f1] h-full w-0"></div>
-                    </div>
-                </div>
-            </div>
+    <div class="main w-full h-screen bg-[#a9d7b8] flex justify-center gap-4 items-center relative overflow-hidden">
+       <!-- (loader) -->
+       <div class="loader z-10 overflow-hidden  absolute w-full h-full bg-[#fff6e5] flex justify-start px-[10%] items-start py-[5%]">
+        <!-- cmd -->
+       <div style="box-shadow: 3px 5px 2px 5px #000000 "  class="cmd1 z-10 w-[60%] h-[55%] rounded-3xl relative bg-[#b5e9a1]">
+        <!-- tape -->
+        <div class="tape w-full  bg-[#cac4f2] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
+            <ul class="flex justify-center  items-center  gap-2">
+              <li class="h-5 w-5 bg-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black rounded-full p-2"></li>  
+            </ul>
+            <h1 class="font-mono text-xl text-black">Mysql Window</h1>
+            
         </div>
-        <!-- Header/Navigation -->
-        <header class="p-4 bg-[#b5e9a1] brutal-border mb-8 w-full px-24">
-            <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-                <!-- Logo -->
-                <div class="flex items-center gap-3 mb-4 md:mb-0">
-                    <div class="bg-white brutal-border brutal-shadow px-3 py-1">
-                        <i class="fa-solid fa-terminal text-black text-2xl"></i>
-                    </div>
-                    <h1 class="text-3xl font-bold font-mono">IndexIQ</h1>
+        <!-- cmd -->
+         
+
+       </div>
+
+       <!-- cmd -->
+       <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd2 z-10 w-[40%] h-[38%] bg-[#f1edea] rounded-3xl absolute left-96 top-72">
+        <!-- tape -->
+        <div class="tape w-full  bg-[#273fe9] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
+            <ul class="flex justify-center  items-center  gap-2">
+              <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>  
+            </ul>
+            <h1 class="font-mono text-xl text-white">Mysql Window</h1>
+            
+        </div>
+        
+         <h1 class="text-7xl font-mono font-bold text-center py-8">DBMS Project </h1>
+         <p class="text-center font-mono text-2xl">A project by <b class="text-[#273fe9]">Gobind Singh</b> , 4058/23</p>
+       </div>
+
+       <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd3 z-10 w-[25%] h-[35%] sm:h-[25%] bg-[#2a41f2] rounded-3xl absolute right-96 top-[60%]">
+        <!-- tape -->
+        <div class="tape w-full  bg-[#b5e9a1] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
+            <ul class="flex justify-center  items-center  gap-2">
+              <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>  
+            </ul>
+            <h1 class="font-mono text-xl text-white"></h1>
+            
+        </div>
+        <h1 class="text-[#c2c9f1] text-5xl py-2  font-mono text-center">LOADING..</h1>
+         <div class=" flex items-center justify-center h-[25%] w-full">
+            <div class=" w-[80%]    h-[40%] border-2">
+                <div class="loader-fill bg-[#c2c9f1] h-full w-0">
+
                 </div>
-
-                <!-- Navigation -->
-                <nav>
-                    <ul class="flex gap-4 text-lg flex-wrap justify-center">
-                        <li><a href="../index.html" class="bg-yellow-200 brutal-border brutal-shadow px-4 font-bold  py-2 inline-block active:scale-95">Get Started</a></li>
-                        
-                    </ul>
-                </nav>
             </div>
-        </header>
+         </div>
+       </div>
 
-        <!-- Hero Section -->
-        <section class="container mx-auto px-6 md:px-12 lg:px-24 my-16">
-            <div class="bg-white brutal-border brutal-shadow p-8 md:p-12">
+     </div>
+        <!-- left sidebar -->
+        <div class="left px-4 sm:w-[15%] w-full h-full flex flex-col items-center sm:items-start sm:justify-start relative">
+
+            <!-- Navigation -->
+            <nav class="flex w-full p-5 gap-6 items-center sm:justify-start justify-center border-b-2 border-black">
+              <div class="flex w-full items-center gap-4 justify-center py-[3vh]">
+                <i style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="fa-solid fa-terminal text-black text-2xl bg-neutral-100 px-3 py-1 border-2 border-black"></i>
+                <p class="text-3xl font-bold font-mono text-black drop-shadow-[2px_0.8px_2px_#ffffff]">IndexIQ</p>
+              </div>
+            </nav>
+          
+            <!-- Sidebar Links -->
+            <ul class="sm:w-full w-full flex flex-col justify-center sm:justify-start my-10 font-bold text-xl mx-2 space-y-2">
+              <li>
+                <a href="../index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white transition-colors p-4">
+                  <i class="fa-solid fa-house"></i>
+                  <span>Home</span>
+                </a>
+              </li>
+              <li>
+                <a href="../page1/index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white transition-colors p-4">
+                  <i class="fa-solid fa-file-code"></i>
+                  <span>Commands</span>
+                </a>
+              </li>
+              <li>
+                <a href="../Home/index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white transition-colors p-4">
+                  <i class="fa-solid fa-database"></i>
+                  <span>About</span>
+                </a>
+              </li>
+              <li>
+                <a href="../Case_Study/index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white transition-colors p-4">
+                  <i class="fa-solid fa-earth-americas"></i>
+                  <span>Case Study</span>
+                </a>
+              </li>
+            </ul>
+          
+            <!-- Footer -->
+            <p  style=" -webkit-text-stroke: 1px black; /* Width and color */
+  color: black;" class="text-[13px] justify-end absolute bottom-8 font-light  text-stroke-2 text-stroke-black text-white">&copy; CopyRight 2025 All Rights Reserved.</p>
+          
+          </div>
+          
+
+        <!-- right content area -->
+        <div class="right overflow-auto sm:block hidden sm:w-[80%] mx-6 w-[100%] border-3 border-neo-black px-8 h-[95%] bg-[#fff6e5] border-2 border-black shadow-neo-card">
+            <!-- nav -->
+            <nav class="h-[10%] mt-5 flex items-center justify-between w-full ">
+                <div class="left ">
+                    <span style="box-shadow: 1.5px 1.5px 1px 1px #000000" class="p-2 px-4 font-bold text-xl border-2 border-black hover:bg-black hover:text-[#ffebc2]"><i class="fa-solid fa-folder-open"></i></span>
+                </div>
+                <div class="right flex items-center justify-center gap-6">
+                    <a href="../index.html"><div class="box border-4 px-4 py-3 border-black font-bold   hover:bg-[#000] rounded-sm hover:text-white">Navigate to Commands</div></a>
+                    <div class="flex items-center justify-center gap-4">
+                        <span class="px-4 text-xl py-2 border-2 border-black bg-[#ffebc2]"><i class="fa-solid fa-bell"></i></span>
+                        <span class="text-xl flex justify-center items-center bg-black border-2 border-black  h-12 w-12">
+                            <i class="fa-brands fa-github text-white text-3xl "></i>
+                        </span>
+                    </div>
+                    </div>
+
+            </nav>
+
+            <!-- Content area -->
+           <!-- Hero Section -->
+        <section  class="container mx-auto px-6   my-16">
+            <div style="box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.808);" class="bg-white border-2 border-black p-8">
                 <h1 class="text-5xl md:text-6xl font-bold mb-6 font-mono leading-tight">About Database Management</h1>
                 <p class="text-xl md:text-xl font-sans mb-8 max-w-[100%]">Learn about database concepts, SQL, and advanced DBMS techniques with our comprehensive tutorials.</p>
                 <div class="flex justify-between items-center w-full">
@@ -125,14 +162,14 @@
         </section>
 
         <!-- Features Section -->
-        <section class="container mx-auto px-6 md:px-20 lg:px-24 my-16">
+        <section class="container mx-auto px-6 my-16">
             <h2 class="text-4xl md:text-5xl font-bold mb-10 border-b-4 border-black pb-3 font-mono inline-block">SQL and PL/SQL</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Feature 1 -->
-                <div class="bg-[#88cdea] brutal-border brutal-shadow p-6 hover-lift">
+                <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="bg-[#88cdea] border-2 border-black  p-6 hover-lift">
                     <div class="flex justify-start items-center gap-4 mb-4">
-                        <i class="fa-solid fa-database text-2xl  bg-white brutal-border inline-block p-3 px-6 mb-4"></i>
+                        <i class="fa-solid fa-database text-2xl  border-black border-2 bg-white p-3 px-6 mb-4"></i>
                         <h3 class="text-3xl font-bold mb-2 font-mono">SQL</h3>
                     </div>
                     <p class="text-lg md:text-xl font-sans leading-relaxed"><b>Structured Query Language </b>is the standard language for relational database management systems. Used for querying, manipulating, and defining data.</p>
@@ -143,22 +180,19 @@
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="bg-[#fdc6ff] brutal-border brutal-shadow px-6 hover-lift">
+                <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class=" border-black border-2 bg-[#fdc6ff] brutal-border brutal-shadow px-6 hover-lift">
                     <div class="flex justify-start items-center gap-4 mb-4">
-                        <i class="fa-solid fa-table text-2xl  bg-white brutal-border inline-block py-3 px-4 my-4"></i>
+                        <i class="fa-solid fa-table text-2xl  border-black border-2 bg-white py-3 px-4 my-4"></i>
                         <h3 class="text-3xl font-bold mb-2 font-mono"> PL/SQL</h3>
                     </div>
                     <p class="text-lg md:text-xl font-sans leading-relaxed"><b>Procedural Language/Structured Query Language</b> is an extension to SQL that adds programming constructs like variables, loops, conditions, and exception handling to standard SQL.</p>
-                    <div class="flex justify-end mt-4 gap-2">
-                        <span class="w-5 h-5 text-left rounded-full border-4 border-black"></span>
-                        <span class="w-5 text-left rounded-full bg-black"></span>
-                    </div>
+                    
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="bg-[#f7c337] brutal-border brutal-shadow p-6 hover-lift">
+                <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="bg-[#f7c337] border-2 border-black p-6 hover-lift">
                     <div class="flex justify-start items-center gap-4 mb-4">
-                        <i class="fa-solid fa-code text-2xl  bg-white brutal-border inline-block p-3 mb-4"></i>
+                        <i class="fa-solid fa-code text-2xl  border-black border-2 bg-white p-3 mb-4"></i>
                         <h3 class="text-3xl font-bold mb-2 font-mono">SQL vs PL/SQL</h3>
                     </div>
 
@@ -172,15 +206,15 @@
         </section>
 
         <!-- SQL Commands Section -->
-        <section class="container mx-auto px-6 md:px-12 lg:px-20 my-16">
+        <section class="container mx-auto px-6  my-16">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
                 <h2 class="text-4xl md:text-5xl font-bold border-b-4 border-black pb-2 font-mono">SQL Command Types</h2>
-                <a href="../page1/index.html" class="bg-black text-white brutal-border text-lg border-2 px-4 py-2 inline-block hover-lift active:scale-95">View All Commands</a>
+                <a  href="../page1/index.html" class="bg-black text-white brutal-border text-lg border-2 px-4 py-2 inline-block hover-lift active:scale-95 border-black">View All Commands</a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- DDL Commands -->
-                <div class="bg-white brutal-border brutal-shadow overflow-hidden hover-lift">
+                <div  style="box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.808);"  class="bg-white border-2 border-black overflow-hidden hover-lift">
                     <div class="h-48 bg-[#a9d7b8] border-b-3 border-black flex items-center justify-center">
                         <i class="fa-solid fa-table-columns text-5xl"></i>
                     </div>
@@ -196,7 +230,7 @@
                 </div>
 
                 <!-- DML Commands -->
-                <div class="bg-white brutal-border brutal-shadow overflow-hidden hover-lift">
+                <div  style="box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.808);"  class="bg-white border-2 border-black brutal-border brutal-shadow overflow-hidden hover-lift">
                     <div class="h-48 bg-[#fdc6ff] border-b-3 border-black flex items-center justify-center">
                         <i class="fa-solid fa-pen-to-square text-5xl"></i>
                     </div>
@@ -214,12 +248,12 @@
         </section>
 
         <!-- Resources Section -->
-        <section class="container mx-auto px-6 md:px-12 lg:px-16 mt-10 mb-20">
-            <div class="bg-[#b5e9a1] brutal-border brutal-shadow p-4 md:p-10">
+        <section class="container mx-auto px-6 mt-10 mb-20">
+            <div style="box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.808);" class="bg-[#b5e9a1] border-2 border-black brutal-border brutal-shadow p-4 md:p-10">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6 font-mono leading-tight">Learn More About DBMS</h2>
                 <p class="text-xl md:text-2xl mb-8 max-w-4xl leading-relaxed">Explore our comprehensive database management tutorials and resources.</p>
                 <div class="flex justify-between items-center w-full">
-                    <a href="../page1/index.html" class="bg-black text-white brutal-border text-lg border-2 px-6 py-3 inline-block text-lg hover-lift active:scale-95">Start Learning →</a>
+                    <a href="../page1/index.html" class="bg-black text-white brutal-border text-lg border-2 px-6 py-3 inline-block text-lg hover-lift active:scale-95 border-black">Start Learning →</a>
                     <div class="flex justify-end mt-10 gap-2">
                         <span class="w-5 h-5 text-left rounded-full border-4 border-black"></span>
                         <span class="w-5 text-left rounded-full bg-black"></span>
@@ -229,52 +263,14 @@
         </section>
 
         <!-- Footer -->
-        <footer class="mt-auto bg-black text-white px-8 py-4 border-t-3 border-black w-full">
-           
-                  
+       
+        </div> <!-- End of right content area -->
+    </div> <!-- End of main -->
 
-                  
+    
 
-                
-                    <p class="text-center">&copy; 2024 DBMS Tutorial. All rights reserved.</p>
-                
-        
-        </footer>
-    </div>
-    <script>
-        // Disable scrolling when the page loads
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
-
-        const loader = document.querySelector('.loader');
-        const loaderfill = document.querySelector(".loader-fill");
-
-        gsap.to(loaderfill, {
-            width: "100%",
-            duration: 3, // duration in seconds
-            ease: "power4.out", // smooth easing
-            onComplete: () => {
-                gsap.to(loader, {
-                    opacity: 0,
-                    duration: 0.5,
-                    ease: "expo.inOut",
-                    onComplete: () => {
-                        // Remove the loader from the document flow completely
-                        loader.style.display = 'none';
-                        loader.style.position = 'absolute';
-                        loader.style.zIndex = '-1';
-
-                        // Enable scrolling after loader is hidden
-                        document.body.style.overflow = 'auto';
-                        document.documentElement.style.overflow = 'auto';
-                        document.body.style.overflowY = 'auto';
-                        document.body.style.overflowX = 'hidden';
-
-                        loader.classList.add("hidden", "bg-white");
-                    }
-                });
-            }
-        });
+    <script src="index.js">
+     
     </script>
 </body>
 </html>
