@@ -60,72 +60,72 @@
       </div>
 
       <!-- Sidebar Navigation (Desktop) -->
-      <div class="sm:flex sm:w-[15%] h-[100%] font-mono left-0 hidden">
-        <div class="nav w-full max-h-[10vh] h-[5vh] font-mono flex-col flex justify-start items-start">
-          <div class="flex w-full items-center gap-5 justify-center py-[3vh]">
-            <i style="box-shadow: 4px 4px 0.6px #000000;" class="fa-solid fa-terminal text-black text-2xl bg-neutral-100 px-3 py-1 border-2 border-black"></i>
-            <p style="text-shadow: 2px 0.8px 2px #ffffff;" class="text-3xl font-bold">IndexIQ</p>
-          </div>
+      <div class="left px-4 sm:w-[15%] w-full h-full flex flex-col items-center sm:items-start sm:justify-start relative">
 
-          <ul class="w-full h-[90vh] font-bold text-xl px-4">
-            <li class="w-full my-4">
-              <a href="../index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white px-6 py-3 w-full">
-                <i class="fa-solid fa-house"></i> Home
-              </a>
-            </li>
-            <li class="w-full my-2">
-              <a href="../index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white px-6 py-4 w-full">
-                <i class="fa-solid fa-file-code"></i> Commands
-              </a>
-            </li>
-            <li class="w-full my-2">
-              <a href="../index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white px-6 py-4 w-full">
-                <i class="fa-solid fa-database"></i> About
-              </a>
-            </li>
-            <li style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="w-full my-4">
-              <a href="../index.html" class="flex items-center gap-2 rounded-sm bg-[#ffebc2] text-black hover:bg-white border-2 border-black hover:text-black px-6 py-4 shadow-md w-full">
-                <i class="fa-solid fa-earth-americas"></i> Case Study
-              </a>
-            </li>
-          </ul>
-        </div>
+        <!-- Navigation -->
+        <nav class="flex w-full p-5 gap-6 items-center sm:justify-start justify-center border-b-2 border-black">
+          <div class="flex w-full items-center gap-4 justify-center py-[3vh]">
+            <i style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="fa-solid fa-terminal text-black text-2xl bg-neutral-100 px-3 py-1 border-2 border-black"></i>
+            <p class="text-3xl font-bold font-mono text-black drop-shadow-[2px_0.8px_2px_#ffffff]">IndexIQ</p>
+          </div>
+        </nav>
+      
+        <!-- Sidebar Links -->
+        <ul class="sm:w-full w-full flex flex-col justify-center sm:justify-start my-10 font-bold text-xl mx-2 space-y-2">
+          <li>
+            <a href="../index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white transition-colors p-4">
+              <i class="fa-solid fa-house"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="../page1/index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white transition-colors p-4">
+              <i class="fa-solid fa-file-code"></i>
+              <span>Commands</span>
+            </a>
+          </li>
+          <li>
+            <a href="../Home/index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white transition-colors p-4">
+              <i class="fa-solid fa-database"></i>
+              <span>Dbms Docs</span>
+            </a>
+          </li>
+          <li style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="w-full my-4">
+            <a href="../index.html" class="flex items-center gap-2 rounded-sm bg-[#ffebc2] text-black hover:bg-white border-2 border-black hover:text-black px-6 py-4 shadow-md w-full">
+              <i class="fa-solid fa-earth-americas"></i> Case Study
+            </a>
+          </li>
+        </ul>
+      
+        <!-- Footer -->
+        <p  style="
+  color: black;" class="text-[12px] justify-end absolute bottom-8 font-light w-full  px-2 text-white">&copy; CopyRight 2025 All Rights Reserved.</p>
+      
       </div>
 
       <!-- Main Frame -->
       <div class="sm:w-[85%] bg-neutral-100 h-[100%] overflow-auto w-full sm:overflow-auto flex-col justify-center items-center border-black sm:border-2">
         <!-- Navbar for Mobile -->
-        <nav class="nav w-[100%] items-center justify-between flex border-2 border-neutral-500 bg-neutral-700 sm:h-[0%] h-[10%] sm:hidden">
-          <h1 class="text-2xl p-4 text-white">DBMS</h1>
-          <ul class="flex flex-col items-center justify-center gap-2 p-4">
-            <li class="w-12 h-1 bg-white"></li>
-            <li class="w-12 h-1 bg-white"></li>
-            <li class="w-12 h-1 bg-white"></li>
-          </ul>
-        </nav>
+       
 
         <!-- Main Content -->
         <main class="main flex flex-col h-full justify-between items-center w-full">
-          <nav class="hidden h-[0%] sm:flex py-12 px-4 items-center justify-between w-full">
-            <div>
-              <span style="box-shadow: 1.5px 1.5px 1px 1px #000000" class="p-2 px-4 font-bold text-xl border-2 border-black bg-black text-[#ffebc2]">
-                <i class="fa-solid fa-folder-open"></i>
-              </span>
-            </div>
-            <div class="flex items-center justify-center gap-6">
-              <a href="../index.html">
-                <div class="box border-4 px-4 py-3 border-black font-bold text-lg hover:bg-[#000] rounded-sm hover:text-white">Navigate to Commands</div>
-              </a>
-              <div class="flex items-center justify-center gap-4">
-                <span class="px-4 text-xl py-2 border-2 border-black bg-[#ffebc2]">
-                  <i class="fa-solid fa-bell"></i>
-                </span>
-                <span class="text-xl border-2 border-black bg-black flex justify-center items-center h-12 w-12">
-                  <i class="fa-brands fa-github text-white text-3xl"></i>
-                </span>
-              </div>
-            </div>
-          </nav>
+
+          <nav class="h-[10%] mt-5 flex items-center px-6 justify-between w-full ">
+                <div class="left ">
+                    <span style="box-shadow: 1.5px 1.5px 1px 1px #000000" class="p-2 px-4 font-bold text-xl border-2 border-black bg-black text-yellow-200"><i class="fa-solid fa-database"></i></span>
+                </div>
+                <div class="right flex items-center justify-center gap-6">
+                    <a href="./page1/index.html"><div class="box border-4 px-4 py-3 border-black font-bold   hover:bg-[#000] rounded-sm hover:text-white">Navigate to Commands</div></a>
+                    <div class="flex items-center justify-center gap-4">
+                        <span class="px-4 text-xl py-2 border-2 border-black bg-[#ffebc2]"><i class="fa-solid fa-bell"></i></span>
+                        <a href="https://github.com/G4Git" target="_blank" class="text-xl flex justify-center items-center bg-black border-2 border-black  h-12 w-12">
+                            <i  class="fa-brands fa-github text-white text-3xl "></i>
+                        </a>
+                    </div>
+                    </div>
+
+            </nav>
           <!-- table -->
           <h1 class="text-6xl mt-10 font-bold font-mono border-b-4 my-4 py-4 px-10 border-black">Student Analysis Report</h1>
 <section class="px-6 sm:px-20 py-10 w-full">

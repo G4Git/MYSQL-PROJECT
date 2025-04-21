@@ -3,77 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mysql Project</title>
+    <title>DBMS Tutorial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/cea3fafc7e.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+      a.hover-lift:hover {
+            transform: translate(-2px, -2px);
 
-
+            box-shadow: 6px 6px 0 rgba(0, 0, 0, 1);
+            border: 1px solid white;
+            transition: all 0.2s ease;
+        }
+  </style>
 </head>
-<body>
+<body >
+   
 
-    <div class="main bg-[#a9d7b8]  w-full h-screen flex justify-center gap-4 items-center ">
-        <!-- loader -->
-        <div class="loader z-10 overflow-hidden  absolute w-full h-full bg-[#fff6e5] flex justify-start px-[10%] items-start py-[5%]">
-            <!-- cmd -->
-           <div style="box-shadow: 3px 5px 2px 5px #000000 "  class="cmd1 z-10 w-[60%] h-[55%] rounded-3xl relative bg-[#b5e9a1]">
-            <!-- tape -->
-            <div class="tape w-full  bg-[#cac4f2] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
-                <ul class="flex justify-center  items-center  gap-2">
-                  <li class="h-5 w-5 bg-black rounded-full p-2"></li>
-                  <li class="h-5 w-5 bg-black rounded-full p-2"></li>
-                  <li class="h-5 w-5 bg-black rounded-full p-2"></li>  
-                </ul>
-                <h1 class="font-mono text-xl text-black">Mysql Window</h1>
-                
-            </div>
-            <!-- cmd -->
-             
-
-           </div>
-
-           <!-- cmd -->
-           <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd2 z-10 w-[40%] h-[38%] bg-[#f1edea] rounded-3xl absolute left-96 top-72">
-            <!-- tape -->
-            <div class="tape w-full  bg-[#273fe9] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
-                <ul class="flex justify-center  items-center  gap-2">
-                  <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
-                  <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
-                  <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>  
-                </ul>
-                <h1 class="font-mono text-xl text-white">Mysql Window</h1>
-                
-            </div>
+    <div class="main w-full h-screen bg-[#a9d7b8] flex justify-center gap-4 items-center relative overflow-hidden">
+       <!-- (loader) -->
+       <div class="loader z-10 overflow-hidden  absolute w-full h-full bg-[#fff6e5] flex justify-start px-[10%] items-start py-[5%]">
+        <!-- cmd -->
+       <div style="box-shadow: 3px 5px 2px 5px #000000 "  class="cmd1 z-10 w-[60%] h-[55%] rounded-3xl relative bg-[#b5e9a1]">
+        <!-- tape -->
+        <div class="tape w-full  bg-[#cac4f2] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
+            <ul class="flex justify-center  items-center  gap-2">
+              <li class="h-5 w-5 bg-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black rounded-full p-2"></li>  
+            </ul>
+            <h1 class="font-mono text-xl text-black">Mysql Window</h1>
             
-             <h1 class="text-7xl font-mono font-bold text-center py-8">DBMS Project </h1>
-             <p class="text-center font-mono text-2xl">A project by <b class="text-[#273fe9]">Gobind Singh</b> , 4058/23</p>
-           </div>
+        </div>
+        <!-- cmd -->
+         
 
-           <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd3 z-10 w-[25%] h-[35%] sm:h-[25%] bg-[#2a41f2] rounded-3xl absolute right-96 top-[60%]">
-            <!-- tape -->
-            <div class="tape w-full  bg-[#b5e9a1] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
-                <ul class="flex justify-center  items-center  gap-2">
-                  <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
-                  <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
-                  <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>  
-                </ul>
-                <h1 class="font-mono text-xl text-white"></h1>
-                
-            </div>
-            <h1 class="text-[#c2c9f1] text-5xl py-2  font-mono text-center">LOADING..</h1>
-             <div class=" flex items-center justify-center h-[25%] w-full">
-                <div class=" w-[80%]    h-[40%] border-2">
-                    <div class="loader-fill bg-[#c2c9f1] h-full w-0">
+       </div>
 
-                    </div>
+       <!-- cmd -->
+       <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd2 z-10 w-[40%] h-[38%] bg-[#f1edea] rounded-3xl absolute left-96 top-72">
+        <!-- tape -->
+        <div class="tape w-full  bg-[#273fe9] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
+            <ul class="flex justify-center  items-center  gap-2">
+              <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-[#c2c9f1] border-2 border-black rounded-full p-2"></li>  
+            </ul>
+            <h1 class="font-mono text-xl text-white">Mysql Window</h1>
+            
+        </div>
+        
+         <h1 class="text-7xl font-mono font-bold text-center py-8">DBMS Project </h1>
+         <p class="text-center font-mono text-2xl">A project by <b class="text-[#273fe9]">Gobind Singh</b> , 4058/23</p>
+       </div>
+
+       <div style="box-shadow: 3px 5px 2px 5px #000000" class="cmd3 z-10 w-[25%] h-[35%] sm:h-[25%] bg-[#2a41f2] rounded-3xl absolute right-96 top-[60%]">
+        <!-- tape -->
+        <div class="tape w-full  bg-[#b5e9a1] h-[12%] border-4 border-black p-6 rounded-t-3xl flex  items-center justify-between">
+            <ul class="flex justify-center  items-center  gap-2">
+              <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>
+              <li class="h-5 w-5 bg-black border-2 border-black rounded-full p-2"></li>  
+            </ul>
+            <h1 class="font-mono text-xl text-white"></h1>
+            
+        </div>
+        <h1 class="text-[#c2c9f1] text-5xl py-3  font-mono text-center">LOADING..</h1>
+         <div class=" flex items-center justify-center h-[25%] w-full">
+            <div class=" w-[80%]    h-[40%] border-2">
+                <div class="loader-fill bg-[#c2c9f1] h-full w-0">
+
                 </div>
-             </div>
-           </div>
-
+            </div>
          </div>
+       </div>
 
-
-        <!-- left  -->
+     </div>
+        <!-- left sidebar -->
         <div class="left px-4 sm:w-[15%] w-full h-full flex flex-col items-center sm:items-start sm:justify-start relative">
 
             <!-- Navigation -->
@@ -101,7 +108,7 @@
               <li>
                 <a href="../Home/index.html" class="flex items-center gap-4 rounded-sm hover:bg-black hover:text-white transition-colors p-4">
                   <i class="fa-solid fa-database"></i>
-                  <span>About</span>
+                  <span>Dbms Docs</span>
                 </a>
               </li>
               <li>
@@ -117,184 +124,153 @@
   color: black;" class="text-[13px] justify-end absolute bottom-8 font-light  text-stroke-2 text-stroke-black text-white">&copy; CopyRight 2025 All Rights Reserved.</p>
           
           </div>
-        <!-- right  -->
-        <div class="right overflow-auto sm:block hidden sm:w-[80%] mx-6 w-[100%] border-2 border-black px-8 h-[95%] bg-[#fff6e5] ">
+          
+
+        <!-- right content area -->
+        <div class="right overflow-auto sm:block hidden sm:w-[80%] mx-6 w-[100%] border-3 border-neo-black px-8 h-[95%] bg-[#fff6e5] border-2 border-black shadow-neo-card">
             <!-- nav -->
-            <nav class="h-[10%] mt-5 flex items-center justify-between w-full ">
+            <nav class="h-[10%] mt-5 flex items-center px-6 justify-between w-full ">
                 <div class="left ">
-                    <span style="box-shadow: 1.5px 1.5px 1px 1px #000000" class="p-2 px-4 font-bold text-xl border-2 border-black hover:bg-black hover:text-[#ffebc2]"><i class="fa-solid fa-folder-open"></i></span>
+                    <span style="box-shadow: 1.5px 1.5px 1px 1px #000000" class="p-2 px-4 font-bold text-xl border-2 border-black bg-black text-yellow-200"><i class="fa-solid fa-database"></i></span>
                 </div>
                 <div class="right flex items-center justify-center gap-6">
-                    <a href="../index.html"><div class="box border-4 px-4 py-3 border-black font-bold   hover:bg-[#000] rounded-sm hover:text-white">Navigate to Commands</div></a>
+                    <a href="./page1/index.html"><div class="box border-4 px-4 py-3 border-black font-bold   hover:bg-[#000] rounded-sm hover:text-white">Navigate to Commands</div></a>
                     <div class="flex items-center justify-center gap-4">
                         <span class="px-4 text-xl py-2 border-2 border-black bg-[#ffebc2]"><i class="fa-solid fa-bell"></i></span>
-                        <span class="text-xl flex justify-center items-center bg-black border-2 border-black  h-12 w-12">
-                            <i class="fa-brands fa-github text-white text-3xl "></i>
-                        </span>
+                        <a href="https://github.com/G4Git" target="_blank" class="text-xl flex justify-center items-center bg-black border-2 border-black  h-12 w-12">
+                            <i  class="fa-brands fa-github text-white text-3xl "></i>
+                        </a>
                     </div>
                     </div>
 
             </nav>
 
-            <div class="px-4 w-full flex flex-wrap justify-between items-center h-[12%]">
-            <!-- left yelloww -->
-             <div class="px-4 w-[65%] flex-col gap-5 flex">
-                <h1 class="text-6xl mt-10 font-bold font-mono">DBMS-Docs</h1>
-               <!-- box -->
-                <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="border-2 h-full w-full bg-[#f7c337]  border-black px-6 py-6 flex justify-between items-center">
-                    <div class="w-44 bg-[#f5d479]  rounded-sm border-2 border-black">
-                        <img src="./server_18526644.png" class="object-cover my-2 h-full w-full" alt="">
+            <!-- Content area -->
+           <!-- Hero Section -->
+        <section  class="container mx-auto px-6   my-16">
+            <div style="box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.808);" class="bg-white border-2 border-black p-8">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 font-mono leading-tight">Learn Database Management</h1>
+                <p class="text-xl md:text-xl font-sans mb-8 max-w-[100%]">Learn About database concepts, SQL, and advanced DBMS techniques with our comprehensive tutorials.</p>
+                <div class="flex justify-between items-center w-full">
+                    <a href="../page1/index.html" class="bg-black text-white brutal-border text-lg border-2 px-6 py-3 inline-block text-lg hover-lift active:scale-95">Explore Commands →</a>
+                    <div class="flex gap-2">
+                        <span class="w-5 h-5 text-left rounded-full border-4 border-black"></span>
+                        <span class="w-5 text-left rounded-full bg-black"></span>
                     </div>
-                    <div class="w-[70%] relative h-[100%]">
-                        <h1 class="text-2xl font-mono font-semibold">What is Database ?</h1>
-                        <p class="mt-2 text-lg">A database is a structured collection of data that is stored electronically and can be easily accessed, managed, and updated. They come in different types, such as relational databases that use tables and SQL, and NoSQL databases that store data more flexibly. In essence, a database acts like a digital brain for storing and handling information.
-                        </p>
-                        <div class="flex h-5  flex justify-end  gap-2  bottom-0">
-                            <span class=" w-5 text-left rounded-full border-4 border-black"></span>
-                            <span class=" w-5 text-left rounded-full bg-black"></span>
-                           </div>
-                        <div>
-                           
-                        </div>
-                       
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="container mx-auto px-6 my-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-10 border-b-4 border-black pb-3 font-mono inline-block">SQL and PL/SQL</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Feature 1 -->
+                <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808) ;background-image: linear-gradient(10deg, #88cdea, white, #88cdea);" class=" border-2 border-black  p-6 hover-lift">
+                    <div class="flex justify-start items-center gap-4 mb-4">
+                        <i class="fa-solid fa-database text-2xl  border-black border-2 bg-white p-3 px-6 mb-4"></i>
+                        <h3 class="text-3xl font-bold mb-2 font-mono">SQL</h3>
                     </div>
-                    
+                    <p class="text-lg md:text-xl font-sans leading-relaxed"><b>Structured Query Language </b>is the standard language for relational database management systems. Used for querying, manipulating, and defining data.</p>
+                    <div class="flex justify-end mt-4 gap-2">
+                        <span class="w-5 h-5 text-left rounded-full border-4 border-black"></span>
+                        <span class="w-5 text-left rounded-full bg-black"></span>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808) ;background-image: linear-gradient(10deg, #fdc6ff, white, #fdc6ff);" class=" border-black border-2  brutal-border brutal-shadow px-6 hover-lift">
+                    <div class="flex justify-start items-center gap-4 mb-4">
+                        <i class="fa-solid fa-table text-2xl  border-black border-2 bg-white py-3 px-4 my-4"></i>
+                        <h3 class="text-3xl font-bold mb-2 font-mono"> PL/SQL</h3>
+                    </div>
+                    <p class="text-lg md:text-xl font-sans leading-relaxed"><b>Procedural Language/Structured Query Language</b> is an extension to SQL that adds programming constructs like variables, loops, conditions, and exception handling to standard SQL.</p>
                     
                 </div>
-             </div>
-            
-             <!-- right yelloww -->
-             <div  class="px-4 w-[34%] flex-col gap-3 mt-10 flex">
-                <h1 class="text-3xl  font-bold font-mono"> Types of DBMS</h1>
-                <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="bg-white w-full border-2 border-black  rounded-sm flex flex-col mt-5 ">
-            
-                    <span class="border-b-2 text-center px-6  h-24 w-full border-black py-4 flex items-center justify-start gap-8  text-xl font-mono  font-semibold">
-                        <i class="fa-solid fa-sitemap p-3 border-2 border-black bg-[#ffebc2]"></i> <h1 class="text-xl font-bold">Hierarchical DBMS</h1> 
-                    </span>
-                    <span class="border-b-2 text-center px-6  h-24 w-full border-black py-4 flex items-center justify-start gap-8  text-xl font-mono  font-semibold">
-                        <i class="fa-solid fa-hexagon-nodes  px-4 py-3 border-2 border-black bg-[#fdc6ff]"></i> <h1 class="text-xl font-bold">Network DBMS</h1> 
-                    </span>
-                    <span class="border-b-2 text-center px-6  h-24 w-full border-black py-4 flex items-center justify-start gap-8  text-xl font-mono  font-semibold">
-                        <i class="fa-solid fa-code-branch p-3 px-4 border-2 border-black bg-[#b5e9a1]"></i> <h1 class="text-xl font-bold">Relational DBMS</h1> 
-                    </span>
-                    
-                  
-                  
-                  
-             </div>
+
+                <!-- Feature 3 -->
+                <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808) ;background-image: linear-gradient(10deg, #f7c337, white, #f7c337);"class=" border-2 border-black p-6 hover-lift">
+                    <div class="flex justify-start items-center gap-4 mb-4">
+                        <i class="fa-solid fa-code text-2xl  border-black border-2 bg-white p-3 mb-4"></i>
+                        <h3 class="text-3xl font-bold mb-2 font-mono">SQL vs PL/SQL</h3>
+                    </div>
+
+                    <p class="text-lg md:text-xl font-sans leading-relaxed"><b>SQL</b> is declarative and focuses on what data to retrieve, while <b>PL/SQL</b> is procedural and focuses on how to process data with programming logic.</p>
+                    <div class="flex justify-end mt-10 gap-2">
+                        <span class="w-5 h-5 text-left rounded-full border-4 border-black"></span>
+                        <span class="w-5 text-left rounded-full bg-black"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SQL Commands Section -->
+        <section class="container mx-auto px-6  my-16">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+                <h2 class="text-4xl md:text-5xl font-bold border-b-4 border-black pb-2 font-mono">SQL Command Types</h2>
+                <a  href="../page1/index.html" class="bg-black text-white brutal-border text-lg border-2 px-4 py-2 inline-block hover-lift active:scale-95 border-black">View All Commands</a>
             </div>
 
-            <!-- bottom -->
-             <div class="head w-full h-full flex justify-between items-end px-3 ">
-                <h1 class="text-5xl mt-10 font-bold font-mono">SQL Commands</h1>
-                <a href="" class="border-4  text-lg font-bold font-mono border-black p-2 hover:text-white hover:bg-black ">
-                    
-                        View All
-                </a>
-             </div>
-             
-             <div>
-
-             <div class="flex justify-between  gap-4   items-center">
-             <div class="left h-full w-[33%] my-4 px-5">
-                <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="border-2 h-full w-full bg-[#fdc6ff]  border-black px-6 flex flex-col justify-between items-center">
-                    <div class=" py-4 border-b-2 border-black w-full flex justify-between items-center ">
-                        <div>
-
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- DDL Commands -->
+                <div  style="box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.808);"  class="bg-white border-2 border-black overflow-hidden hover-lift">
+                    <div class="h-48 bg-[#fef08a] border-b-3 border-black flex items-center justify-center">
+                        <i class="fa-solid fa-table-columns text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 font-mono">DDL Commands</h3>
+                        <p class="mb-6 text-base md:text-lg font-sans my-4 leading-relaxed">Data Definition Language commands define and modify database structure.</p>
+                        <div class="flex gap-2">
+                            <span class="bg-[#88cdea] px-2 py-1 text-sm border-2 border-black">CREATE</span>
+                            <span class="bg-[#fdc6ff] px-2 py-1 text-sm border-2 border-black">ALTER</span>
+                            <span class="bg-[#f7c337] px-2 py-1 text-sm border-2 border-black">DROP</span>
                         </div>
-                        <a href="" class="bg-white border-2 border-black p-2 py-1 font-mono font-semibold">See Full</a>
                     </div>
-                    <div class="h-[80%] w-full flex justify-center gap-6 px-4 items-start">
-                        <ul class="font-mono  pl-5 list-outside list-disc text-3xl font-light py-6">
-                            <li>DQL</li>
-                            <li>DML</li>
-                            <li>DDL</li>
-                        </ul>
-                        <ul class="font-mono  px-4 list-outside list-disc text-3xl font-light py-6">
-                            <li>DCL</li>
-                            <li>TCL</li>
-                            
-                        </ul>
-                        <i class="fa-solid fa-terminal  text-7xl font-semibold  py-6"></i>
+                </div>
+
+                <!-- DML Commands -->
+                <div  style="box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.808);"  class="bg-white border-2 border-black brutal-border brutal-shadow overflow-hidden hover-lift">
+                    <div class="h-48 bg-[#fdc6ff] border-b-3 border-black flex items-center justify-center">
+                        <i class="fa-solid fa-pen-to-square text-5xl"></i>
                     </div>
-                    <div class="w-[100%] mb-3 relative h-[100%]">
-                       
-                        
-                        <div class="flex h-4  flex justify-end  gap-2  bottom-0">
-                            <span class=" w-4 text-left rounded-full border-4 border-black"></span>
-                            <span class=" w-4 text-left rounded-full bg-black"></span>
-                           </div>
-                        <div>
-                           
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 font-mono">DML Commands</h3>
+                        <p class="mb-6 text-base md:text-lg font-sans my-4 leading-relaxed">Data Manipulation Language commands manage data within database tables.</p>
+                        <div class="flex gap-2">
+                            <span class="bg-[#88cdea] px-2 py-1 text-sm border-2 border-black">INSERT</span>
+                            <span class="bg-[#b5e9a1] px-2 py-1 text-sm border-2 border-black">UPDATE</span>
+                            <span class="bg-[#f7c337] px-2 py-1 text-sm border-2 border-black">DELETE</span>
                         </div>
-                       
                     </div>
-                    
-                    
                 </div>
-             </div>
+            </div>
+        </section>
 
-             <div class="right overflow-auto flex w-[85%] items-center gap-3 justify-center">
-                
-                <!-- cmd -->
-                <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="gridbox  bg-white h-64 w-1/3 border-2 border-black">
-                <span class="py-2  flex justify-center border-b-2 border-black items-center">
-                    <h1 class="text-2xl font-bold font-mono px-4 py-2">DDL Command</h1>
-                    <i style="
-                       
-                          text-shadow:
-                            
-                             1.5px 1.5px 1.5px  #000,
-                            1.5px 1.5px 1.5px  black,
-                            1.5px 1.5px 1.5px  black,
-                             1.5px  1.5px 1.5px  #000;
-                       "  class="fa-solid fa-star star-outline mx-4 py-4 text-xl  text-[#f7c337]"></i>
-                </span>
-               
-                <p class="px-4 py-4">DDL <b>(Data Definition Language)</b> defines and manages database structure using commands like CREATE, ALTER, DROP to modify schema and tables.</p>
+        <!-- Resources Section -->
+        <section class="container mx-auto px-6 mt-10 mb-20">
+            <div style="background-image: linear-gradient(10deg, #88cdea, white, #88cdea); box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.808);" class="bg-[#2941f2] border-2 border-black brutal-border brutal-shadow p-4 md:p-10">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 font-mono leading-tight">Learn More About DBMS</h2>
+                <p class="text-xl md:text-2xl mb-8 max-w-4xl leading-relaxed">Explore our comprehensive database management tutorials and resources.</p>
+                <div class="flex justify-between items-center w-full">
+                    <a href="../page1/index.html" class="bg-black text-white brutal-border text-lg border-2 px-6 py-3 inline-block text-lg hover-lift active:scale-95 border-black">Start Learning →</a>
+                    <div class="flex justify-end mt-10 gap-2">
+                        <span class="w-5 h-5 text-left rounded-full border-4 border-black"></span>
+                        <span class="w-5 text-left rounded-full bg-black"></span>
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="gridbox  bg-white h-64 w-1/3 border-2 border-black">
-                    <span class="py-2  flex justify-center border-b-2 border-black items-center">
-                        <h1 class="text-2xl font-bold font-mono px-4 py-2">DML Command</h1>
-                        <i style="
-                           
-                              text-shadow:
-                                
-                                 1.5px 1.5px 1.5px  #000,
-                                1.5px 1.5px 1.5px  black,
-                                1.5px 1.5px 1.5px  black,
-                                 1.5px  1.5px 1.5px  #000;
-                           "  class="fa-solid fa-star star-outline mx-4 py-4 text-xl  text-[#f7c337]"></i>
-                    </span>
-                   
-                    <p class="px-2 py-4">
+        <!-- Footer -->
+       
+        </div> <!-- End of right content area -->
+    </div> <!-- End of main -->
 
-                        DML <b>(Data Manipulation Language)</b> is used to manage and modify data within tables using commands like INSERT, UPDATE, DELETE, and MERGE.</p>
-                </div>
-                <div style="box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.808);" class="gridbox  bg-white h-64 w-1/3 border-2 border-black">
-                    <span class="py-2  flex justify-center border-b-2 border-black items-center">
-                        <h1 class="text-2xl font-bold font-mono px-4 py-2">DQL Command</h1>
-                        <i style="
-                           
-                              text-shadow:
-                                
-                                 1.5px 1.5px 1.5px  #000,
-                                1.5px 1.5px 1.5px  black,
-                                1.5px 1.5px 1.5px  black,
-                                 1.5px  1.5px 1.5px  #000;
-                           "  class="fa-solid fa-star star-outline mx-4 py-4 text-xl  text-[#f7c337]"></i>
-                    </span>
-                   
-                    <p class="px-2 py-4">
+    
 
-                        DQL <b>(Data Query Language)</b> is used to fetch data from the database using the SELECT command based on specific conditions.</p>
-                </div>
-                
-             </div>
-             </div>
-        </div>
-    </div>
-    <script src="index.js"></script>
+    <script src="index.js">
+     
+    </script>
 </body>
 </html>
